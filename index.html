@@ -1,14 +1,528 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>pathways in care</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Navbar</title>
+  <style>
+    :root {
+      --font: 'Verdana', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+    }
+
+    .logo-top-left {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    .logo-top-left img {
+      height: 240px;
+      width: auto;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 20px;
+      padding-left: 150px;
+      background-color: #fff;
+      color: #000;
+      height: 60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .navbar .nav-links a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .navbar .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .navbar .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: black;
+    }
+
+    .section {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 45px 40px;
+      gap: 40px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateX(250px);
+      transition: all 1s ease-out;
+      max-width: 900px;
+      word-wrap: break-word;
+    }
+
+    .section.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section.reverse {
+      flex-direction: row-reverse;
+      transform: translateX(-250px);
+    }
+
+    .section.reverse.in-view {
+      transform: translateX(0);
+    }
+
+    #about {
+      margin-top: 260px;
+    }
+
+    #contact .text {
+      flex: 1 1 40%;
+    }
+
+    #contact .form {
+      flex: 1 1 55%;
+      margin-top: 0;
+      align-self: center;
+    }
+
+    .section .text h2 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      font-family: Lato;
+      font-weight: 100;
+      font-style: italic;
+    }
+
+    .section .text h3 {
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: normal;
+    }
+
+    .section .text p {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .section .text ul {
+      padding-left: 60px;
+      margin-bottom: 16px;
+    }
+
+    .section .text ul ul {
+      padding-left: 20px;
+      list-style-type: circle;
+    }
+
+    .form form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .form input,
+    .form textarea {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      font-family: var(--font);
+    }
+
+    .form button {
+      padding: 10px;
+      background-color: #4596a1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .logo-top-left img {
+        height: 120px;
+      }
+
+      .section {
+        padding: 35px 30px;
+      }
+
+      #about {
+        margin-top: 120px;
+      }
+
+      .section .text ul {
+        padding-left: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-top-left img {
+        height: 80px;
+      }
+
+      .navbar {
+        padding-left: 20px;
+      }
+
+      .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #eee;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .navbar .nav-links.active {
+        display: flex;
+      }
+
+      .navbar .hamburger {
+        display: flex;
+      }
+
+      .section {
+        flex-direction: column;
+        text-align: left;
+        transform: translateY(50px);
+        padding: 25px 20px;
+        max-width: 100%;
+      }
+
+      .section.reverse {
+        flex-direction: column;
+        transform: translateY(50px);
+      }
+
+      .section.reverse.in-view,
+      .section.in-view {
+        transform: translateY(0);
+      }
+
+      .section .text, .section .form {
+        flex: 1 1 100%;
+      }
+
+      .form {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 16px;
+      }
+
+      .form form {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      #about {
+        margin-top: 80px;
+      }
+
+      .section .text ul {
+        padding-left: 20px;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .char-counter {
+      font-size: 0.9em;
+      margin-left: 8px;
+      color: gray;
+    }
+
+    /* Style for required fields */
+    input:required {
+      border-left: 4px solid #e74c3c; /* Red border to indicate requirement */
+      background-color: #fdf2f2;      /* Light red background */
+    }
+
+    /* Style for required fields when valid */
+    input:required:valid {
+      border-left: 4px solid #27ae60; /* Green border to indicate validity */
+      background-color: #e6f9ec;      /* Light green background */
+    }
+
+    /* Style for required fields */
+    textarea:required {
+      border-left: 4px solid #e74c3c; /* Red border to indicate requirement */
+      background-color: #fdf2f2;      /* Light red background */
+    }
+
+    /* Style for required fields when valid */
+    textarea:required:valid {
+      border-left: 4px solid #27ae60; /* Green border to indicate validity */
+      background-color: #e6f9ec;      /* Light green background */
+    }
+
+    
+
+    /* Default style for optional fields */
+    input:optional:placeholder-shown {
+      border-left: 4px solid #95a5a6; /* Gray border */
+      background-color: #f2f2f2;      /* Light gray background */
+    }
+
+    /* Style when optional field has valid input */
+    input:optional:valid:not(:placeholder-shown) {
+      border-left: 4px solid #27ae60; /* Green border */
+      background-color: #e6f9ec;      /* Light green background */
+    }
+
+    /* Style when optional field has invalid input */
+    input:optional:invalid:not(:placeholder-shown) {
+      border-left: 4px solid #e74c3c; /* Red border */
+      background-color: #fdf2f2;      /* Light red background */
+    }
+
+    
+  </style>
 </head>
 <body>
-  <h1>pathways in care</h1>
-  <p>
-  <div>coming soon</div>
-  </p>
+  <div class="logo-top-left">
+    <img src="images/banner5.svg" alt="Logo" />
+  </div>
+  <nav class="navbar">
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+
+  <section id="about" class="section">
+    <div class="text">
+      <h2>About Us</h2>
+      <h3>Guiding Families Through Aged Care with Clarity and Compassion</h3>
+      <p>At <em>Pathways in Care</em>, we help families navigate the aged care system with trusted advice, practical support, and ethical advocacy. Whether you’re arranging home support, seeking residential care, advocating for a loved one, or simply need someone who understands the system — We are here to guide you.</p>
+      <p>With over 15 years’ experience as a Hospital Social Worker, we bring deep expertise at the intersection of healthcare and aged care. We also draw from many years of personal experience supporting in-home care, carers, and aged care transitions.</p>
+      <p>Grounded in relationships — not commissions — our approach is personal, respectful, and always in your best interest.</p>
+    </div>
+  </section>
+
+  <section id="services" class="section reverse">
+    <div class="text">
+      <h2>Our Services</h2>
+      <h3>Aged Care Consulting</h3>
+      <p>We begin by meeting with you to understand your individual circumstances through a comprehensive assessment. This allows us to explore all available options and resources—whether your goal is to remain living safely at home or transition into residential aged care.</p>
+      <p>Support provided may include helping you access services and entitlements you and your loved ones may be eligible for, such as Carer Payments and Allowances, government-funded support at home, in-home respite, short-term residential respite for future planning, and assistive technology solutions.</p>
+      <p>We can coordinate referrals to My Aged Care, liaise with your GP or healthcare providers, and connect you with in-home supports, community supports and Day Centres.</p>
+      <p>Importantly, we also <strong>advocate on your behalf with existing services</strong> to ensure you&#39;re receiving the most appropriate and responsive care for your unique needs.</p>
+      <p>Advice and guidance can also be provided regarding Enduring Power of Attorney, Enduring Power of Guardianship, State Administrative Tribunal Applications, and accessing dementia support services.</p>
+      <br>
+      <h3>Residential Care</h3>
+      <p>Our residential placement services are here to support you in finding the right aged care option based on what matters most to you — whether that’s location, being close to family, or working within your financial circumstances. We understand that every situation is different, which is why we offer both general guidance and a more comprehensive service tailored to your individual needs and preferences. Our goal is to make this transition as informed, supported, and compassionate as possible.</p>
+      <ul>
+        <li><strong>Basic Placement Service - $650:</strong>
+          <p>This service provides support to help you begin the process of entering residential aged care. It includes:</p>      
+        </li>
+        <ul>
+          <li><strong>Ensuring you are eligible to access residential care</strong></li>
+          <li><strong>Assisting with referrals for an Aged Care Assessment (previously ACAT)</strong> if appropriate referrals have not yet been made</li>
+          <li>Identifying suitable aged care facilities based on your needs and preferences</li>
+          <li>Providing up to 3 facility recommendations</li>
+          <li>Ensuring that required paperwork is completed for financial and Centrelink purposes, including providing the Permanent Residential Aged Care Request for a Combined Assets and Income Assessment form</li>
+          <li>Providing written and verbal guidance on the steps necessary to enter residential care</li>
+          <li>A basic discussion regarding fees and affordability relevant to your personal circumstances</li>
+        </ul>
+      </ul>
+      <br>
+      <ul>
+        <li><strong>Complete Placement Service – $2200:</strong>
+          <p>This comprehensive service includes <strong>everything listed in the Basic Placement Service</strong>, as well as the following additional support:</p>
+        </li>
+        <ul>
+          <li>Arranging appointments with residential care facilities (up to 3)</li>
+          <li>Collecting admissions paperwork and assisting with completing forms</li>
+          <li>Lodging paperwork and liaising with facilities about waitlists, keeping you informed throughout the process</li>
+          <li>A basic discussion regarding fees and affordability tailored to your circumstances</li>
+          <li>Negotiating accommodation payments with your chosen residential care facilities</li>
+        </ul>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="text">
+      <h2>Contact Us</h2>
+      <p>If you have an enquiry, would like to hear more, or just want to get in touch, please fill out this contact form.  We will be sure to get back to you promptly.</p>      
+    </div>
+    <div class="contactus form">
+      <form id="contactform" method="post">
+        <input id="name" type="text" name="Name" placeholder="Your Name" maxlength="50" required />
+        <span class="char-counter" data-for="name" style="display: none;"></span>
+        <input id="email" type="email" name="Email" placeholder="Your Email" maxlength="40" required />
+        <span class="char-counter" data-for="email" style="display: none;"></span>
+        <input id="mobile" type="tel" name="Mobile" placeholder="Mobile" maxlength="10" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" optional/>
+        <span class="char-counter" data-for="mobile" style="display: none;"></span>
+        <input id="subject" type="text" name="Subject" placeholder="Subject" maxlength="50" optional />
+        <span class="char-counter" data-for="subject" style="display: none;"></span>
+        <textarea id="message" name="Message" rows="4" placeholder="Your Message (5,000 characters maximum)" maxlength="5000" required></textarea>
+        <span class="char-counter" data-for="message" style="display: none;"></span>
+        <button type="submit">Send Message</button>
+        <div id="successMessage" style="display: none; color: green; margin-top: 10px;">
+          Thank you! Your message has been sent.
+        </div>
+        <div id="failureMessage" style="display: none; color: red; margin-top: 10px;"></div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    window.history.scrollRestoration = 'manual';
+    window.addEventListener('load', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    /* prevent maximum form fields */
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('#contactform input, #contactform textarea');
+
+      inputs.forEach(input => {
+        const maxLength = input.getAttribute('maxlength');
+        const counter = document.querySelector(`.char-counter[data-for="${input.id}"]`);
+
+        const updateCounter = () => {
+          const remaining = maxLength - input.value.length;
+
+          if (remaining <= 5) {
+            counter.textContent = `${remaining} characters remaining`;
+
+            // Visual feedback
+            if (remaining < 0) {
+              counter.style.color = 'red';
+            } else if (remaining === 0) {
+              counter.style.color = 'orange';
+            } else {
+              counter.style.color = 'gray';
+            }
+
+            counter.style.display = 'inline';
+          } else {
+            counter.style.display = 'none';
+          }
+        };
+
+        // Initialize counter
+        updateCounter();
+
+        // Update counter on input
+        input.addEventListener('input', updateCounter);
+      });
+    });
+
+    /* Use javascript fetch to send json */
+    document.getElementById("contactform").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const failureDiv = document.getElementById('failureMessage');
+      failureDiv.style.display = 'none'; // Hide the error container initially
+      failureDiv.innerHTML = ''; // Clear any previous errors
+
+      const form = e.target;
+
+      const data = {
+        Name: form.Name.value,
+        Email: form.Email.value,
+        Mobile: form.Mobile.value,
+        Subject: form.Subject.value,
+        Message: form.Message.value
+      };
+
+      const response = await fetch("http://localhost:7071/api/ContactUs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        document.getElementById('successMessage').style.display = 'block';
+      } else {
+        if (response.status === 400) {
+          const errorData = await response.json();
+          if (errorData.Errors && Array.isArray(errorData.Errors)) {
+            const errorList = document.createElement('ul');
+            errorData.Errors.forEach(err => {
+              const listItem = document.createElement('li');
+              listItem.textContent = `${err.Field}: ${err.Message}`;
+              errorList.appendChild(listItem);
+            });
+            failureDiv.appendChild(errorList);
+            failureDiv.style.display = 'block';
+          } else {
+            failureDiv.textContent = 'An unexpected error occurred.';
+            failureDiv.style.display = 'block';
+          }
+        } else {
+          failureDiv.textContent = `Error ${response.status}: ${response.statusText}`;
+          failureDiv.style.display = 'block';
+        }
+      }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
-
