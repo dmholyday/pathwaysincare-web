@@ -67,6 +67,12 @@
       background-color: black;
     }
 
+    #main-title {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
     #main-title h1 {
       font-size: 1.8em;
       text-align: center;
@@ -74,6 +80,22 @@
       margin-top: 300px;
       margin-bottom: 40px;
       color: #333;
+      opacity: 0;
+      animation: fadeInDown 2s ease forwards;
+      max-width: 600px;        /* new: limit width */
+      margin-left: auto;       /* new: center horizontally */
+      margin-right: auto;      /* new: center horizontally */
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .section {
@@ -187,7 +209,7 @@
         font-weight: normal;
         margin-top: 140px;
         margin-bottom: 30px;
-        color: #333;
+        max-width: 500px;      /* adjusted smaller for smaller screens */
       }
 
       .section {
@@ -231,13 +253,17 @@
         display: flex;
       }
 
+      #main-title {
+        max-width: 90%;
+      }
+
       #main-title h1 {
         font-size: 1.4em;
         text-align: center;
         font-weight: normal;
         margin-top: 80px;
         margin-bottom: 20px;
-        color: #333;
+        max-width: 90%;
       }
 
       .section {
@@ -293,51 +319,40 @@
       color: gray;
     }
 
-    /* Style for required fields */
     input:required {
-      border-left: 4px solid #e74c3c; /* Red border to indicate requirement */
-      background-color: #fdf2f2;      /* Light red background */
+      border-left: 4px solid #e74c3c;
+      background-color: #fdf2f2;
     }
 
-    /* Style for required fields when valid */
     input:required:valid {
-      border-left: 4px solid #27ae60; /* Green border to indicate validity */
-      background-color: #e6f9ec;      /* Light green background */
+      border-left: 4px solid #27ae60;
+      background-color: #e6f9ec;
     }
 
-    /* Style for required fields */
     textarea:required {
-      border-left: 4px solid #e74c3c; /* Red border to indicate requirement */
-      background-color: #fdf2f2;      /* Light red background */
+      border-left: 4px solid #e74c3c;
+      background-color: #fdf2f2;
     }
 
-    /* Style for required fields when valid */
     textarea:required:valid {
-      border-left: 4px solid #27ae60; /* Green border to indicate validity */
-      background-color: #e6f9ec;      /* Light green background */
+      border-left: 4px solid #27ae60;
+      background-color: #e6f9ec;
     }
 
-    
-
-    /* Default style for optional fields */
     input:optional:placeholder-shown {
-      border-left: 4px solid #95a5a6; /* Gray border */
-      background-color: #f2f2f2;      /* Light gray background */
+      border-left: 4px solid #95a5a6;
+      background-color: #f2f2f2;
     }
 
-    /* Style when optional field has valid input */
     input:optional:valid:not(:placeholder-shown) {
-      border-left: 4px solid #27ae60; /* Green border */
-      background-color: #e6f9ec;      /* Light green background */
+      border-left: 4px solid #27ae60;
+      background-color: #e6f9ec;
     }
 
-    /* Style when optional field has invalid input */
     input:optional:invalid:not(:placeholder-shown) {
-      border-left: 4px solid #e74c3c; /* Red border */
-      background-color: #fdf2f2;      /* Light red background */
+      border-left: 4px solid #e74c3c;
+      background-color: #fdf2f2;
     }
-
-    
   </style>
 </head>
 <body>
