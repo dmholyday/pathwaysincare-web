@@ -31,6 +31,20 @@
       width: auto;
     }
 
+    @media (max-width: 768px) {
+      .logo-top-left img {
+        content: url("images/banner_mobile.png");
+        height: 100px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .logo-top-left img {
+        content: url("images/banner7.svg");
+        height: 250px;
+      }
+    }
+
     .navbar {
       display: flex;
       justify-content: flex-end;
@@ -198,9 +212,9 @@
       cursor: pointer;
     }
 
-    @media (max-width: 1024px) and (min-width: 769px) {
+    @media (max-width: 1096px) and (min-width: 769px) {
       .logo-top-left img {
-        height: 160px;
+        height: 150px;
       }
 
       #main-title h1 {
@@ -357,7 +371,7 @@
 </head>
 <body>
   <div class="logo-top-left">
-    <img src="images/banner5.svg" alt="Logo" />
+    <img src="images/banner7.svg" alt="Logo" />
   </div>
   <nav class="navbar">
     <div class="nav-links" id="navLinks">
