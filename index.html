@@ -105,7 +105,15 @@
     }
 
     .navbar .services-toggle {
-      display: none;
+      margin-left: 8px;
+      font-size: 0.8em;
+      color: #666;
+      transition: transform 0.3s ease;
+    }
+
+    /* Rotate triangle when dropdown is hovered */
+    .navbar .nav-item:hover .services-toggle {
+      transform: rotate(180deg);
     }
 
     .navbar .hamburger {
@@ -357,13 +365,6 @@
         padding: 10px 24px;
         font-size: 0.9em;
         border-bottom: 1px solid #e0e0e0;
-      }
-
-      .navbar .services-toggle {
-        display: inline-block;
-        margin-left: 8px;
-        font-size: 0.8em;
-        color: #666;
       }
 
       .navbar .hamburger {
