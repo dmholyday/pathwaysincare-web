@@ -106,7 +106,7 @@
 
     .navbar .services-toggle {
       margin-left: 8px;
-      font-size: 0.8em;
+      font-size: 1em;
       color: #666;
       transition: transform 0.3s ease;
     }
@@ -495,7 +495,7 @@
     <div class="nav-links" id="navLinks">
       <a href="#about">About Us</a>
       <div class="nav-item">
-        <a href="#services" id="servicesLink">Services<span class="services-toggle">▼</span></a>
+        <a href="#services" id="servicesLink">Services<span class="services-toggle">v</span></a>
         <div class="services-dropdown" id="servicesDropdown">
           <a href="in-home-services-and-home-care-packages">In-home Services and Home Care Packages</a>
           <a href="social-work-services">Social Work Services</a>
@@ -587,7 +587,7 @@
         
         // Update toggle indicator
         const toggle = servicesLink.querySelector('.services-toggle');
-        toggle.textContent = servicesDropdown.classList.contains('active') ? '▲' : '▼';
+        toggle.textContent = servicesDropdown.classList.contains('active') ? '^' : 'v';
       }
     });
 
@@ -598,7 +598,7 @@
         hamburger.classList.remove('active');
         servicesDropdown.classList.remove('active');
         const toggle = servicesLink.querySelector('.services-toggle');
-        toggle.textContent = '▼';
+        toggle.textContent = 'v';
       }
     });
 
@@ -609,7 +609,7 @@
         hamburger.classList.remove('active');
         servicesDropdown.classList.remove('active');
         const toggle = servicesLink.querySelector('.services-toggle');
-        toggle.textContent = '▼';
+        toggle.textContent = 'v';
       }
     });
 
