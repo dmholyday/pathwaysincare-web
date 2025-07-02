@@ -98,6 +98,27 @@
       }
     }
 
+    .header-link {
+      position: relative;
+      display: inline-block;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-link .underline {
+      position: absolute;
+      bottom: -8px;
+      left: 14px;
+      height: 3px;
+      background-color: #b0dedf;
+      z-index: -1;
+    }
+
+    /* 🔁 Hover state */
+    .header-link:hover .underline {
+      background-color: #4496a0; /* new color on hover */
+    }
+
     .section {
       display: flex;
       align-items: flex-start;
@@ -396,8 +417,8 @@
   </div>
   <nav class="navbar">
     <div class="nav-links" id="navLinks">
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
+      <a href="about-us">About Us</a>
+      <a href="our-services">Services</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="hamburger" id="hamburger">
@@ -413,16 +434,14 @@
 
   <section id="about" class="section">
     <div class="text">
-      <h2>About Us</h2>
-      <p>At <em>Pathways in Care</em>, we help families navigate the aged care system with trusted advice, practical support, and ethical advocacy. Whether you’re arranging home support, seeking residential care, advocating for a loved one, or simply need someone who understands the system — We are here to guide you.</p>
-      <p>With over 15 years’ experience as a Hospital Social Worker, we bring deep expertise at the intersection of healthcare and aged care. We also draw from many years of personal experience supporting in-home care, carers, and aged care transitions.</p>
-      <p>Grounded in relationships — not commissions — our approach is personal, respectful, and always in your best interest.</p>
+      <a href="about-us"><h2 class="header-link"><span class="text">About Us</span></h2></a>
+      <p>We help take the confusion, stress and time-wasting out of navigating the Aged Care system.  Whether you're exploring Residential Care Placement, seeking in-home support, needing help accessing the right services, or simply want to understand your options — our experienced Social Work support is here to guide you every step of the way.</p>
     </div>
   </section>
 
   <section id="services" class="section reverse">
     <div class="text">
-      <h2>Our Services</h2>
+      <a href="our-services"><h2 class="header-link"><span class="text">Our Services</span></h2></a>
       <h3>Aged Care Consulting</h3>
       <p>We begin by meeting with you to understand your individual circumstances through a comprehensive assessment. This allows us to explore all available options and resources—whether your goal is to remain living safely at home or transition into residential aged care.</p>
       <p>Support provided may include helping you access services and entitlements you and your loved ones may be eligible for, such as Carer Payments and Allowances, government-funded support at home, in-home respite, short-term residential respite for future planning, and assistive technology solutions.</p>
@@ -514,6 +533,33 @@
     document.querySelectorAll('.section').forEach(section => {
       observer.observe(section);
     });
+
+    /* fancy header links underline styling */
+    document.querySelectorAll('.header-link').forEach(heading => {
+      const textSpan = heading.querySelector('.text');
+      const textWidth = textSpan.offsetWidth;
+
+      // Create or update underline
+      let underline = heading.querySelector('.underline');
+      if (!underline) {
+        underline = document.createElement('div');
+        underline.className = 'underline';
+        heading.appendChild(underline);
+      }
+
+      underline.style.width = (textWidth + 12) + 'px'; // or any padding you want
+    });
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.header-links').forEach(heading => {
+        const textSpan = heading.querySelector('.text');
+        const underline = heading.querySelector('.underline');
+        if (textSpan && underline) {
+          underline.style.width = (textSpan.offsetWidth + 12) + 'px';
+        }
+      });
+    });
+    /* end fancy header underline links */
 
     /* prevent maximum form fields */
     document.addEventListener('DOMContentLoaded', () => {
