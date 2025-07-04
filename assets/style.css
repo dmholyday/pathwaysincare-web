@@ -309,15 +309,20 @@ body {
     }
 
     .service-card {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
 
-    .service-card.animate {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.service-card.left {
+  transform: translateX(-50px);
+}
+.service-card.right {
+  transform: translateX(50px);
+}
+.service-card.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
 
     .service-card-inner {
       background: white;
