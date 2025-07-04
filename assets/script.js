@@ -64,6 +64,21 @@ document.querySelectorAll('.section:not(.still)').forEach(section => {
     observer.observe(section);
 });
 
+const observer2 = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target); // only animate once
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+document.querySelectorAll('.service-card').forEach(card => {
+      observer2.observe(card);
+    });
+
 /* prevent maximum form fields */
 document.addEventListener('DOMContentLoaded', () => {
     const inputs = document.querySelectorAll('#contactform input:not(#username), #contactform textarea');
