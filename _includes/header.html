@@ -1,0 +1,53 @@
+<header>
+    <div class="logo-top-left">
+    <picture>
+      <!-- Mobile: WebP -->
+      <source 
+        media="(max-width: 768px)" 
+        srcset="{{ '/images/banner_mobile2.webp' | relative_url }}" 
+        type="image/webp" 
+      />
+      <!-- Mobile fallback PNG -->
+      <source 
+        media="(max-width: 768px)" 
+        srcset="{{ '/images/banner_mobile.png' | relative_url }}" 
+        type="image/png" 
+      />
+      
+      <!-- Desktop & mid size: SVG -->
+      <source 
+        media="(min-width: 769px)" 
+        srcset="{{ '/images/banner7.svg' | relative_url }}" 
+        type="image/svg+xml" 
+      />
+
+      <!-- Fallback img element for browsers that don't support <picture> -->
+      <img 
+        src="{{ '/images/banner7.svg' | relative_url }}" 
+        alt="Responsive banner" 
+        class="responsive-banner" 
+        width="1200" 
+        height="400"
+      />
+    </picture>
+  </div>
+  <nav class="navbar">
+    <div class="nav-links" id="navLinks">
+      <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">About Us</a>
+      <div class="nav-item">
+        <a href="#services" id="servicesLink">Services<span class="services-toggle">v</span></a>
+        <div class="services-dropdown" id="servicesDropdown">
+          <a href="{{ '/in-home-services-and-home-care-packages/' | relative_url }}">In-home Services and Home Care Packages</a>
+          <a href="{{ '/social-work-services/' | relative_url }}">Social Work Services</a>
+          <a href="{{ '/residential-aged-care-placement/' | relative_url }}">Residential Aged Care Placement</a>
+        </div>
+      </div>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+</header>
