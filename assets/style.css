@@ -341,7 +341,7 @@ body {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background-color: #eef2f7;
+      background-color: #b0dedf;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -351,7 +351,7 @@ body {
     .icon-wrapper svg {
       width: 32px;
       height: 32px;
-      stroke: #3b82f6;
+      stroke: #4496a0;
     }
 
     .service-card h3 {
