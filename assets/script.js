@@ -60,7 +60,7 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.25
 });
 
-document.querySelectorAll('.section').forEach(section => {
+document.querySelectorAll('.section:not(.still)').forEach(section => {
     observer.observe(section);
 });
 

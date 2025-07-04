@@ -183,6 +183,23 @@ body {
     word-wrap: break-word;
 }
 
+.first.still-section {
+    margin-top: 250px;
+}
+
+.still-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 45px 40px;
+    gap: 40px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    opacity: 1;    
+    max-width: 900px;
+    word-wrap: break-word;
+}
+
 .section.in-view {
     opacity: 1;
     transform: translateX(0);
@@ -211,32 +228,34 @@ body {
     align-self: center;
 }
 
-.section .text h2 {
+[class*="sectio"] .text h2 {
     font-size: 1.8em;
     margin-bottom: 30px;
     font-family: Lato;
     font-weight: 100;
 }
 
-.section .text h3 {
+[class*="sectio"] .text h3 {
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 20px;
     font-weight: normal;
 }
 
-.section .text p {
+[class*="sectio"] .text p {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 16px;
 }
 
-.section .text ul {
+[class*="sectio"] .text ul {
     padding-left: 60px;
     margin-bottom: 16px;
+    font-size: 1em;
+    line-height: 1.6;
 }
 
-.section .text ul ul {
+[class*="sectio"] .text ul ul {
     padding-left: 20px;
     list-style-type: circle;
 }
@@ -276,155 +295,176 @@ body {
 
 @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
-    height: 150px;
+        height: 150px;
     }
 
     #main-title h1 {
-    font-size: 1.6em;
-    text-align: center;
-    font-weight: normal;
-    margin-top: 140px;
-    margin-bottom: 30px;
-    max-width: 500px;      /* adjusted smaller for smaller screens */
+        font-size: 1.6em;
+        text-align: center;
+        font-weight: normal;
+        margin-top: 140px;
+        margin-bottom: 30px;
+        max-width: 500px;      /* adjusted smaller for smaller screens */
     }
 
     .section {
-    padding: 35px 30px;
+        padding: 35px 30px;
     }
 
     #about {
-    margin-top: 40px;
+        margin-top: 40px;
     }
 
-    .section .text ul {
-    padding-left: 40px;
+    .first.still-section {
+        margin-top: 95px;
+    }
+
+    .still-section {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 45px 40px;
+        gap: 40px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        opacity: 1;    
+        max-width: 900px;
+        word-wrap: break-word;
+    }
+
+    [class*="sectio"] .text ul {
+        padding-left: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .logo-top-left img {
-    height: 100px;
+        height: 100px;
     }
 
     .navbar {
-    padding-left: 20px;
+        padding-left: 20px;
     }
 
     .navbar .nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: #fff;
-    position: absolute;
-    top: 120px;
-    right: 20px;
-    left: 20px;
-    padding: 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    z-index: 1001;
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 120px;
+        right: 20px;
+        left: 20px;
+        padding: 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        z-index: 1001;
     }
 
     .navbar .nav-links.active {
-    display: flex;
+        display: flex;
     }
 
     .navbar .nav-links a {
-    padding: 12px 16px;
-    border-bottom: 1px solid #eee;
-    margin: 0;
+        padding: 12px 16px;
+        border-bottom: 1px solid #eee;
+        margin: 0;
     }
 
     .navbar .nav-links a:last-child {
-    border-bottom: none;
+        border-bottom: none;
     }
 
     .navbar .nav-item {
-    width: 100%;
+        width: 100%;
     }
 
     /* Mobile services dropdown */
     .navbar .services-dropdown {
-    position: static;
-    border: none;
-    box-shadow: none;
-    background-color: #f8f9fa;
-    margin-top: 10px;
-    min-width: auto;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition: none;
-    display: none;
+        position: static;
+        border: none;
+        box-shadow: none;
+        background-color: #f8f9fa;
+        margin-top: 10px;
+        min-width: auto;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+        display: none;
     }
 
     .navbar .services-dropdown.active {
-    display: block;
+        display: block;
     }
 
     .navbar .services-dropdown a {
-    padding: 10px 24px;
-    font-size: 0.9em;
-    border-bottom: 1px solid #e0e0e0;
+        padding: 10px 24px;
+        font-size: 0.9em;
+        border-bottom: 1px solid #e0e0e0;
     }
 
     .navbar .hamburger {
-    display: flex;
+        display: flex;
     }
 
     #main-title {
-    max-width: 90%;
+        max-width: 90%;
     }
 
     #main-title h1 {
-    font-size: 1.4em;
-    text-align: center;
-    font-weight: normal;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    max-width: 90%;
+        font-size: 1.4em;
+        text-align: center;
+        font-weight: normal;
+        margin-top: 80px;
+        margin-bottom: 20px;
+        max-width: 90%;
     }
 
     .section {
-    flex-direction: column;
-    text-align: left;
-    transform: translateY(50px);
-    padding: 25px 20px;
-    max-width: 100%;
+        flex-direction: column;
+        text-align: left;
+        transform: translateY(50px);
+        padding: 25px 20px;
+        max-width: 100%;
     }
 
     .section.reverse {
-    flex-direction: column;
-    transform: translateY(50px);
+        flex-direction: column;
+        transform: translateY(50px);
     }
 
     .section.reverse.in-view,
     .section.in-view {
-    transform: translateY(0);
+        transform: translateY(0);
     }
 
     .section .text, .section .form {
-    flex: 1 1 100%;
+        flex: 1 1 100%;
+    }
+
+    .first.still-section {
+        margin-top: 40px;
     }
 
     .form {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 16px;
     }
 
     .form form {
-    width: 100%;
-    max-width: 400px;
+        width: 100%;
+        max-width: 400px;
     }
 
     #about {
-    margin-top: 40px;
+        margin-top: 40px;
     }
 
     .section .text ul {
-    padding-left: 20px;
+        padding-left: 20px;
     }
 }
 
