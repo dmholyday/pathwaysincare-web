@@ -1,0 +1,459 @@
+
+:root {
+    --font: 'Verdana', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+}
+
+.logo-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1003;
+}
+
+.logo-top-left img {
+    height: 250px;
+    width: auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    padding-left: 150px;
+    background-color: #fff;
+    color: #000;
+    height: 60px;
+    position: relative;
+    z-index: 1002;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar .nav-links a {
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Services dropdown styles */
+.navbar .nav-item {
+    position: relative;
+}
+
+.navbar .services-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -100px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 280px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.navbar .nav-item:hover .services-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.navbar .services-dropdown a {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .services-dropdown a:last-child {
+    border-bottom: none;
+}
+
+.navbar .services-dropdown a:hover {
+    background-color: #f8f9fa;
+}
+
+.navbar .services-toggle {
+    color: #4496a0;
+    margin-left: 8px;
+    font-size: 1em;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate triangle when dropdown is hovered */
+.navbar .nav-item:hover .services-toggle {
+    transform: rotate(180deg);
+}
+
+.navbar .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.navbar .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #4496a0;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger animation */
+.navbar .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar .hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+#main-title {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#main-title h1 {
+    font-size: 1.8em;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 300px;
+    margin-bottom: 40px;
+    color: #333;
+    opacity: 0;
+    animation: fadeInDown 2s ease forwards;
+    max-width: 600px;        /* new: limit width */
+    margin-left: auto;       /* new: center horizontally */
+    margin-right: auto;      /* new: center horizontally */
+}
+
+@keyframes fadeInDown {
+    0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+.section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 45px 40px;
+    gap: 40px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateX(250px);
+    transition: all 1s ease-out;
+    max-width: 900px;
+    word-wrap: break-word;
+}
+
+.section.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.section.reverse {
+    flex-direction: row-reverse;
+    transform: translateX(-250px);
+}
+
+.section.reverse.in-view {
+    transform: translateX(0);
+}
+
+#about {
+    margin-top: 100px;
+}
+
+#contact .text {
+    flex: 1 1 40%;
+}
+
+#contact .form {
+    flex: 1 1 55%;
+    margin-top: 0;
+    align-self: center;
+}
+
+.section .text h2 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    font-family: Lato;
+    font-weight: 100;
+}
+
+.section .text h3 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.section .text p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.section .text ul {
+    padding-left: 60px;
+    margin-bottom: 16px;
+}
+
+.section .text ul ul {
+    padding-left: 20px;
+    list-style-type: circle;
+}
+
+.hidden-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    visibility: hidden;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form input,
+.form textarea {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    font-family: var(--font);
+}
+
+.form button {
+    padding: 10px;
+    background-color: #4596a1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media (max-width: 1096px) and (min-width: 769px) {
+    .logo-top-left img {
+    height: 150px;
+    }
+
+    #main-title h1 {
+    font-size: 1.6em;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 140px;
+    margin-bottom: 30px;
+    max-width: 500px;      /* adjusted smaller for smaller screens */
+    }
+
+    .section {
+    padding: 35px 30px;
+    }
+
+    #about {
+    margin-top: 40px;
+    }
+
+    .section .text ul {
+    padding-left: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-top-left img {
+    height: 100px;
+    }
+
+    .navbar {
+    padding-left: 20px;
+    }
+
+    .navbar .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+    left: 20px;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    z-index: 1001;
+    }
+
+    .navbar .nav-links.active {
+    display: flex;
+    }
+
+    .navbar .nav-links a {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    }
+
+    .navbar .nav-links a:last-child {
+    border-bottom: none;
+    }
+
+    .navbar .nav-item {
+    width: 100%;
+    }
+
+    /* Mobile services dropdown */
+    .navbar .services-dropdown {
+    position: static;
+    border: none;
+    box-shadow: none;
+    background-color: #f8f9fa;
+    margin-top: 10px;
+    min-width: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    display: none;
+    }
+
+    .navbar .services-dropdown.active {
+    display: block;
+    }
+
+    .navbar .services-dropdown a {
+    padding: 10px 24px;
+    font-size: 0.9em;
+    border-bottom: 1px solid #e0e0e0;
+    }
+
+    .navbar .hamburger {
+    display: flex;
+    }
+
+    #main-title {
+    max-width: 90%;
+    }
+
+    #main-title h1 {
+    font-size: 1.4em;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    max-width: 90%;
+    }
+
+    .section {
+    flex-direction: column;
+    text-align: left;
+    transform: translateY(50px);
+    padding: 25px 20px;
+    max-width: 100%;
+    }
+
+    .section.reverse {
+    flex-direction: column;
+    transform: translateY(50px);
+    }
+
+    .section.reverse.in-view,
+    .section.in-view {
+    transform: translateY(0);
+    }
+
+    .section .text, .section .form {
+    flex: 1 1 100%;
+    }
+
+    .form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+    }
+
+    .form form {
+    width: 100%;
+    max-width: 400px;
+    }
+
+    #about {
+    margin-top: 40px;
+    }
+
+    .section .text ul {
+    padding-left: 20px;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.char-counter {
+    font-size: 0.9em;
+    margin-left: 8px;
+    color: gray;
+}
+
+input:required:valid {
+    border-left: 4px solid #27ae60;
+    background-color: #e6f9ec;
+}
+
+textarea:required:valid {
+    border-left: 4px solid #27ae60;
+    background-color: #e6f9ec;
+}
+
+input:optional:valid:not(:placeholder-shown) {
+    border-left: 4px solid #27ae60;
+    background-color: #e6f9ec;
+}
+
+input:optional:invalid:not(:placeholder-shown) {
+    border-left: 4px solid #e74c3c;
+    background-color: #fdf2f2;
+}
