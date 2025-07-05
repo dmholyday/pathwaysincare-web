@@ -118,7 +118,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update counter on input
     input.addEventListener('input', updateCounter);
     });
+    
 });
+
+// Define the callback function globally
+        function grecaptchaCallback() {
+            const formElement = document.getElementById('contactform'); // Get your form by its ID
+            const recaptchaBadge = document.querySelector('.grecaptcha-badge'); // Get the reCAPTCHA badge
+
+            // Debugging: Check if elements are found
+            if (!formElement) {
+                console.warn("Form element with ID 'myForm' not found.");
+                return;
+            }
+            if (!recaptchaBadge) {
+                console.error("reCAPTCHA badge with class '.grecaptcha-badge' not found after reCAPTCHA loaded. This is unexpected.");
+                return;
+            } else {
+                 console.log("reCAPTCHA badge found!"); // Confirm it's found
+            }
+
+
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px', // No extra margin around the root
+                threshold: 0.1 // Trigger when 10% of the form is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        recaptchaBadge.classList.add('is-visible');
+                        console.log("Form in view, badge visible.");
+                    } else {
+                        recaptchaBadge.classList.remove('is-visible');
+                        console.log("Form out of view, badge hidden.");
+                    }
+                });
+            }, observerOptions);
+
+            // Start observing your form element
+            observer.observe(formElement);
+        }
 
 /* Use javascript fetch to send json */
 

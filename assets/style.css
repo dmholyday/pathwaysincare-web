@@ -384,7 +384,24 @@ body {
       color: #666;
     }
 
-@media (max-width: 1096px) and (min-width: 769px) {
+    /* Your CSS for the badge hiding */
+        .grecaptcha-badge {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease-in-out;
+        }
+        .grecaptcha-badge.is-visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .recaptcha-disclaimer {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+    @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
         height: 150px;
     }
