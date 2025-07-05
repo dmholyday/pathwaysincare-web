@@ -423,6 +423,11 @@ body {
             text-align: center;
         }
 
+        #copyright {
+            margin-top: 20px;
+            text-align: center;
+        }
+
     @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
         height: 150px;
@@ -615,6 +620,10 @@ body {
     .service-card h3 {
         font-size: 1.1rem;
     }
+
+    #copyright {
+            margin-top: 0px;            
+        }
 }
 
 html {
