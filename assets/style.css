@@ -172,14 +172,14 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 45px 40px;
+    padding: 1rem 2rem 1rem 2rem;
     gap: 40px;
     margin: 0 auto;
     flex-wrap: wrap;
     opacity: 0;
     transform: translateX(250px);
     transition: all 1s ease-out;
-    max-width: 900px;
+    max-width: 1100px;
     word-wrap: break-word;
 }
 
@@ -188,15 +188,15 @@ body {
 }
 
 .still-section {
-    display: flex;
-    align-items: flex-start;
+    /*display: flex;
+    align-items: flex-start;*/
     justify-content: space-between;
-    padding: 45px 40px;
+    padding: 1rem 2rem 1rem 2rem;
     gap: 40px;
     margin: 0 auto;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     opacity: 1;    
-    max-width: 900px;
+    max-width: 1100px;
     word-wrap: break-word;
 }
 
@@ -293,6 +293,93 @@ body {
     cursor: pointer;
 }
 
+.services-section {
+      max-width: 1100px;
+      gap: 40px;
+      margin: 0 auto;      
+      padding: 1rem 2rem 1rem 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  /*max-width: 320px;*/
+  text-align: center;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  /*opacity: 0;*/
+  outline: 0 solid transparent;
+
+  /* Optional for subtle hover effect */
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.service-card:hover {
+  border-color: #4496a0;
+  outline: 2px solid #4496a0;
+  transform: translateY(-4px);
+}
+
+.service-card {
+  transform: translateX(-50px);
+}
+.service-card.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+    .service-card-inner {
+      background: white;      
+      text-decoration: none;
+      color: inherit;      
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /*
+    .service-card-inner:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+      */
+
+    .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: #b0dedf;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .icon-wrapper svg {
+      width: 32px;
+      height: 32px;
+      stroke: #4496a0;
+    }
+
+    .service-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
 @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
         height: 150px;
@@ -320,21 +407,35 @@ body {
     }
 
     .still-section {
-        display: flex;
-        align-items: flex-start;
+        /*display: flex;
+        align-items: flex-start;*/
         justify-content: space-between;
-        padding: 45px 40px;
+        /*padding: 45px 40px;*/
         gap: 40px;
         margin: 0 auto;
-        flex-wrap: wrap;
+        /*flex-wrap: wrap;*/
         opacity: 1;    
-        max-width: 900px;
+        max-width: 1100px;
         word-wrap: break-word;
     }
 
     [class*="sectio"] .text ul {
         padding-left: 40px;
     }
+
+    .service-card h3 {
+        font-size: 1rem;
+    }
+
+    .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    justify-items: center; /* Ensure items can be centered if needed */
+  }
+
+  .services-grid .service-card:nth-child(3) {
+    grid-column: span 2;
+    justify-self: center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -425,7 +526,7 @@ body {
         flex-direction: column;
         text-align: left;
         transform: translateY(50px);
-        padding: 25px 20px;
+        /*padding: 25px 20px;*/
         max-width: 100%;
     }
 
@@ -465,6 +566,10 @@ body {
 
     .section .text ul {
         padding-left: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
     }
 }
 

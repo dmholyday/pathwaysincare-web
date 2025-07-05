@@ -64,6 +64,25 @@ document.querySelectorAll('.section:not(.still)').forEach(section => {
     observer.observe(section);
 });
 
+const observer2 = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+const cards = document.querySelectorAll('.service-card');
+
+cards.forEach((card, index) => {
+  // Alternate class: left, right, left, ...
+  card.classList.add(index % 2 === 0 ? 'left' : 'right');
+  observer2.observe(card);
+});
+
 /* prevent maximum form fields */
 document.addEventListener('DOMContentLoaded', () => {
     const inputs = document.querySelectorAll('#contactform input:not(#username), #contactform textarea');
