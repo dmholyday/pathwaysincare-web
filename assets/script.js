@@ -26,13 +26,25 @@ servicesLink.addEventListener('click', (e) => {
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        closeHamburgerLinks();
+    }
+});
+
+// Close hanburger About/Contact when clicked.
+document.querySelectorAll('#about-us-link, #contact-link').forEach(el => {
+    el.addEventListener('click', () => {
+        closeHamburgerLinks();
+    })
+})
+
+function closeHamburgerLinks() {
     navLinks.classList.remove('active');
     hamburger.classList.remove('active');
     servicesDropdown.classList.remove('active');
     const toggle = servicesLink.querySelector('.services-toggle');
     toggle.textContent = 'v';
-    }
-});
+}
+
 
 // Handle window resize
 window.addEventListener('resize', () => {

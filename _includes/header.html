@@ -34,7 +34,7 @@
   </div>
   <nav class="navbar">
     <div class="nav-links" id="navLinks">
-      <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">About Us</a>
+      <a id="about-us-link" href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">About Us</a>
       <div class="nav-item">
         <a href="#services" id="servicesLink">Services<span class="services-toggle">v</span></a>
         <div class="services-dropdown" id="servicesDropdown">
@@ -43,7 +43,7 @@
           <a href="{{ '/social-work-services/' | relative_url }}">Social Work Services</a>          
         </div>
       </div>
-      <a href="#contact">Contact</a>
+      <a id="contact-link" href="#contact">Contact</a>
     </div>
     <div class="hamburger" id="hamburger">
       <div></div>
