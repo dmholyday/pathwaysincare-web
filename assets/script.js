@@ -237,9 +237,18 @@ function grecaptchaCallback() {
 function submitContactForm(e) {
     e.preventDefault(); // prevent default form submit
 
+    const submitBtn = document.getElementById("submitBtn");
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    // Start loading
+    submitBtn.classList.add("loading");
+
     const failureDiv = document.getElementById('failureMessage');
+    const successDiv = document.getElementById('successMessage');
     failureDiv.style.display = 'none'; // Hide the error container initially
     failureDiv.innerHTML = ''; // Clear any previous errors
+    successDiv.style.display = 'none';
+    successDiv.innerHTML = '';
 
     const form = e.target;
 
@@ -259,7 +268,7 @@ function submitContactForm(e) {
                 Token: token // Include reCAPTCHA token in the payload
             };
 
-            const response = await fetch("https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs", {
+            const response = await fetch("http://localhost:7071/api/ContactUs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -267,8 +276,14 @@ function submitContactForm(e) {
                 body: JSON.stringify(data)
             });
 
+            submitBtn.classList.remove("loading");
+            modalOverlay.style.display = "flex";
+            /*const modalSuccess = document.getElementById("modal-success");
+            const modalError = document.getElementById("modal-error");*/
+
             if (response.ok) {
-                document.getElementById('successMessage').style.display = 'block';
+                form.reset();
+                successDiv.style.display = 'block';
             } else {
                 if (response.status === 400) {
                     const errorData = await response.json();
@@ -299,4 +314,10 @@ function submitContactForm(e) {
             failureDiv.style.display = 'block';
         }
     });
+
+    
+}
+
+function closeModal() {
+    modalOverlay.style.display = "none";
 }

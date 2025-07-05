@@ -459,6 +459,73 @@ input:optional:invalid:not(:placeholder-shown) {
     background-color: #fdf2f2;
 }
 
+button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    button.loading {
+      color: transparent;
+      pointer-events: none;
+    }
+
+    button.loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 3px solid #fff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      /* Removed background overlay */
+    }
+
+    .modal {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #4496a0;
+  max-width: 300px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+    .modal h2 {
+      margin-bottom: 15px;
+    }
+
+    .modal button {
+      background: #4496a0;
+    }
+
 @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
         height: 150px;
