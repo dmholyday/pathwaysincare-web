@@ -4,19 +4,11 @@ const navLinks = document.getElementById('navLinks');
 const servicesLink = document.getElementById('servicesLink');
 const servicesDropdown = document.getElementById('servicesDropdown');
 
-// Hamburger menu toggle
-/*
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-*/
-
-// only click on hamburger lines
+// Hamburger menu toggle - only click on hamburger lines
 document.querySelectorAll('.lines').forEach(el => {
     el.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
+        hamburger.classList.toggle('active');
     });
 });
 
@@ -107,6 +99,7 @@ cards.forEach((card, index) => {
 
 /* prevent maximum form fields */
 document.addEventListener('DOMContentLoaded', () => {
+
     const inputs = document.querySelectorAll('#contactform input:not(#username), #contactform textarea');
 
     inputs.forEach(input => {
@@ -140,6 +133,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update counter on input
     input.addEventListener('input', updateCounter);
     });
+
+    const formFields = document.querySelectorAll('#contactform input, #contactform textarea');
+
+function sendContactUsRequest(event) {
+            
+        const data = {
+        Username: 'GerryE34123e',
+        Name: 'Gerry',
+        Email: 'here@there.com',
+        Mobile: '0450999999',
+        Subject: 'Enquiry',
+        Message: 'I have an enquiry about your business',
+        Token: ''
+        };
+
+    const now = new Date();
+    const lastApiCall = localStorage.getItem('lastApiCall-ContactUs');
+    lastCallTime = null;
+    inutesSinceLastCall = null;
+
+    if (lastApiCall) {
+        lastCallTime = new Date(lastApiCall);
+        minutesSinceLastCall = (now-lastCallTime) / 1000 / 60;
+    }
+        
+
+        if (lastApiCall == null || minutesSinceLastCall >= 6) {
+            fetch("https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+                })
+                .then(response => {
+                            if (response.ok) {
+                                console.log('api response OK');
+                            } else {
+                                console.warn('api response NOT OK', response.status);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('api response ERROR', error);
+                        })
+                        .finally(() => {                    
+                            formFields.forEach(field => {
+                                field.removeEventListener('focus', sendContactUsRequest);                        
+                            });
+                        });
+
+            localStorage.setItem('lastApiCall-ContactUs', new Date().toISOString());
+        } else {
+            console.log(`API call skipped. Only ${minutesSinceLastCall.toFixed(2)} minutes since last call.`);
+        }
+   
+                
+
+}
+
+formFields.forEach(field => {
+    field.addEventListener('focus', sendContactUsRequest);
+});
     
 });
 
@@ -239,6 +294,8 @@ document.getElementById("contactform").addEventListener("submit", async function
 });
 
 */
+
+
 
 /* submit form refactor.  Adding google recaptchav3 JS */
 function submitContactForm(e) {
