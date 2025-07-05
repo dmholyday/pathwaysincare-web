@@ -249,13 +249,17 @@ body {
 }
 
 [class*="sectio"] .text ul {
-    padding-left: 60px;
+    padding-left: 40px;
     margin-bottom: 16px;
     font-size: 1em;
     line-height: 1.6;
 }
 
-[class*="sectio"] .text ul ul {
+[class*="sectio"] .text ul li {
+    list-style-type: none;
+}
+
+[class*="sectio"] .text ul ul li {
     padding-left: 20px;
     list-style-type: circle;
 }
@@ -420,7 +424,7 @@ body {
     }
 
     [class*="sectio"] .text ul {
-        padding-left: 40px;
+        padding-left: 20px;
     }
 
     .service-card h3 {
@@ -564,8 +568,8 @@ body {
         margin-top: 40px;
     }
 
-    .section .text ul {
-        padding-left: 20px;
+    [class*="sectio"] .text ul {
+        padding-left: 15px;
     }
 
     .service-card h3 {
