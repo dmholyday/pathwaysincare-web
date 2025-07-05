@@ -328,13 +328,8 @@ body {
   transform: translateY(-4px);
 }
 
-
-
-.service-card.left {
+.service-card {
   transform: translateX(-50px);
-}
-.service-card.right {
-  transform: translateX(50px);
 }
 .service-card.animate {
   opacity: 1;
