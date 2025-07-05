@@ -37,11 +37,11 @@ document.addEventListener('click', (e) => {
 // Handle window resize
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
-    navLinks.classList.remove('active');
-    hamburger.classList.remove('active');
-    servicesDropdown.classList.remove('active');
-    const toggle = servicesLink.querySelector('.services-toggle');
-    toggle.textContent = 'v';
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+        servicesDropdown.classList.remove('active');
+        const toggle = servicesLink.querySelector('.services-toggle');
+        toggle.textContent = 'v';
     }
 });
 
