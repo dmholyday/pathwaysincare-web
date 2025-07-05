@@ -482,7 +482,7 @@ input:optional:invalid:not(:placeholder-shown) {
     }
 
     .first.still-section {
-        margin-top: 95px;
+        margin-top: 140px;
     }
 
     .still-section {
@@ -633,7 +633,7 @@ input:optional:invalid:not(:placeholder-shown) {
     }
 
     .first.still-section {
-        margin-top: 40px;
+        margin-top: 80px;
     }
 
     .form {
