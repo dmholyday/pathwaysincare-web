@@ -117,7 +117,7 @@ body {
     gap: 5px;
 }
 
-.navbar .hamburger div {
+.navbar .hamburger .lines {
     width: 25px;
     height: 3px;
     background-color: #4496a0;
@@ -125,16 +125,38 @@ body {
 }
 
 /* Hamburger animation */
-.navbar .hamburger.active div:nth-child(1) {
+.navbar .hamburger.active .lines:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
 
-.navbar .hamburger.active div:nth-child(2) {
+.navbar .hamburger.active .lines:nth-child(2) {
     opacity: 0;
 }
 
-.navbar .hamburger.active div:nth-child(3) {
+.navbar .hamburger.active .lines:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/*
+.navbar #nav-back-wrapper {
+    margin-bottom:10px;
+} 
+*/
+
+.nav-back {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-back.hide {
+    display: none;
+}
+
+.nav-back.active {
+    display: block;
+    color: #4496a0;
+    margin-right: 30px;
+    margin-bottom: 17px;
 }
 
 #main-title {
@@ -466,6 +488,7 @@ body {
 
     .navbar {
         padding-left: 20px;
+        padding-top: 5px;
     }
 
     .navbar .nav-links {

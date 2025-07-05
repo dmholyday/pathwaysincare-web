@@ -5,9 +5,19 @@ const servicesLink = document.getElementById('servicesLink');
 const servicesDropdown = document.getElementById('servicesDropdown');
 
 // Hamburger menu toggle
+/*
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     hamburger.classList.toggle('active');
+});
+*/
+
+// only click on hamburger lines
+document.querySelectorAll('.lines').forEach(el => {
+    el.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    });
 });
 
 // Mobile services dropdown toggle
@@ -34,8 +44,8 @@ document.addEventListener('click', (e) => {
 document.querySelectorAll('#about-us-link, #contact-link').forEach(el => {
     el.addEventListener('click', () => {
         closeHamburgerLinks();
-    })
-})
+    });
+});
 
 function closeHamburgerLinks() {
     navLinks.classList.remove('active');
