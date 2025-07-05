@@ -149,6 +149,7 @@ body {
     display: block;
     color: #4496a0;
     margin-right: 18px;
+    margin-top: 1px;
 }
 
 #main-title {
@@ -531,7 +532,7 @@ input:optional:invalid:not(:placeholder-shown) {
 
     .nav-back.active {
         margin-right: 30px;
-        margin-bottom: 17px;
+        margin-bottom: 16px;
     }
 
     .navbar .nav-links {
