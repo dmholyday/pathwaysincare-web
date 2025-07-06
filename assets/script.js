@@ -253,7 +253,17 @@ function submitContactForm(e) {
     // Execute reCAPTCHA
     grecaptcha.ready(async function () {
         try {
-            const token = await grecaptcha.execute('6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE', { action: 'contact_form' });
+            const hostname = window.location.hostname;
+            const isLocal =
+                hostname.includes("localhost") ||
+                hostname.startsWith("192.") ||
+                hostname.startsWith("127.");
+
+            const recaptchaKey = isLocal
+                ? "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE"
+                : "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
+
+            const token = await grecaptcha.execute(recaptchaKey, { action: 'contact_form' });
 
             // Build the request payload
             const data = {

@@ -5,9 +5,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }} || Pathways in Care</title>
-    <script
-        src="https://www.google.com/recaptcha/api.js?render=6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE&onload=grecaptchaCallback&render=explicit"
-        async defer></script>
+    <script>
+        const hostname = window.location.hostname;
+        const isLocal =
+            hostname.includes("localhost") ||
+            hostname.startsWith("192.") ||
+            hostname.startsWith("127.");
+
+        const recaptchaKey = isLocal
+            ? "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE"
+            : "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
+
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaKey}&onload=grecaptchaCallback&render=explicit`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    </script>    
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/lucide.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
