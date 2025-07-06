@@ -66,6 +66,18 @@
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" 
     />
     </noscript>
+
+    {% if jekyll.environment == "production" %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC4WZFPJC5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-BC4WZFPJC5');
+    </script>
+    {% endif %}
 </head>
 
 <body>
