@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.title }} || Pathways in Care</title>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE"></script>
-  <link rel="stylesheet" href="/assets/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/lucide.css" />
+    <meta charset="UTF-8" />
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ site.url }}/assets/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+    <meta name="twitter:image" content="{{ site.url }}/assets/twitter-image.png">
+
+    <title>{{ page.title }} || Pathways in Care</title>
+    <script>        
+        function isLocal() {
+            const hostname = window.location.hostname;
+            return hostname.includes("localhost") || hostname.startsWith("192.") || hostname.startsWith("127.");
+        }
+        function returnRecaptchaKey() {
+            if (isLocal()) {
+                return "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE";
+            } else {
+                return "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
+            }
+        }
+        function returnContactUsApiURL() {
+            if (isLocal()) {
+                return "http://192.168.1.113:7071/api/ContactUs";
+            } else {
+                return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs";
+            }
+        }
+        const recaptchaKey = returnRecaptchaKey();
+
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaKey}&onload=grecaptchaCallback&render=explicit`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    </script>    
+    <link rel="preload" as="image" href="{{ '/images/banner-optimized.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/style.css">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload font stylesheet without blocking render -->
+    <link 
+    rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" 
+    media="print" 
+    onload="this.media='all'" 
+    />
+
+    <!-- Fallback for no-JS browsers -->
+    <noscript>
+    <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" 
+    />
+    </noscript>
 </head>
+
 <body>
     {% include header.html %}
     <main>
@@ -16,4 +76,5 @@
     {% include footer.html %}
     <script src="/assets/script.js"></script>
 </body>
+
 </html>
