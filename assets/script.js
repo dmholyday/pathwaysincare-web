@@ -238,7 +238,6 @@ function submitContactForm(e) {
     e.preventDefault(); // prevent default form submit
 
     const submitBtn = document.getElementById("submitBtn");
-    const modalOverlay = document.getElementById("modalOverlay");
 
     // Start loading
     submitBtn.classList.add("loading");
@@ -275,14 +274,12 @@ function submitContactForm(e) {
                 body: JSON.stringify(data)
             });
 
-            submitBtn.classList.remove("loading");
-            modalOverlay.style.display = "flex";
-            /*const modalSuccess = document.getElementById("modal-success");
-            const modalError = document.getElementById("modal-error");*/
+            submitBtn.classList.remove("loading");                       
 
             if (response.ok) {
                 form.reset();
                 successDiv.style.display = 'block';
+                showModal("Thank You","We will be in touch with you soon.","success");
             } else {
                 if (response.status === 400) {
                     const errorData = await response.json();
@@ -303,6 +300,7 @@ function submitContactForm(e) {
                     failureDiv.textContent = `Error ${response.status}: ${response.statusText}`;
                     failureDiv.style.display = 'block';
                 }
+                showModal("Something went wrong","Please try again later.","error")
             }            
             localStorage.setItem('lastApiCall-ContactUs', new Date().toISOString());
 
@@ -317,4 +315,20 @@ function submitContactForm(e) {
 
 function closeModal() {
     modalOverlay.style.display = "none";
+}
+
+function showModal(title, message, type) {
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+    const modalBox = document.getElementById("modalBox");
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+
+    // Reset classes
+    modalBox.classList.remove("success", "error");
+    modalBox.classList.add(type); // "success" or "error"
+
+    modalOverlay.style.display = "flex";
 }

@@ -517,6 +517,14 @@ button {
       background: #4496a0;
     }
 
+    .modal.success {
+  border-color: #4496a0;
+}
+
+.modal.error {
+  border-color: red;
+}
+
 @media (max-width: 1096px) and (min-width: 769px) {
     .logo-top-left img {
         height: 150px;
