@@ -1,5 +1,5 @@
 :root {
-    --font: 'Verdana', sans-serif;
+    --font: 'Merriweather', serif;
 }
 
 * {
@@ -10,6 +10,7 @@
 
 body {
     font-family: var(--font);
+    letter-spacing: 0.03em;
 }
 
 .logo-top-left {
@@ -161,10 +162,10 @@ body {
 #main-title h1 {
     font-size: 1.8em;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
     margin-top: 300px;
     margin-bottom: 40px;
-    color: #333;
+    color: #4496a0;
     opacity: 0;
     animation: fadeInDown 2s ease forwards;
     max-width: 600px;
@@ -252,6 +253,8 @@ body {
     margin-bottom: 30px;
     font-family: Lato;
     font-weight: 100;
+    color: #4496a0;
+    font-weight: bold;
 }
 
 [class*="sectio"] .text h3 {

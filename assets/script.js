@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (lastApiCall == null || minutesSinceLastCall >= 6) {
-            fetch("https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs", {
+            fetch("http://192.168.1.113:7071/api/ContactUs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -268,7 +268,7 @@ function submitContactForm(e) {
                 Token: token // Include reCAPTCHA token in the payload
             };
 
-            const response = await fetch("http://localhost:7071/api/ContactUs", {
+            const response = await fetch("http://192.168.1.113:7071/api/ContactUs", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
