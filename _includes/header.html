@@ -1,0 +1,42 @@
+<header>
+    <div class="logo-top-left">
+        <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
+            <img src="{{ '/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104"/>            
+        </a>
+    </div>
+    <nav class="navbar">
+
+        <a id="nav-back-wrapper" href="{{ '/' | relative_url }}#about-us">
+            <svg class="nav-back {% if page.url == '/' %}hide{% else %}active{% endif %}"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a id="about-us-link"
+                href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">About
+                Us</a>
+            <div class="nav-item">
+                <a href="#" id="servicesLink">Services<span class="services-toggle">v</span></a>
+                <div class="services-dropdown" id="servicesDropdown">
+                    <a href="{{ '/residential-aged-care-placement/' | relative_url }}" class="first">Residential Aged Care
+                        Placement</a>
+                    <a href="{{ '/in-home-services-and-home-care-packages/' | relative_url }}">In-home Services and Home
+                        Care Packages</a>
+                    <a href="{{ '/social-work-services/' | relative_url }}">Social Work Services</a>
+                </div>
+            </div>
+            <a id="contact-link" href="#contact">Contact</a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+        </div>
+
+    </nav>
+</header>
