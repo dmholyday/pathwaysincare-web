@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (lastApiCall == null || minutesSinceLastCall >= 6) {
-            fetch("http://192.168.1.113:7071/api/ContactUs", {
+            fetch(returnContactUsApiURL(), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -252,18 +252,8 @@ function submitContactForm(e) {
 
     // Execute reCAPTCHA
     grecaptcha.ready(async function () {
-        try {
-            const hostname = window.location.hostname;
-            const isLocal =
-                hostname.includes("localhost") ||
-                hostname.startsWith("192.") ||
-                hostname.startsWith("127.");
-
-            const recaptchaKey = isLocal
-                ? "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE"
-                : "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
-
-            const token = await grecaptcha.execute(recaptchaKey, { action: 'contact_form' });
+        try {            
+            const token = await grecaptcha.execute(returnRecaptchaKey(), { action: 'contact_form' });
 
             // Build the request payload
             const data = {
@@ -276,7 +266,7 @@ function submitContactForm(e) {
                 Token: token // Include reCAPTCHA token in the payload
             };
 
-            const response = await fetch("http://192.168.1.113:7071/api/ContactUs", {
+            const response = await fetch(returnContactUsApiURL(), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

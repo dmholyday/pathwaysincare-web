@@ -21,15 +21,25 @@
 
     <title>{{ page.title }} || Pathways in Care</title>
     <script>        
-        const hostname = window.location.hostname;
-        const isLocal =
-            hostname.includes("localhost") ||
-            hostname.startsWith("192.") ||
-            hostname.startsWith("127.");
-
-        const recaptchaKey = isLocal
-            ? "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE"
-            : "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
+        function isLocal() {
+            const hostname = window.location.hostname;
+            return hostname.includes("localhost") || hostname.startsWith("192.") || hostname.startsWith("127.");
+        }
+        function returnRecaptchaKey() {
+            if (isLocal()) {
+                return "6LcKznUrAAAAAJ8zSpjUvedsZk_8VTYPRV76WPVE";
+            } else {
+                return "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
+            }
+        }
+        function returnContactUsApiURL() {
+            if (isLocal()) {
+                return "http://192.168.1.113:7071/api/ContactUs";
+            } else {
+                return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs";
+            }
+        }
+        const recaptchaKey = returnRecaptchaKey();
 
         const script = document.createElement("script");
         script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaKey}&onload=grecaptchaCallback&render=explicit`;
