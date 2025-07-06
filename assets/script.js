@@ -247,8 +247,7 @@ function submitContactForm(e) {
     const successDiv = document.getElementById('successMessage');
     failureDiv.style.display = 'none'; // Hide the error container initially
     failureDiv.innerHTML = ''; // Clear any previous errors
-    successDiv.style.display = 'none';
-    successDiv.innerHTML = '';
+    successDiv.style.display = 'none';    
 
     const form = e.target;
 
@@ -304,9 +303,7 @@ function submitContactForm(e) {
                     failureDiv.textContent = `Error ${response.status}: ${response.statusText}`;
                     failureDiv.style.display = 'block';
                 }
-            }
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-
+            }            
             localStorage.setItem('lastApiCall-ContactUs', new Date().toISOString());
 
         } catch (err) {
