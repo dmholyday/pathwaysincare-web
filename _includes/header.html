@@ -1,7 +1,7 @@
 <header>
     <div class="logo-top-left">
         <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
-            <img src="{{ '/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104"/>            
+            <img src="{{ '/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104" fetchpriority="high"/>            
         </a>
     </div>
     <nav class="navbar">

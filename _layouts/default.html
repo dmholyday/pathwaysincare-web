@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <link rel="preload" as="image" href="{{ '/images/banner-optimized.svg' | relative_url }}" fetchpriority="high" type="image/svg+xml">
     <meta name="description" content="{{ page.description | default: site.description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -47,7 +48,6 @@
         script.defer = true;
         document.head.appendChild(script);
     </script>    
-    <link rel="preload" as="image" href="{{ '/images/banner-optimized.svg' | relative_url }}" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/style.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
