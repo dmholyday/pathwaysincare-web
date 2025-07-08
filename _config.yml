@@ -1,6 +1,13 @@
 title: Pathways in Care
 url: "https://www.pathwaysincare.com.au"
+tagline: Clarity & Compassion in Aged Care
 description: Guiding Families Through Aged Care with Clarity and Compassion
 baseurl: "/"
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/og-image.png
 plugins:
   - jekyll-sitemap
+  - jekyll-seo-tag
