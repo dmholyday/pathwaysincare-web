@@ -7,7 +7,7 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /assets/og-image.png
+      image: /assets/images/og-image.png
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag

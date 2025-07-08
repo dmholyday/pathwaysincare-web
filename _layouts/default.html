@@ -3,9 +3,15 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="preload" as="image" href="{{ '/images/banner-optimized.svg' | relative_url }}" fetchpriority="high" type="image/svg+xml">
+    <link rel="preload" as="image" href="{{ '/assets/images/banner-optimized.svg' | relative_url }}" fetchpriority="high" type="image/svg+xml">
     <meta name="description" content="{{ site.description }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon-96x96.png' | relative_url }}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}" />
+    <link rel="shortcut icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}" />
+    <meta name="apple-mobile-web-app-title" content="Pathways in Care" />
+    <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}" />   
     
     <script>        
         function isLocal() {
