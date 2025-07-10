@@ -59,11 +59,6 @@ window.addEventListener('resize', () => {
     }
 });
 
-window.history.scrollRestoration = 'manual';
-window.addEventListener('load', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
