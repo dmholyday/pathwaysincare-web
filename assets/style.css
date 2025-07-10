@@ -592,6 +592,11 @@ button {
     .modal-overlay {
         bottom: 0;
     }
+
+    #aasw-badge {
+        height: 180px;
+        width: 180px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -739,6 +744,11 @@ button {
 
     .modal-overlay {
         bottom: 0;
+    }
+
+    #aasw-badge {
+        height: 140px;
+        width: 140px;
     }
 
     #copyright {
