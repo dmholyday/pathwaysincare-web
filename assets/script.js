@@ -7,6 +7,23 @@ const servicesDropdown = document.getElementById('servicesDropdown');
 
 
 
+// Scroll handler for logo visibility
+            function handleScroll() {
+                const logo = document.getElementById('logo');
+                const scrollY = window.scrollY;
+                
+                // Hide logo when scrolled down more than 50px
+                if (scrollY > 50) {
+                    logo.classList.add('hidden');
+                } else {
+                    logo.classList.remove('hidden');
+                }
+            }
+
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+
+
 
 // Check if we're on a subpage and show/hide back button accordingly
         function updateBackButton() {

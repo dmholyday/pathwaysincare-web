@@ -1,8 +1,8 @@
 <header>
     <nav class="navbar">
-            <div class="logo">
+            <div class="logo" id="logo">
                 <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
-                    <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104" fetchpriority="high"/>            
+                    <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" fetchpriority="high"/>            
                 </a>
             </div>
             
@@ -12,7 +12,7 @@
                     <span></span>
                     <span></span>
                 </div>                
-                
+
                 <a href="/" class="mobile-back-btn" id="mobileBackBtn">
                     <svg class="chevron-left" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M15 19l-7-7 7-7"></path>
