@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar">
-            <div class="logo-top-left">
+            <div class="logo">
                 <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
                     <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104" fetchpriority="high"/>            
                 </a>
@@ -11,14 +11,14 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </div>                
                 
                 <a href="/" class="mobile-back-btn" id="mobileBackBtn">
                     <svg class="chevron-left" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M15 19l-7-7 7-7"></path>
                     </svg>
                     Back
-                </a>
+                </a>                
             </div>
 
             <ul class="nav-menu" id="navMenu">
@@ -32,7 +32,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a href="#aboutus" class="nav-link">About Us</a>
+                    <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}" class="nav-link">About Us</a>
                 </li>
                 
                 <li class="nav-item">
