@@ -4,60 +4,113 @@ const navLinks = document.getElementById('navLinks');
 const servicesLink = document.getElementById('servicesLink');
 const servicesDropdown = document.getElementById('servicesDropdown');
 
-// Hamburger menu toggle - only click on hamburger lines
-document.querySelectorAll('.lines').forEach(el => {
-    el.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-});
-
-// Mobile services dropdown toggle
-servicesLink.addEventListener('click', (e) => {
-    // Only prevent default and toggle dropdown on mobile
-    if (window.innerWidth <= 768) {
-        e.preventDefault();
-        servicesDropdown.classList.toggle('active');
-
-        // Update toggle indicator
-        const toggle = servicesLink.querySelector('.services-toggle');
-        toggle.textContent = servicesDropdown.classList.contains('active') ? '^' : 'v';
-    }
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        closeHamburgerLinks();
-    }
-});
-
-// Close hanburger About/Contact when clicked.
-document.querySelectorAll('#about-us-link, #contact-link').forEach(el => {
-    el.addEventListener('click', () => {
-        closeHamburgerLinks();
-    });
-});
-
-function closeHamburgerLinks() {
-    navLinks.classList.remove('active');
-    hamburger.classList.remove('active');
-    servicesDropdown.classList.remove('active');
-    const toggle = servicesLink.querySelector('.services-toggle');
-    toggle.textContent = 'v';
-}
 
 
-// Handle window resize
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-        servicesDropdown.classList.remove('active');
-        const toggle = servicesLink.querySelector('.services-toggle');
-        toggle.textContent = 'v';
-    }
-});
+
+
+// Check if we're on a subpage and show/hide back button accordingly
+        function updateBackButton() {
+            const currentPath = window.location.pathname;
+            const backBtn = document.getElementById('backBtn');
+            const mobileBackBtn = document.getElementById('mobileBackBtn');
+            
+            const isSubpage = currentPath.includes('residential-aged-care-placement') ||
+                            currentPath.includes('in-home-services-and-home-care-packages') ||
+                            currentPath.includes('social-work-services');
+            
+            if (isSubpage) {
+                backBtn.style.display = 'flex';
+                mobileBackBtn.style.display = 'flex';
+            } else {
+                backBtn.style.display = 'none';
+                mobileBackBtn.style.display = 'none';
+            }
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Toggle dropdown on mobile
+        function toggleDropdown(event) {
+            if (window.innerWidth <= 768) {
+                event.preventDefault();
+                const dropdown = document.getElementById('servicesDropdown');
+                dropdown.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Initialize back button visibility
+        updateBackButton();
+
+        // Demo: Simulate navigation to subpages (for testing purposes)
+        document.querySelectorAll('.dropdown-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Simulate navigation by changing the URL without actually navigating
+                const href = this.getAttribute('href');
+                window.history.pushState({}, '', href);
+                
+                // Update back button visibility
+                updateBackButton();
+                
+                // Close mobile menu
+                const navMenu = document.getElementById('navMenu');
+                const hamburger = document.querySelector('.hamburger');
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');                            
+            });
+        });
+
+        // Handle back button clicks
+        document.getElementById('backBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.pushState({}, '', '/');
+            updateBackButton();
+            location.reload(); // Reload to show original content
+        });
+
+        document.getElementById('mobileBackBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.pushState({}, '', '/');
+            updateBackButton();
+            location.reload(); // Reload to show original content
+        });
+
+
+
+
+
+
+
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
