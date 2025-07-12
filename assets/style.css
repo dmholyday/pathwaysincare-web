@@ -702,19 +702,32 @@ button {
                     padding-top: 120px; 
                 }
 
+                /*
                 .logo {
                     left: 50%;
                     transform: translateX(-50%);
                     top: 10px;
                 }
+                    */
+
+                    .logo {
+                        position: absolute;
+                top: 15px; /* Position it to overlap the navbar */
+                left: 20px;
+                z-index: 1001;
+                /*transition: transform 0.3s ease, opacity 0.3s ease;*/
+                /*transform: translateX(-50%);*/
+                    }
+                
 
                 .logo.hidden {
-                    transform: translateX(-50%) translateY(-100%);
+                    /*transform: translateX(-50%) translateY(-100%);*/
+                    transform: translateY(-50%);
                     opacity: 0;
                 }
 
                 .logo img {
-                    height: 80px; 
+                    height: 100px; 
                     max-width: 280px;
                 }
 
