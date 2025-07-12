@@ -323,7 +323,7 @@ header::after {
     transform: translateX(0);
 }
 
-#about {
+#about-us {
     margin-top: 100px;
 }
 
@@ -642,7 +642,7 @@ button {
         font-size: 1.4em;
     }
 
-    #about {
+    #about-us {
         margin-top: 40px;
     }
 
@@ -868,7 +868,7 @@ button {
         max-width: 400px;
     }
 
-    #about {
+    #about-us {
         margin-top: 40px;
     }
 
