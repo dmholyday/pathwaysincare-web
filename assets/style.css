@@ -699,7 +699,7 @@ button {
     }
 
     body {
-                    padding-top: 120px; /* Adjust for mobile */
+                    padding-top: 120px; 
                 }
 
                 .logo {
@@ -714,8 +714,16 @@ button {
                 }
 
                 .logo img {
-                    height: 80px; /* Smaller on mobile but still prominent */
+                    height: 80px; 
                     max-width: 280px;
+                }
+
+                header::after {
+    background: linear-gradient(to left, black 0%, transparent 25%);
+  }
+
+                .navbar {
+                    display: block;
                 }
 
     
