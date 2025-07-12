@@ -110,6 +110,7 @@ const servicesDropdown = document.getElementById('servicesDropdown');
         });
 
         // Handle back button clicks
+        /*
         document.getElementById('backBtn').addEventListener('click', function(e) {
             e.preventDefault();
             window.history.pushState({}, '', '/');
@@ -123,6 +124,7 @@ const servicesDropdown = document.getElementById('servicesDropdown');
             updateBackButton();
             location.reload(); // Reload to show original content
         });
+        */
 
 
 
