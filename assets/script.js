@@ -73,11 +73,13 @@ const servicesDropdown = document.getElementById('servicesDropdown');
         // Demo: Simulate navigation to subpages (for testing purposes)
         document.querySelectorAll('.dropdown-link').forEach(link => {
             link.addEventListener('click', function(e) {
+                /*
                 e.preventDefault();
                 
                 // Simulate navigation by changing the URL without actually navigating
                 const href = this.getAttribute('href');
                 window.history.pushState({}, '', href);
+                */
                 
                 // Update back button visibility
                 updateBackButton();
