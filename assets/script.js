@@ -36,8 +36,13 @@ const servicesDropdown = document.getElementById('servicesDropdown');
                             currentPath.includes('social-work-services');
             
             if (isSubpage) {
-                backBtn.style.display = 'flex';
-                mobileBackBtn.style.display = 'flex';
+                if (window.innerWidth <= 768) {
+                    mobileBackBtn.style.display = 'flex';
+                    backBtn.style.display = 'none';
+                } else {
+                    backBtn.style.display = 'flex';
+                    mobileBackBtn.style.display = 'none';
+                }     
             } else {
                 backBtn.style.display = 'none';
                 mobileBackBtn.style.display = 'none';
