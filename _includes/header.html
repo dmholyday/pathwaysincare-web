@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar">
             <div class="logo" id="logo">
-                <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
+                <a href="/">                            
                     <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" fetchpriority="high"/>            
                 </a>
             </div>
@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 
-                <li class="nav-item">
+                <li class="nav-item first-level">
                     <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}" class="nav-link">About Us</a>
                 </li>
                 
@@ -49,7 +49,7 @@
                     </div>
                 </li>
                 
-                <li class="nav-item">
+                <li class="nav-item first-level">
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>

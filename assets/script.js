@@ -93,7 +93,7 @@ const servicesDropdown = document.getElementById('servicesDropdown');
         updateBackButton();
 
         // Demo: Simulate navigation to subpages (for testing purposes)
-        document.querySelectorAll('.dropdown-link').forEach(link => {
+        document.querySelectorAll('.first-level, .dropdown-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 /*
                 e.preventDefault();
