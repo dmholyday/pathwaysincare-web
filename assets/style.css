@@ -265,6 +265,10 @@ header::after {
     /* new: center horizontally */
 }
 
+#about-us {
+  scroll-margin-top: 80px; /* Match your navbar height */
+}
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -325,6 +329,10 @@ header::after {
 
 #about-us {
     margin-top: 100px;
+}
+
+#contact {
+    scroll-margin-top: 80px; /* Match your navbar height */
 }
 
 #contact .text {
@@ -825,6 +833,10 @@ button {
         max-width: 90%;
     }
 
+    #about-us {
+    scroll-margin-top: 120px; /* Match your navbar height */
+}
+
     .section {
         flex-direction: column;
         text-align: left;
@@ -855,6 +867,10 @@ button {
     .first.still-section {
         margin-top: 80px;
     }
+
+    #contact {
+    scroll-margin-top: 130px; /* Match your navbar height */
+}
 
     .form {
         display: flex;
