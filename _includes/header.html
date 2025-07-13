@@ -1,42 +1,58 @@
 <header>
-    <div class="logo-top-left">
-        <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">                            
-            <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" width="328" height="104" fetchpriority="high"/>            
-        </a>
-    </div>
     <nav class="navbar">
-
-        <a id="nav-back-wrapper" href="{{ '/' | relative_url }}#about-us">
-            <svg class="nav-back {% if page.url == '/' %}hide{% else %}active{% endif %}"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5"></path>
-                <path d="M12 19l-7-7 7-7"></path>
-            </svg>
-        </a>
-
-        <div class="nav-links" id="navLinks">
-            <a id="about-us-link"
-                href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}">About
-                Us</a>
-            <div class="nav-item">
-                <a href="#" id="servicesLink">Services<span class="services-toggle">v</span></a>
-                <div class="services-dropdown" id="servicesDropdown">
-                    <a href="{{ '/residential-aged-care-placement/' | relative_url }}" class="first">Residential Aged Care
-                        Placement</a>
-                    <a href="{{ '/in-home-services-and-home-care-packages/' | relative_url }}">In-home Services and Home
-                        Care Packages</a>
-                    <a href="{{ '/social-work-services/' | relative_url }}">Social Work Services</a>
-                </div>
+            <div class="logo" id="logo">
+                <a href="/">                            
+                    <img src="{{ '/assets/images/banner-optimized.svg' | relative_url }}" alt="Pathways in Care - Logo" class="responsive-banner" fetchpriority="high"/>            
+                </a>
             </div>
-            <a id="contact-link" href="#contact">Contact</a>
-        </div>
+            
+            <div class="mobile-controls">
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>                
 
-        <div class="hamburger" id="hamburger">
-            <div class="lines"></div>
-            <div class="lines"></div>
-            <div class="lines"></div>
-        </div>
+                <div>
+                    <a href="/" class="mobile-back-btn" id="mobileBackBtn">
+                        <svg class="chevron-left" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                </div>                
+            </div>
 
-    </nav>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="/" class="back-btn" id="backBtn">
+                        <svg class="chevron-left" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Back
+                    </a>
+                </li>
+                
+                <li class="nav-item first-level">
+                    <a href="{% if page.url == '/' %}#about-us{% else %}{{ '/' | relative_url }}#about-us{% endif %}" class="nav-link">About Us</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event)">
+                        Services
+                        <svg class="chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown" id="servicesDropdown">
+                        <a href="{{ '/residential-aged-care-placement/' | relative_url }}" class="dropdown-link">Residential Aged Care Placement</a>
+                        <a href="{{ '/in-home-services-and-home-care-packages/' | relative_url }}" class="dropdown-link">In-home Services and Home Care Packages</a>
+                        <a href="{{ '/social-work-services/' | relative_url }}" class="dropdown-link">Social Work Services</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item first-level">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </nav>
 </header>
