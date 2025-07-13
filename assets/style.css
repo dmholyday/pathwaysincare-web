@@ -55,7 +55,7 @@ body {
         .navbar {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 5px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -723,14 +723,32 @@ button {
                     padding-top: 120px; 
                 }
 
-                .logo img {
-                    height: 100px; 
-                    max-width: 280px;
+                .logo {
+                    left: 5px;
+                    top: 0px;
                 }
 
+                
+                .logo img {
+                    height: 120px; 
+                    max-width: 340px;
+                }
+                    
+
+                /*
                 header::after {
     background: linear-gradient(to left, black 0%, transparent 20%);
   }
+    */
+
+    header::after {
+        content: none; /* This removes the pseudo-element */
+    display: none; /* Just in case */
+    width: 0;
+    height: 0;
+    background: none;
+    }
+    
 
                 .navbar {
                     display: block;
@@ -770,7 +788,6 @@ button {
             .dropdown {
                 position: static;
                 box-shadow: none;
-                background-color: #f8f9fa;
                 margin-top: 0;
                 padding: 0;
                 min-width: auto;
@@ -821,10 +838,11 @@ button {
         margin-bottom: 20px;
         max-width: 90%;
     }
-
+/*
     #about-us {
-    scroll-margin-top: 120px; /* Match your navbar height */
+    scroll-margin-top: 80px;
 }
+*/
 
     .section {
         flex-direction: column;
@@ -872,10 +890,11 @@ button {
         width: 100%;
         max-width: 400px;
     }
-
+/*
     #about-us {
-        margin-top: 40px;
+        margin-top: 20px;
     }
+        */
 
     [class*="sectio"] .text ul {
         padding-left: 15px;
