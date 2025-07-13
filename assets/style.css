@@ -633,6 +633,20 @@ button {
             .logo img {
                 height: 130px; /* mid logo size */
             }
+/*
+            header {
+                width: 100%;
+            }
+
+            .navbar {
+            width: 100%;
+        }
+            */
+
+            header {
+  width: 100vw; /* Match viewport width */
+  max-width: 100%;
+}
 
     #main-title h1 {
         font-size: 1.6em;
