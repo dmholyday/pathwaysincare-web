@@ -125,7 +125,7 @@ header::after {
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
-            color: #2c3e50;
+            color: #4496a0;
             font-weight: 500;
             padding: 0.5rem 0;
             transition: color 0.3s ease;
@@ -170,7 +170,7 @@ header::after {
         .dropdown-link {
             display: block;
             padding: 0.75rem 1.5rem;
-            color: #2c3e50;
+            color: #4496a0;
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
@@ -185,10 +185,10 @@ header::after {
             display: none;
             align-items: center;
             gap: 0.5rem;
-            color: #2c3e50;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            color: #4496a0;
         }
 
         .back-btn:hover {
@@ -211,7 +211,7 @@ header::after {
         .hamburger span {
             width: 25px;
             height: 3px;
-            background-color: #2c3e50;
+            background-color: #4496a0;
             margin: 3px 0;
             transition: 0.3s;
         }
@@ -232,7 +232,7 @@ header::after {
             display: none;
             align-items: center;
             gap: 0.5rem;
-            color: #2c3e50;
+            color: #4496a0;
             text-decoration: none;
             font-weight: 500;
             margin-top: 10px;
@@ -241,6 +241,7 @@ header::after {
         .mobile-back-btn:hover {
             color: #3498db;
         }
+
 
 #main-title {
     max-width: 700px;
@@ -869,7 +870,7 @@ button {
     }
 
     #contact {
-    scroll-margin-top: 130px; /* Match your navbar height */
+    scroll-margin-top: 120px; /* Match your navbar height */
 }
 
     .form {
