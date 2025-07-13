@@ -231,7 +231,7 @@ header::after {
         .mobile-back-btn {
             display: none;
             align-items: center;
-            gap: 0.5rem;
+            width: 28px;
             color: #4496a0;
             text-decoration: none;
             font-weight: 500;
@@ -741,7 +741,7 @@ button {
                 }
 
                 header::after {
-    background: linear-gradient(to left, black 0%, transparent 25%);
+    background: linear-gradient(to left, black 0%, transparent 20%);
   }
 
                 .navbar {
