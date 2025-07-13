@@ -629,10 +629,7 @@ button {
 }
 
 @media (max-width: 1096px) and (min-width: 769px) {
-    .logo-top-left img {
-        height: 150px;
-    }
-
+    
             .logo img {
                 height: 130px; /* mid logo size */
             }
@@ -641,7 +638,7 @@ button {
         font-size: 1.6em;
         text-align: center;
         font-weight: bold;
-        margin-top: 140px;
+        margin-top: 190px;
         margin-bottom: 30px;
         max-width: 500px;
         /* adjusted smaller for smaller screens */
