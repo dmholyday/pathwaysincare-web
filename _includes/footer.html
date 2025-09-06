@@ -1,52 +1,5 @@
 <footer>
-    <section id="contact" class="section">
-        <div class="text">
-            <h2>Contact Us</h2>
-            <p>If you have an enquiry or would like to learn how we can support you, please complete the contact form below. A member of our team will respond promptly.</p>
-        </div>
-        <div class="contactus form">
-            <form id="contactform" method="post" onsubmit="submitContactForm(event)">
-                <div class="hidden-field">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" value="jasonsmitH12" autocomplete="off">
-                </div>
-                <input id="name" type="text" name="Name" placeholder="Your Name *" maxlength="50" required />
-                <span class="char-counter" data-for="name" style="display: none;"></span>
-                <input id="email" type="email" name="Email" placeholder="Your Email *" maxlength="40" required />
-                <span class="char-counter" data-for="email" style="display: none;"></span>
-                <input id="mobile" type="tel" name="Mobile" placeholder="Mobile number (optional)" maxlength="10"
-                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}" optional />
-                <span class="char-counter" data-for="mobile" style="display: none;"></span>
-                <input id="subject" type="hidden" name="Subject" placeholder="Subject" maxlength="50" optional />
-                <span class="char-counter" data-for="subject" style="display: none;"></span>
-                <textarea id="message" name="Message" rows="4" placeholder="Your Message * (5,000 characters max)"
-                    maxlength="5000" required></textarea>
-                <span class="char-counter" data-for="message" style="display: none;"></span>
-                <button id="submitBtn" type="submit">Send Message</button>
-                <div class="recaptcha-disclaimer">
-                    This site is protected by reCAPTCHA and the Google
-                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy
-                        Policy</a> and
-                    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of
-                        Service</a> apply.
-                </div>
-                <div id="successMessage" style="display: none; color: green; margin-top: 10px;">
-                    Thank You.  We will be in touch with you soon.
-                </div>
-                <div id="failureMessage" style="display: none; color: red; margin-top: 10px;"></div>
-            </form>
-
-            <div class="modal-overlay" id="modalOverlay">
-                <div class="modal text" id="modalBox">
-                <h2 id="modalTitle">Thank You</h2>
-                <p id="modalMessage">We will be in touch with you soon.</p>
-                <button class="modal" onclick="closeModal()">Close</button>
-                </div>
-                
-            </div>
-
-        </div>
-
+    <section class="section">
         <div id="copyright" class="text">
             <a href="https://www.credly.com/go/G9SfZCZin1FxXBGAWaN0zA" target="_blank" rel="noopener">
                 <img id="aasw-badge"
