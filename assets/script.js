@@ -33,7 +33,10 @@ const servicesDropdown = document.getElementById('servicesDropdown');
             
             const isSubpage = currentPath.includes('residential-aged-care-placement') ||
                             currentPath.includes('in-home-services-and-home-care-packages') ||
-                            currentPath.includes('social-work-services');
+                            currentPath.includes('social-work-services') ||
+                            currentPath.includes('about-us') ||
+                            currentPath.includes('contact') ||
+                            currentPath.includes('resources');
             
             if (isSubpage) {
                 if (window.innerWidth <= 768) {
@@ -405,4 +408,119 @@ function showModal(title, message, type) {
     modalBox.classList.add(type); // "success" or "error"
 
     modalOverlay.style.display = "flex";
+}
+
+// Resources page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    initializeResourcesPage();
+});
+
+function initializeResourcesPage() {
+    // Check if we're on the resources page
+    if (!window.location.pathname.includes('resources')) {
+        return;
+    }
+
+    // Initialize filter functionality
+    initializeFilters();
+    
+    // Initialize like functionality
+    initializeLikes();
+    
+    // Load like counts from localStorage
+    loadLikeCounts();
+}
+
+function initializeFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.blog-post');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const filterValue = this.dataset.filter;
+            
+            // Filter posts
+            posts.forEach(post => {
+                if (filterValue === 'all') {
+                    post.classList.remove('hidden');
+                } else {
+                    const category = post.dataset.category;
+                    if (category === filterValue) {
+                        post.classList.remove('hidden');
+                    } else {
+                        post.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
+}
+
+function initializeLikes() {
+    const likeButtons = document.querySelectorAll('.like-btn');
+    
+    likeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.dataset.postId;
+            const likeCountSpan = this.querySelector('.like-count');
+            const heartIcon = this.querySelector('.heart-icon');
+            
+            let currentCount = parseInt(likeCountSpan.textContent);
+            
+            // Check if already liked
+            const isLiked = this.classList.contains('liked');
+            
+            if (isLiked) {
+                // Unlike
+                currentCount = Math.max(0, currentCount - 1);
+                this.classList.remove('liked');
+                heartIcon.style.fill = 'none';
+            } else {
+                // Like
+                currentCount += 1;
+                this.classList.add('liked');
+                heartIcon.style.fill = '#e74c3c';
+            }
+            
+            likeCountSpan.textContent = currentCount;
+            
+            // Save to localStorage
+            saveLikeCount(postId, currentCount, !isLiked);
+        });
+    });
+}
+
+function saveLikeCount(postId, count, isLiked) {
+    const likes = JSON.parse(localStorage.getItem('blogLikes') || '{}');
+    likes[postId] = {
+        count: count,
+        liked: isLiked
+    };
+    localStorage.setItem('blogLikes', JSON.stringify(likes));
+}
+
+function loadLikeCounts() {
+    const likes = JSON.parse(localStorage.getItem('blogLikes') || '{}');
+    
+    Object.keys(likes).forEach(postId => {
+        const button = document.querySelector(`[data-post-id="${postId}"]`);
+        if (button) {
+            const likeCountSpan = button.querySelector('.like-count');
+            const heartIcon = button.querySelector('.heart-icon');
+            const likeData = likes[postId];
+            
+            likeCountSpan.textContent = likeData.count;
+            
+            if (likeData.liked) {
+                button.classList.add('liked');
+                heartIcon.style.fill = '#e74c3c';
+            }
+        }
+    });
 }
