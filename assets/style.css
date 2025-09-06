@@ -297,10 +297,6 @@ header::after {
     word-wrap: break-word;
 }
 
-.first.still-section {
-    margin-top: 250px;
-}
-
 .still-section {
     /*display: flex;
     align-items: flex-start;*/
