@@ -429,6 +429,25 @@ function initializeResourcesPage() {
     
     // Load like counts from localStorage
     loadLikeCounts();
+    
+    // Initialize scroll animations for blog posts
+    initializeBlogAnimations();
+}
+
+function initializeBlogAnimations() {
+    const blogPostObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, {
+        threshold: 0.25
+    });
+
+    document.querySelectorAll('.blog-post').forEach(post => {
+        blogPostObserver.observe(post);
+    });
 }
 
 function initializeFilters() {
@@ -456,6 +475,17 @@ function initializeFilters() {
                     } else {
                         post.classList.add('hidden');
                     }
+                }
+                
+                // Reset animation classes for newly visible posts
+                if (!post.classList.contains('hidden')) {
+                    post.classList.remove('in-view');
+                    // Small delay to ensure the animation triggers
+                    setTimeout(() => {
+                        if (!post.classList.contains('hidden')) {
+                            post.classList.add('in-view');
+                        }
+                    }, 50);
                 }
             });
         });

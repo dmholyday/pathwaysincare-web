@@ -1048,11 +1048,26 @@ button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-left: 4px solid #4496a0;
     position: relative;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    transform: translateX(250px);
+    transition: all 0.8s ease-out, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.blog-post:hover {
-    transform: translateY(-2px);
+.blog-post.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.blog-post:nth-child(even) {
+    transform: translateX(-250px);
+}
+
+.blog-post:nth-child(even).in-view {
+    transform: translateX(0);
+}
+
+.blog-post.in-view:hover {
+    transform: translateX(0) translateY(-2px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
