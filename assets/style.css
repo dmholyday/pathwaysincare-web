@@ -913,3 +913,87 @@ button {
         margin-top: 0px;
     }
 }
+
+/* Footer Styles */
+.site-footer {
+    background-color: #b0dedf;
+    padding: 3rem 1rem 1.5rem 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.footer-sitemap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 2rem;
+    justify-items: center;
+}
+
+.sitemap-column {
+    text-align: center;
+}
+
+.sitemap-column h3 {
+    color: #4496a0;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.sitemap-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sitemap-column li {
+    margin-bottom: 0.5rem;
+}
+
+.sitemap-column a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.sitemap-column a:hover {
+    color: #4496a0;
+}
+
+.footer-bottom {
+    border-top: 1px solid #4496a0;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #2c3e50;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* AASW Badge Section */
+.aasw-badge-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+@media (max-width: 768px) {
+    .footer-sitemap {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .site-footer {
+        padding: 2rem 1rem 1rem 1rem;
+    }
+}
