@@ -1423,3 +1423,41 @@ button {
         height: 20px;
     }
 }
+
+/* Image Section Styles */
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+    margin: 2rem auto;
+    max-width: 1100px;
+}
+
+.hands-image {
+    max-width: 600px;
+    width: 100%;
+}
+
+.hands-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hands-image img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .hands-image {
+        max-width: 100%;
+    }
+    
+    .hands-image img {
+        border-radius: 15px;
+    }
+}
