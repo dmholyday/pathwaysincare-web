@@ -36,7 +36,8 @@ const servicesDropdown = document.getElementById('servicesDropdown');
                             currentPath.includes('social-work-services') ||
                             currentPath.includes('about-us') ||
                             currentPath.includes('contact') ||
-                            currentPath.includes('resources');
+                            currentPath.includes('resources') ||
+                            currentPath.includes('faq');
             
             if (isSubpage) {
                 if (window.innerWidth <= 768) {
@@ -580,5 +581,33 @@ function initializeCredentialsAnimation() {
     const credentialsSection = document.querySelector('.credentials-section');
     if (credentialsSection) {
         credentialsObserver.observe(credentialsSection);
+    }
+}
+
+// FAQ functionality
+function toggleFAQ(element) {
+    const faqAnswer = element.nextElementSibling;
+    const faqIcon = element.querySelector('.faq-icon');
+    
+    // Close other open FAQs on the same page
+    const allFAQs = document.querySelectorAll('.faq-question');
+    allFAQs.forEach(faq => {
+        if (faq !== element) {
+            faq.classList.remove('active');
+            const otherAnswer = faq.nextElementSibling;
+            const otherIcon = faq.querySelector('.faq-icon');
+            otherAnswer.classList.remove('open');
+            otherIcon.style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // Toggle current FAQ
+    element.classList.toggle('active');
+    faqAnswer.classList.toggle('open');
+    
+    if (element.classList.contains('active')) {
+        faqIcon.style.transform = 'rotate(90deg)';
+    } else {
+        faqIcon.style.transform = 'rotate(0deg)';
     }
 }
