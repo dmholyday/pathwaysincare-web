@@ -410,9 +410,10 @@ function showModal(title, message, type) {
     modalOverlay.style.display = "flex";
 }
 
-// Resources page functionality
+// Page-specific functionality
 document.addEventListener('DOMContentLoaded', function() {
     initializeResourcesPage();
+    initializeAboutUsPage();
 });
 
 function initializeResourcesPage() {
@@ -553,4 +554,31 @@ function loadLikeCounts() {
             }
         }
     });
+}
+
+function initializeAboutUsPage() {
+    // Check if we're on the about-us page
+    if (!window.location.pathname.includes('about-us')) {
+        return;
+    }
+
+    // Initialize credentials section animation
+    initializeCredentialsAnimation();
+}
+
+function initializeCredentialsAnimation() {
+    const credentialsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, {
+        threshold: 0.25
+    });
+
+    const credentialsSection = document.querySelector('.credentials-section');
+    if (credentialsSection) {
+        credentialsObserver.observe(credentialsSection);
+    }
 }

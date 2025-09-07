@@ -979,12 +979,111 @@ button {
     margin: 0;
 }
 
-/* AASW Badge Section */
+/* Profile Section Styles */
+.profile-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin: 2.5rem 0;
+}
+
+.profile-image {
+    flex: 0 0 66.67%;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.profile-text h3 {
+    color: #4496a0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.founder-text {
+    color: #2c3e50;
+    font-weight: 400;
+}
+
+/* Credentials Section Styles */
+.credentials-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin: 2.5rem 0;
+    padding-top: 2rem;
+    opacity: 0;
+    transform: translateX(250px);
+    transition: all 0.8s ease-out;
+}
+
+.credentials-section.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.aasw-badge-container {
+    flex: 0 0 200px;
+    text-align: center;
+}
+
+.credentials-text {
+    flex: 1;
+}
+
+.credentials-text h3 {
+    color: #4496a0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Review Text Styling */
+.review-text {
+    color: #c2185b !important;
+    font-weight: 500;
+}
+
+/* Legacy AASW Badge Section - keep for backward compatibility */
 .aasw-badge-section {
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .profile-section,
+    .credentials-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .profile-image {
+        flex: none;
+        align-self: center;
+        max-width: 200px;
+    }
+    
+    .aasw-badge-container {
+        flex: none;
+        align-self: center;
+    }
+    
+    .profile-text,
+    .credentials-text {
+        text-align: left;
+    }
 }
 
 @media (max-width: 768px) {
