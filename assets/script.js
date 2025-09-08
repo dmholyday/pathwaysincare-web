@@ -611,3 +611,103 @@ function toggleFAQ(element) {
         faqIcon.style.transform = 'rotate(0deg)';
     }
 }
+
+// Reviews Carousel functionality
+document.addEventListener('DOMContentLoaded', function() {
+    initializeReviewsCarousel();
+});
+
+function initializeReviewsCarousel() {
+    // Check if we're on a page with a reviews carousel
+    const carousel = document.getElementById('reviewsCarousel');
+    if (!carousel) return;
+
+    const cards = document.querySelectorAll('.review-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentSlide = 0;
+    const totalSlides = cards.length;
+
+    function showSlide(index) {
+        // Remove active class from all cards and indicators
+        cards.forEach(card => card.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Add active class to current card and indicator
+        if (cards[index]) {
+            cards[index].classList.add('active');
+        }
+        if (indicators[index]) {
+            indicators[index].classList.add('active');
+        }
+        
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        const newIndex = (currentSlide + 1) % totalSlides;
+        showSlide(newIndex);
+    }
+
+    function prevSlide() {
+        const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(newIndex);
+    }
+
+    // Event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+
+    // Indicator click handlers
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto-play carousel (optional)
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Start auto-play
+    startAutoPlay();
+
+    // Pause auto-play on hover
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+
+    // Pause auto-play when user interacts with controls
+    [prevBtn, nextBtn, ...indicators].forEach(element => {
+        if (element) {
+            element.addEventListener('click', () => {
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+            });
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoPlay();
+            setTimeout(startAutoPlay, 10000);
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoPlay();
+            setTimeout(startAutoPlay, 10000);
+        }
+    });
+}
