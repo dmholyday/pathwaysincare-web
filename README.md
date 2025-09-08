@@ -21,3 +21,5 @@ curl -X GET \
 -H "X-Goog-FieldMask: id,displayName,formattedAddress,rating,reviews" \
 "https://places.googleapis.com/v1/places/YOUR_PLACE_ID"
 
+note i also added v1places-static.json, which is the same call, but has this X-Goog-FieldMask:
+displayName,formattedAddress,nationalPhoneNumber,internationalPhoneNumber,websiteUri,regularOpeningHours,location,rating,userRatingCount,googleMapsUri
