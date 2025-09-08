@@ -1908,3 +1908,301 @@ button {
         font-size: 0.9rem;
     }
 }
+
+/* Contact Page Business Info Styles */
+.business-info-section {
+    background-color: #f8fdfb;
+    padding: 4rem 0;
+}
+
+.business-info-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.business-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(68, 150, 160, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: #4496a0;
+}
+
+.info-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.info-card h3 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Business Hours Styles */
+.hours-list {
+    space-y: 0.5rem;
+}
+
+.hours-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.hours-item:last-child {
+    border-bottom: none;
+}
+
+.hours-item .day {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.hours-item .time {
+    color: #4496a0;
+    font-weight: 500;
+}
+
+.hours-item.weekend .day,
+.hours-item.weekend .time {
+    color: #7f8c8d;
+}
+
+/* Map Styles */
+.map-container {
+    margin-bottom: 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    border-radius: 15px;
+}
+
+.map-actions {
+    text-align: center;
+}
+
+.directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #4496a0;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.directions-btn:hover {
+    background: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(68, 150, 160, 0.3);
+}
+
+.directions-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Customer Reviews Section */
+.customer-reviews-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.reviews-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.reviews-header h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.reviews-subtitle {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.review-item {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    border-left: 4px solid #4496a0;
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.review-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 1rem;
+}
+
+.review-stars .star {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.review-item .review-text {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.review-author strong {
+    color: #4496a0;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.review-date {
+    color: #7f8c8d;
+    font-size: 0.85rem;
+}
+
+.reviews-footer {
+    text-align: center;
+}
+
+.read-more-reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4496a0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #4496a0;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.read-more-reviews:hover {
+    background: #4496a0;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.read-more-reviews svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .business-info-grid,
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .business-info-container,
+    .reviews-container {
+        padding: 0 1rem;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .reviews-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .review-item {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .business-info-section,
+    .customer-reviews-section {
+        padding: 2.5rem 0;
+    }
+    
+    .info-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hours-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.25rem;
+    }
+    
+    .review-item {
+        padding: 1.25rem;
+    }
+}
