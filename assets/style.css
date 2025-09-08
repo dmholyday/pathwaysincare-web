@@ -973,6 +973,32 @@ button {
     margin: 0;
 }
 
+/* Footer Social Links */
+.social-links {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #4496a0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+.social-links a:hover {
+    color: #3498db;
+    transform: translateY(-2px);
+}
+
+.facebook-icon {
+    width: 28px;
+    height: 28px;
+}
+
 /* Profile Section Styles */
 .profile-section {
     display: flex;
