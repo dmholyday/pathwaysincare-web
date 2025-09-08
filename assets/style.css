@@ -2331,3 +2331,39 @@ button {
         justify-content: center;
     }
 }
+
+/* Be Informed Section Styles */
+.be-informed {
+    margin-top: 4rem;
+}
+
+/* Inline Link Styles */
+.inline-link {
+    color: #4496a0;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.inline-link:hover {
+    color: #3498db;
+    border-bottom-color: #3498db;
+}
+
+.inline-link:active {
+    color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+    .be-informed {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .be-informed {
+        margin-top: 2rem;
+    }
+}
