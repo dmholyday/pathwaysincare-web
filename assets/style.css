@@ -1799,6 +1799,7 @@ button {
     background: #3498db;
 }
 
+
 @media (max-width: 768px) {
     .reviews-carousel-container {
         margin: 30px 20px 0;

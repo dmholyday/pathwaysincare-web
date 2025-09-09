@@ -710,6 +710,7 @@ function initializeReviewsCarousel() {
             setTimeout(startAutoPlay, 10000);
         }
     });
+
 }
 
 // Email obfuscation function
