@@ -711,3 +711,13 @@ function initializeReviewsCarousel() {
         }
     });
 }
+
+// Email obfuscation function
+function showEmail() {
+    const emailLink = document.getElementById('emailLink');
+    const emailParts = ['info', '@', 'pathwaysincare', '.', 'com', '.', 'au'];
+    const email = emailParts.join('');
+    emailLink.innerHTML = email;
+    emailLink.href = 'mailto:' + email;
+    emailLink.onclick = null; // Remove the onclick after revealing
+}
