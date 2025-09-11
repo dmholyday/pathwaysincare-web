@@ -670,44 +670,12 @@ function initializeReviewsCarousel() {
         indicator.addEventListener('click', () => showSlide(index));
     });
 
-    // Auto-play carousel (optional)
-    let autoPlayInterval;
-    
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-    }
-    
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    // Start auto-play
-    startAutoPlay();
-
-    // Pause auto-play on hover
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-
-    // Pause auto-play when user interacts with controls
-    [prevBtn, nextBtn, ...indicators].forEach(element => {
-        if (element) {
-            element.addEventListener('click', () => {
-                stopAutoPlay();
-                setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
-            });
-        }
-    });
-
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             prevSlide();
-            stopAutoPlay();
-            setTimeout(startAutoPlay, 10000);
         } else if (e.key === 'ArrowRight') {
             nextSlide();
-            stopAutoPlay();
-            setTimeout(startAutoPlay, 10000);
         }
     });
 
