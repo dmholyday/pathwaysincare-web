@@ -1,139 +1,73 @@
 
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-const servicesLink = document.getElementById('servicesLink');
-const servicesDropdown = document.getElementById('servicesDropdown');
-
-
-
-
-// Scroll handler for logo visibility
-            function handleScroll() {
-                const logo = document.getElementById('logo');
-                const scrollY = window.scrollY;
-                
-                // Hide logo when scrolled down more than 50px
-                if (scrollY > 50) {
-                    logo.classList.add('hidden');
-                } else {
-                    logo.classList.remove('hidden');
-                }
-            }
-
-            // Add scroll event listener
-            window.addEventListener('scroll', handleScroll);
-
-
-
-// Check if we're on a subpage and show/hide back button accordingly
-        function updateBackButton() {
-            const currentPath = window.location.pathname;
-            const backBtn = document.getElementById('backBtn');
-            const mobileBackBtn = document.getElementById('mobileBackBtn');
-            
-            const isSubpage = currentPath.includes('residential-aged-care-placement') ||
-                            currentPath.includes('in-home-services-and-home-care-packages') ||
-                            currentPath.includes('social-work-services') ||
-                            currentPath.includes('about-us') ||
-                            currentPath.includes('contact') ||
-                            currentPath.includes('resources') ||
-                            currentPath.includes('faq');
-            
-            if (isSubpage) {
-                if (window.innerWidth <= 768) {
-                    mobileBackBtn.style.display = 'flex';
-                    backBtn.style.display = 'none';
-                } else {
-                    backBtn.style.display = 'flex';
-                    mobileBackBtn.style.display = 'none';
-                }     
-            } else {
-                backBtn.style.display = 'none';
-                mobileBackBtn.style.display = 'none';
-            }
-        }
-
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const hamburger = document.querySelector('.hamburger');
-            
+// New Navigation JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle functionality
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const hasDropdown = document.querySelector('.has-dropdown');
+    
+    // Toggle mobile menu
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-
-        // Toggle dropdown on mobile
-        function toggleDropdown(event) {
+            mobileToggle.classList.toggle('active');
+            
+            // Animate hamburger lines
+            const spans = mobileToggle.querySelectorAll('span');
+            if (mobileToggle.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+    
+    // Mobile dropdown toggle
+    if (hasDropdown) {
+        hasDropdown.addEventListener('click', function(e) {
             if (window.innerWidth <= 768) {
-                event.preventDefault();
-                const dropdown = document.getElementById('servicesDropdown');
-                dropdown.classList.toggle('active');
+                e.preventDefault();
+                this.classList.toggle('active');
+            }
+        });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (mobileToggle && navMenu && !navMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            
+            // Reset hamburger lines
+            const spans = mobileToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu) {
+            navMenu.classList.remove('active');
+            if (mobileToggle) {
+                mobileToggle.classList.remove('active');
+                const spans = mobileToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+            if (hasDropdown) {
+                hasDropdown.classList.remove('active');
             }
         }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navMenu = document.getElementById('navMenu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const navMenu = document.getElementById('navMenu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            if (window.innerWidth > 768) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-
-        // Initialize back button visibility
-        updateBackButton();
-
-        // Demo: Simulate navigation to subpages (for testing purposes)
-        document.querySelectorAll('.first-level, .dropdown-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                /*
-                e.preventDefault();
-                
-                // Simulate navigation by changing the URL without actually navigating
-                const href = this.getAttribute('href');
-                window.history.pushState({}, '', href);
-                */
-                
-                // Update back button visibility
-                updateBackButton();
-                
-                // Close mobile menu
-                const navMenu = document.getElementById('navMenu');
-                const hamburger = document.querySelector('.hamburger');
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');                            
-            });
-        });
-
-        // Handle back button clicks
-        /*
-        document.getElementById('backBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.history.pushState({}, '', '/');
-            updateBackButton();
-            location.reload(); // Reload to show original content
-        });
-
-        document.getElementById('mobileBackBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.history.pushState({}, '', '/');
-            updateBackButton();
-            location.reload(); // Reload to show original content
-        });
-        */
+    });
+});
+// Cleaned up - old navigation code removed
 
 
 
