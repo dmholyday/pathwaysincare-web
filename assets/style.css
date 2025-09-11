@@ -8,6 +8,13 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-family: var(--font);
     letter-spacing: 0.03em;
@@ -19,6 +26,8 @@ body {
 .new-header {
     padding: 2rem 0;
     background: transparent;
+    position: relative;
+    z-index: 1001;
 }
 
 .nav-container {
@@ -37,16 +46,12 @@ body {
     display: flex;
     align-items: center;
     gap: 3rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     position: relative;
     z-index: 1000;
 }
 
-.nav-pill:hover {
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
-}
 
 .nav-logo {
     flex-shrink: 0;
@@ -187,6 +192,52 @@ body {
     margin: 2px 0;
     border-radius: 2px;
     transition: all 0.3s ease;
+}
+
+/* Hero Banner Styles */
+.hero-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60vh;
+    overflow: hidden;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/hands_enhanced4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Hero Banner Spacer - to push content down */
+.hero-spacer {
+    height: 60vh;
+    width: 100%;
+}
+
+/* Mobile Portrait Only - hands_enhanced1.jpg */
+@media (max-width: 1080px) and (orientation: portrait) {
+    .hero-banner {
+        height: 60vh;
+    }
+    
+    .hero-image {
+        background-image: url('/assets/images/hands_enhanced1.jpg');
+        background-size: contain;
+        background-position: center top;
+    }
+    
+    .hero-spacer {
+        height: 60vh;
+    }
 }
 
 
