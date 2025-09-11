@@ -29,9 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile dropdown toggle
     if (hasDropdown) {
         hasDropdown.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                this.classList.toggle('active');
+            if (window.innerWidth <= 1080) {
+                // Only prevent default if clicking on the parent link, not dropdown items
+                if (e.target.classList.contains('nav-link') || e.target.closest('.nav-link')) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                }
+                // Allow dropdown items to navigate normally
             }
         });
     }
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle window resize
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navMenu) {
+        if (window.innerWidth > 1080 && navMenu) {
             navMenu.classList.remove('active');
             if (mobileToggle) {
                 mobileToggle.classList.remove('active');

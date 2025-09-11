@@ -657,7 +657,7 @@ button {
 }
 
 /* Mobile Navigation Styles */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .new-header {
         padding: 1rem 0;
     }
@@ -690,16 +690,17 @@ button {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
+        background: white;
         border-radius: 25px;
         margin-top: 0.75rem;
         flex-direction: column;
         gap: 0;
         padding: 1rem 0;
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(68, 150, 160, 0.1);
         z-index: 9999;
+        max-height: 500px;
+        overflow-y: auto;
     }
     
     .nav-menu.active {
@@ -738,27 +739,46 @@ button {
         position: static;
         opacity: 1;
         visibility: visible;
-        transform: none;
+        transform: none !important;
         box-shadow: none;
         border-radius: 12px;
-        margin: 0.5rem 1rem 0;
+        margin: 0.5rem 0 0 0;
         padding: 0;
         background: rgba(68, 150, 160, 0.05);
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    
+    .has-dropdown:hover .dropdown-menu {
+        transform: none !important;
     }
     
     .has-dropdown.active .dropdown-menu {
-        max-height: 200px;
+        max-height: 300px;
         padding: 0.5rem 0;
     }
     
     .dropdown-item {
-        margin: 0.25rem 0.5rem;
+        margin: 0.25rem 1rem;
         padding: 0.75rem 1rem;
         border-radius: 8px;
         font-size: 0.85rem;
+        -webkit-tap-highlight-color: rgba(68, 150, 160, 0.2);
+        tap-highlight-color: rgba(68, 150, 160, 0.2);
+    }
+    
+    .has-dropdown {
+        -webkit-tap-highlight-color: transparent;
+        tap-highlight-color: transparent;
+    }
+    
+    .has-dropdown .dropdown-menu {
+        -webkit-tap-highlight-color: transparent;
+        tap-highlight-color: transparent;
     }
 
     #main-title {
@@ -1169,6 +1189,22 @@ button {
     text-align: center;
 }
 
+/* Mobile Landscape Responsive */
+@media (max-width: 1080px) and (orientation: landscape) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-pill {
+        padding: 0.5rem 1rem;
+        gap: 0;
+    }
+    
+    .nav-logo img {
+        height: 40px;
+    }
+}
+
 .services-section .text {
     text-align: center;
 }
@@ -1181,7 +1217,7 @@ button {
 }
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .profile-section,
     .credentials-section {
         flex-direction: column;
@@ -1286,7 +1322,7 @@ button {
     line-height: 1.6;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .faq-section {
         margin-top: 2rem;
         padding-top: 1.5rem;
@@ -1305,7 +1341,7 @@ button {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .footer-sitemap {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1523,7 +1559,7 @@ button {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .blog-container {
         padding: 0 1rem;
     }
@@ -1582,7 +1618,7 @@ button {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .hands-image {
         max-width: 100%;
     }
@@ -1745,7 +1781,7 @@ button {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .reviews-carousel-container {
         margin: 30px 20px 0;
     }
@@ -1948,7 +1984,7 @@ button {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .service-comparison {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -2234,7 +2270,7 @@ button {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .business-info-grid,
     .reviews-grid {
         grid-template-columns: 1fr;
@@ -2375,7 +2411,7 @@ button {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .get-in-touch {
         padding: 3rem 0;
     }
@@ -2435,7 +2471,7 @@ button {
     color: #2c3e50;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .be-informed {
         margin-top: 3rem;
     }
