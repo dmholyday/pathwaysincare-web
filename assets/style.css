@@ -39,8 +39,7 @@ body {
 }
 
 .nav-pill {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: #ffffff;
     border-radius: 50px;
     padding: 1rem 2rem;
     display: flex;
@@ -136,7 +135,9 @@ body {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: white;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    backdrop-filter: none !important;
     border-radius: 20px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
     padding: 1rem 0;
@@ -146,7 +147,8 @@ body {
     visibility: hidden;
     transform: translateX(-50%) translateY(-10px);
     transition: all 0.3s ease;
-    z-index: 9999;
+    z-index: 999999;
+    isolation: isolate;
 }
 
 .has-dropdown:hover .dropdown-menu {
@@ -164,6 +166,9 @@ body {
     transition: all 0.3s ease;
     border-radius: 15px;
     margin: 0 0.5rem;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10001;
 }
 
 .dropdown-item:hover {
@@ -207,10 +212,26 @@ body {
     padding: 0;
 }
 
-.hero-image {
+/* Interior pages - shorter hero banner */
+body.interior-page .hero-banner {
+    height: 35vh;
+}
+
+/* Homepage hero image - full size */
+body.homepage .hero-image {
     width: 100%;
     height: 100%;
     background-image: url('/assets/images/hands_enhanced6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Interior pages hero image - cropped */
+body.interior-page .hero-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/hands_enhanced7_crop.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -221,6 +242,14 @@ body {
 .hero-spacer {
     height: 60vh;
     width: 100%;
+    pointer-events: none;
+    z-index: -1;
+    position: relative;
+}
+
+/* Interior pages - shorter spacer */
+body.interior-page .hero-spacer {
+    height: 35vh;
 }
 
 /* Mobile Portrait Only - hands_enhanced1.jpg */
@@ -229,8 +258,21 @@ body {
         height: 60vh;
     }
     
-    .hero-image {
+    /* Interior pages mobile - shorter hero banner */
+    body.interior-page .hero-banner {
+        height: 30vh;
+    }
+    
+    /* Homepage mobile hero image */
+    body.homepage .hero-image {
         background-image: url('/assets/images/hands_mobile1.jpg');
+        background-size: contain;
+        background-position: center top;
+    }
+    
+    /* Interior pages mobile hero image - cropped */
+    body.interior-page .hero-image {
+        background-image: url('/assets/images/hands_mobile2_crop.jpg');
         background-size: contain;
         background-position: center top;
     }
@@ -751,7 +793,7 @@ button {
         padding: 1rem 0;
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(68, 150, 160, 0.1);
-        z-index: 9999;
+        z-index: 10000;
         max-height: 500px;
         overflow-y: auto;
     }
@@ -1225,9 +1267,10 @@ button {
     color: white;
     max-width: 500px;
     line-height: 1.2;
-    z-index: 1002;
+    z-index: 1;
     opacity: 0;
     animation: fadeInDown 0.8s ease-out 0.8s forwards;
+    pointer-events: none;
 }
 
 /* Mobile Portrait Tagline Override - Dynamic Scaling */

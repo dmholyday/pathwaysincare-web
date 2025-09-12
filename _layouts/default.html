@@ -74,7 +74,7 @@
     {% seo %}
 </head>
 
-<body>
+<body class="{% if page.url == '/' %}homepage{% else %}interior-page{% endif %}">
     {% include header.html %}
     <main>
         {{ content }}
