@@ -1242,6 +1242,17 @@ button {
     }
 }
 
+/* Mobile Landscape - Use same positioning as portrait */
+@media (max-width: 1080px) and (orientation: landscape) {
+    .tagline-hero {
+        font-size: calc(0.6em + 1.5vw);
+        max-width: calc(120px + 15vw);
+        left: calc(2% + 3vw);
+        top: 98px;
+        transform: translate(-50%, -50%);
+    }
+}
+
 /* Homepage section spacing adjustments */
 #services h2:last-of-type {
     margin-top: 3rem;
