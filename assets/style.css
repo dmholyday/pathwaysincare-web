@@ -295,7 +295,7 @@ body.interior-page .hero-spacer {
     font-size: 1.8em;
     text-align: center;
     font-weight: bold;
-    margin-top: 2rem;
+    margin-top: -7rem;
     margin-bottom: 40px;
     color: #4496a0;
     opacity: 0;
@@ -303,6 +303,10 @@ body.interior-page .hero-spacer {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#main-title h1.home {
+    margin-top: -11rem;
 }
 
 #about-us {
@@ -686,11 +690,17 @@ button {
         font-size: 1.6em;
         text-align: center;
         font-weight: bold;
-        margin-top: 190px;
+        margin-top: -11rem;
         margin-bottom: 30px;
         max-width: 500px;
         /* adjusted smaller for smaller screens */
     }
+
+    /*
+    #main-title h1.home {
+        margin-top: -15rem;
+    }
+    */
 
     .section {
         padding: 35px 30px;
@@ -884,9 +894,13 @@ button {
         font-size: 1.4em;
         text-align: center;
         font-weight: bold;
-        margin-top: 80px;
+        margin-top: -11rem;
         margin-bottom: 20px;
         max-width: 90%;
+    }
+
+    #main-title h1.home {
+        margin-top: -24rem;
     }
 /*
     #about-us {
@@ -922,7 +936,7 @@ button {
     }
 
     .first.still-section {
-        margin-top: 80px;
+        margin-top: 35px;
     }
 
     #contact {
