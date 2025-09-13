@@ -900,7 +900,7 @@ button {
     }
 
     #main-title h1.home {
-        margin-top: -24rem;
+        margin-top: -22rem;
     }
 /*
     #about-us {
@@ -2334,27 +2334,42 @@ button {
     font-style: italic;
 }
 
-/* Kirsty Image Section */
-.kirsty-section {
-    text-align: center;
-    padding: 3rem 0;
+/* Homepage intro section with Kirsty image */
+.intro-with-image {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
 
-.kirsty-image {
-    max-width: 100%;
+.intro-content {
+    flex: 1;
+}
+
+.intro-image {
+    flex: 0 0 300px;
+}
+
+.kirsty-intro-image {
+    width: 100%;
     height: auto;
     border-radius: 15px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
 }
 
 @media (max-width: 1080px) {
-    .kirsty-section {
-        padding: 2rem 0;
+    .intro-with-image {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
     }
     
-    .kirsty-image {
-        max-width: 90%;
+    .intro-image {
+        flex: none;
+        align-self: center;
+        max-width: 300px;
+    }
+    
+    .kirsty-intro-image {
         border-radius: 10px;
     }
 }
