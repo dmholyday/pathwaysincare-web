@@ -2277,13 +2277,13 @@ button {
 }
 
 .reviews-header h2 {
-    color: #2c3e50;
+    color: #4496a0;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
 .reviews-subtitle {
-    color: #7f8c8d;
+    color: #333;
     font-size: 1.1rem;
     margin: 0;
 }
@@ -2326,6 +2326,12 @@ button {
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-style: italic;
+}
+
+/* Customer review text in paragraphs */
+.review-content p {
+    font-style: italic;
+}
 }
 
 .review-author strong {
