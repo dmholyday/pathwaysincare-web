@@ -544,8 +544,6 @@ function toggleFAQ(element) {
     faqAnswer.classList.toggle('open');
     
     if (element.classList.contains('active')) {
-        faqIcon.style.transform = 'rotate(90deg)';
-    } else {
         faqIcon.style.transform = 'rotate(0deg)';
     }
 }
