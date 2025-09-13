@@ -628,3 +628,110 @@ function showEmail() {
     emailLink.href = 'mailto:' + email;
     emailLink.onclick = null; // Remove the onclick after revealing
 }
+
+// Reviews Carousel Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlide = 0;
+    let autoScrollInterval;
+    const autoScrollDelay = 5000; // 5 seconds
+    
+    const desktopTrack = document.getElementById('desktopReviewsTrack');
+    const mobileTrack = document.getElementById('mobileReviewsTrack');
+    const dots = document.querySelectorAll('.dot');
+    
+    function updateDesktopCarousel() {
+        if (desktopTrack) {
+            const translateX = -currentSlide * 50; // Each slide is 50% width
+            desktopTrack.style.transform = `translateX(${translateX}%)`;
+        }
+    }
+    
+    function updateMobileCarousel() {
+        if (mobileTrack) {
+            const translateX = -currentSlide * 33.333; // Each slide is 33.333% width (3 total slides)
+            mobileTrack.style.transform = `translateX(${translateX}%)`;
+        }
+    }
+    
+    function updateDots() {
+        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        
+        dots.forEach((dot, index) => {
+            // Show/hide dots based on viewport
+            if (index < maxSlides) {
+                dot.style.display = 'block';
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            } else {
+                dot.style.display = 'none';
+            }
+        });
+    }
+    
+    function nextSlide() {
+        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        currentSlide = (currentSlide + 1) % maxSlides;
+        updateDesktopCarousel();
+        updateMobileCarousel();
+        updateDots();
+    }
+    
+    function goToSlide(slideIndex) {
+        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        if (slideIndex < maxSlides) {
+            currentSlide = slideIndex;
+            updateDesktopCarousel();
+            updateMobileCarousel();
+            updateDots();
+            restartAutoScroll();
+        }
+    }
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(nextSlide, autoScrollDelay);
+    }
+    
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+    
+    function restartAutoScroll() {
+        stopAutoScroll();
+        startAutoScroll();
+    }
+    
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+    
+    // Pause auto-scroll on hover
+    const reviewsSection = document.querySelector('.customer-reviews-section');
+    if (reviewsSection) {
+        reviewsSection.addEventListener('mouseenter', stopAutoScroll);
+        reviewsSection.addEventListener('mouseleave', startAutoScroll);
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        const maxSlides = window.innerWidth <= 1080 ? 3 : 2;
+        if (currentSlide >= maxSlides) {
+            currentSlide = 0; // Reset to first slide if current slide is invalid
+        }
+        updateDesktopCarousel();
+        updateMobileCarousel();
+        updateDots();
+        restartAutoScroll();
+    });
+    
+    // Initialize
+    updateDesktopCarousel();
+    updateMobileCarousel();
+    updateDots();
+    startAutoScroll();
+});
