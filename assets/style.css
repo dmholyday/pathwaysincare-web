@@ -1209,8 +1209,9 @@ button {
 .profile-image img {
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
 }
 
 .profile-text {
@@ -1363,7 +1364,7 @@ button {
     .profile-image {
         flex: none;
         align-self: center;
-        max-width: 200px;
+        max-width: 90%;
     }
     
     .aasw-badge-container {
@@ -2331,6 +2332,31 @@ button {
 /* Customer review text in paragraphs */
 .review-content p {
     font-style: italic;
+}
+
+/* Kirsty Image Section */
+.kirsty-section {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.kirsty-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+@media (max-width: 1080px) {
+    .kirsty-section {
+        padding: 2rem 0;
+    }
+    
+    .kirsty-image {
+        max-width: 90%;
+        border-radius: 10px;
+    }
 }
 }
 
