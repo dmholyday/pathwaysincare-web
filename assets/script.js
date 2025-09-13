@@ -648,13 +648,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateMobileCarousel() {
         if (mobileTrack) {
-            const translateX = -currentSlide * 33.333; // Each slide is 33.333% width (3 total slides)
+            const translateX = -currentSlide * 100; // Each slide is 100% width
             mobileTrack.style.transform = `translateX(${translateX}%)`;
         }
     }
     
     function updateDots() {
-        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        const desktopSlides = desktopTrack ? desktopTrack.querySelectorAll('.reviews-slide').length : 0;
+        const mobileSlides = mobileTrack ? mobileTrack.querySelectorAll('.mobile-review-slide').length : 0;
+        const maxSlides = window.innerWidth <= 1080 ? mobileSlides : desktopSlides;
         
         dots.forEach((dot, index) => {
             // Show/hide dots based on viewport
@@ -672,7 +674,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function nextSlide() {
-        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        const desktopSlides = desktopTrack ? desktopTrack.querySelectorAll('.reviews-slide').length : 0;
+        const mobileSlides = mobileTrack ? mobileTrack.querySelectorAll('.mobile-review-slide').length : 0;
+        const maxSlides = window.innerWidth <= 1080 ? mobileSlides : desktopSlides;
+        
         currentSlide = (currentSlide + 1) % maxSlides;
         updateDesktopCarousel();
         updateMobileCarousel();
@@ -680,7 +685,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function goToSlide(slideIndex) {
-        const maxSlides = window.innerWidth <= 1080 ? 3 : 2; // 3 slides on mobile, 2 on desktop
+        const desktopSlides = desktopTrack ? desktopTrack.querySelectorAll('.reviews-slide').length : 0;
+        const mobileSlides = mobileTrack ? mobileTrack.querySelectorAll('.mobile-review-slide').length : 0;
+        const maxSlides = window.innerWidth <= 1080 ? mobileSlides : desktopSlides;
+        
         if (slideIndex < maxSlides) {
             currentSlide = slideIndex;
             updateDesktopCarousel();
