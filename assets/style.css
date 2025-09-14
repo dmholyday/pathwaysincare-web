@@ -1524,8 +1524,9 @@ button {
 
 /* Blog/Resources Styles */
 .blog-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto 0;
+    padding: 0 2rem;
 }
 
 .blog-filters {
@@ -1719,7 +1720,7 @@ button {
 
 @media (max-width: 1080px) {
     .blog-container {
-        padding: 0 1rem;
+        padding: 0;
     }
     
     .blog-filters {
