@@ -1726,9 +1726,31 @@ button {
     fill: currentColor;
 }
 
-/* Modal Facebook share button */
-.modal-facebook-share {
-    margin-right: 10px;
+/* Modal layout - desktop and mobile */
+.modal-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Desktop - Facebook share on right */
+@media (min-width: 769px) {
+    .modal-facebook-share {
+        margin-right: 10px;
+    }
+}
+
+/* Mobile - Facebook share on right (same as desktop) */
+@media (max-width: 768px) {
+    .modal-facebook-share {
+        margin-right: 10px;
+    }
 }
 
 .post-actions {
@@ -3116,12 +3138,19 @@ button {
     
     .modal-footer {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 1rem;
     }
     
+    .modal-footer-left {
+        justify-content: flex-start;
+    }
+    
+    .modal-footer-right {
+        justify-content: flex-end;
+    }
+    
     .modal-close-bottom {
-        align-self: flex-end;
         padding: 0.4rem 1.2rem;
         font-size: 0.85rem;
     }

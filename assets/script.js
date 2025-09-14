@@ -738,6 +738,26 @@ document.addEventListener('DOMContentLoaded', function() {
             modalFacebookShare.setAttribute('data-article-id', articleId);
         }
         
+        // Handle modal like button - only show for insights articles
+        const modalLikeBtn = modal.querySelector('.modal-like-btn');
+        if (modalLikeBtn) {
+            if (category.toLowerCase() === 'insights') {
+                modalLikeBtn.style.display = 'flex';
+                // Copy like count from original article if it exists
+                const originalLikeBtn = article.querySelector('.like-btn');
+                if (originalLikeBtn) {
+                    const likeCount = originalLikeBtn.querySelector('.like-count');
+                    const modalLikeCount = modalLikeBtn.querySelector('.like-count');
+                    if (likeCount && modalLikeCount) {
+                        modalLikeCount.textContent = likeCount.textContent;
+                    }
+                    modalLikeBtn.setAttribute('data-post-id', originalLikeBtn.getAttribute('data-post-id'));
+                }
+            } else {
+                modalLikeBtn.style.display = 'none';
+            }
+        }
+        
         // Show modal
         modal.classList.add('active');
         
