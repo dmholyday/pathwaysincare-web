@@ -680,6 +680,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function openArticleModal(article) {
         if (!modal) return;
         
+        // Update URL hash
+        const articleId = article.id;
+        if (articleId) {
+            window.history.pushState({articleId}, '', `#${articleId}`);
+        }
+        
         // Extract article data
         const category = article.querySelector('.post-category')?.textContent || '';
         const title = article.querySelector('.post-title')?.textContent || '';
@@ -726,6 +732,12 @@ document.addEventListener('DOMContentLoaded', function() {
             modalCategory.parentNode.insertBefore(pinIcon, modalCategory);
         }
         
+        // Update modal Facebook share button with article ID
+        const modalFacebookShare = modal.querySelector('.modal-facebook-share');
+        if (modalFacebookShare && articleId) {
+            modalFacebookShare.setAttribute('data-article-id', articleId);
+        }
+        
         // Show modal
         modal.classList.add('active');
         
@@ -744,6 +756,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function closeArticleModal() {
         if (!modal) return;
+        
+        // Update URL to remove hash
+        window.history.pushState({}, '', window.location.pathname);
         
         // Get the scroll position that was stored when modal opened
         const scrollTop = Math.abs(parseInt(document.body.style.top || '0'));
@@ -792,6 +807,63 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal?.classList.contains('active')) {
             closeArticleModal();
+        }
+    });
+    
+    // Handle direct URL access and browser navigation
+    function handleHashChange() {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        
+        if (hash) {
+            // Find article with matching ID
+            const article = document.getElementById(hash);
+            if (article && article.classList.contains('expandable')) {
+                openArticleModal(article);
+            }
+        } else {
+            // No hash, close modal if open
+            if (modal?.classList.contains('active')) {
+                closeArticleModal();
+            }
+        }
+    }
+    
+    // Listen for browser back/forward button
+    window.addEventListener('popstate', function(e) {
+        handleHashChange();
+    });
+    
+    // Check URL on page load
+    if (window.location.hash) {
+        handleHashChange();
+    }
+    
+    // Facebook share functionality
+    function handleFacebookShare(articleId) {
+        if (!articleId) return;
+        
+        // Construct the article URL
+        const baseUrl = window.location.origin + window.location.pathname;
+        const articleUrl = `${baseUrl}#${articleId}`;
+        
+        // Facebook share URL
+        const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`;
+        
+        // Open Facebook share popup
+        window.open(
+            facebookShareUrl,
+            'facebook-share-dialog',
+            'width=626,height=436,resizable=yes,scrollbars=yes'
+        );
+    }
+    
+    // Add event listeners to all Facebook share buttons
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.facebook-share-btn')) {
+            e.preventDefault();
+            const button = e.target.closest('.facebook-share-btn');
+            const articleId = button.getAttribute('data-article-id');
+            handleFacebookShare(articleId);
         }
     });
 });
