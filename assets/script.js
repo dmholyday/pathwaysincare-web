@@ -437,33 +437,93 @@ function initializeLikes() {
     
     likeButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const postId = this.dataset.postId;
+            let articleId = null;
+            
+            // Check if this is a modal like button or regular article like button
+            if (this.classList.contains('modal-like-btn')) {
+                // For modal buttons, find the currently open article
+                const modal = document.querySelector('#articleModal');
+                if (modal && modal.classList.contains('active')) {
+                    // Get article ID from the URL hash
+                    articleId = window.location.hash.substring(1);
+                }
+            } else {
+                // Get article ID from parent article element
+                const article = this.closest('.blog-post.expandable');
+                articleId = article ? article.id : null;
+            }
+            
+            if (!articleId) {
+                console.warn('No article ID found for like button');
+                return;
+            }
+            
             const likeCountSpan = this.querySelector('.like-count');
             const heartIcon = this.querySelector('.heart-icon');
             
             let currentCount = parseInt(likeCountSpan.textContent);
             
-            // Check if already liked
+            // Check if already liked - if so, ignore the click
             const isLiked = this.classList.contains('liked');
             
             if (isLiked) {
-                // Unlike
-                currentCount = Math.max(0, currentCount - 1);
-                this.classList.remove('liked');
-                heartIcon.style.fill = 'none';
-            } else {
-                // Like
-                currentCount += 1;
-                this.classList.add('liked');
-                heartIcon.style.fill = '#e74c3c';
+                // Already liked - ignore click (no un-love allowed)
+                return;
             }
+            
+            // Like (first time only)
+            currentCount += 1;
+            this.classList.add('liked');
+            heartIcon.style.fill = '#e74c3c';
             
             likeCountSpan.textContent = currentCount;
             
+            // Update both modal and article like buttons
+            updateLikeButtonsSync(articleId, currentCount, true);
+            
             // Save to localStorage
-            saveLikeCount(postId, currentCount, !isLiked);
+            saveLikeCount(articleId, currentCount, true);
         });
     });
+}
+
+function updateLikeButtonsSync(articleId, count, isLiked) {
+    // Update the article like button
+    const article = document.getElementById(articleId);
+    if (article) {
+        const articleLikeBtn = article.querySelector('.like-btn');
+        if (articleLikeBtn) {
+            const likeCountSpan = articleLikeBtn.querySelector('.like-count');
+            const heartIcon = articleLikeBtn.querySelector('.heart-icon');
+            
+            if (likeCountSpan) likeCountSpan.textContent = count;
+            
+            if (isLiked) {
+                articleLikeBtn.classList.add('liked');
+                if (heartIcon) heartIcon.style.fill = '#e74c3c';
+            } else {
+                articleLikeBtn.classList.remove('liked');
+                if (heartIcon) heartIcon.style.fill = 'none';
+            }
+        }
+    }
+    
+    // Update the modal like button if it exists and is visible
+    const modalLikeBtn = document.querySelector('.modal-like-btn');
+    if (modalLikeBtn && modalLikeBtn.style.display === 'flex') {
+        const likeCountSpan = modalLikeBtn.querySelector('.like-count');
+        const heartIcon = modalLikeBtn.querySelector('.heart-icon');
+        
+        if (likeCountSpan) likeCountSpan.textContent = count;
+        
+        if (isLiked) {
+            modalLikeBtn.classList.add('liked');
+            if (heartIcon) heartIcon.style.fill = '#e74c3c';
+        } else {
+            modalLikeBtn.classList.remove('liked');
+            if (heartIcon) heartIcon.style.fill = 'none';
+        }
+    }
 }
 
 function saveLikeCount(postId, count, isLiked) {
@@ -478,18 +538,22 @@ function saveLikeCount(postId, count, isLiked) {
 function loadLikeCounts() {
     const likes = JSON.parse(localStorage.getItem('blogLikes') || '{}');
     
-    Object.keys(likes).forEach(postId => {
-        const button = document.querySelector(`[data-post-id="${postId}"]`);
-        if (button) {
-            const likeCountSpan = button.querySelector('.like-count');
-            const heartIcon = button.querySelector('.heart-icon');
-            const likeData = likes[postId];
-            
-            likeCountSpan.textContent = likeData.count;
-            
-            if (likeData.liked) {
-                button.classList.add('liked');
-                heartIcon.style.fill = '#e74c3c';
+    Object.keys(likes).forEach(articleId => {
+        // Find the article by ID and then find its like button
+        const article = document.getElementById(articleId);
+        if (article) {
+            const button = article.querySelector('.like-btn');
+            if (button) {
+                const likeCountSpan = button.querySelector('.like-count');
+                const heartIcon = button.querySelector('.heart-icon');
+                const likeData = likes[articleId];
+                
+                if (likeCountSpan) likeCountSpan.textContent = likeData.count;
+                
+                if (likeData.liked) {
+                    button.classList.add('liked');
+                    if (heartIcon) heartIcon.style.fill = '#e74c3c';
+                }
             }
         }
     });
@@ -751,7 +815,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (likeCount && modalLikeCount) {
                         modalLikeCount.textContent = likeCount.textContent;
                     }
-                    modalLikeBtn.setAttribute('data-post-id', originalLikeBtn.getAttribute('data-post-id'));
+                    // Copy the liked state from the original button
+                    if (originalLikeBtn.classList.contains('liked')) {
+                        modalLikeBtn.classList.add('liked');
+                        const modalHeartIcon = modalLikeBtn.querySelector('.heart-icon');
+                        if (modalHeartIcon) modalHeartIcon.style.fill = '#e74c3c';
+                    } else {
+                        modalLikeBtn.classList.remove('liked');
+                        const modalHeartIcon = modalLikeBtn.querySelector('.heart-icon');
+                        if (modalHeartIcon) modalHeartIcon.style.fill = 'none';
+                    }
                 }
             } else {
                 modalLikeBtn.style.display = 'none';
