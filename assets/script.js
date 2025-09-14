@@ -627,6 +627,111 @@ function showEmail() {
     emailLink.onclick = null; // Remove the onclick after revealing
 }
 
+// Article Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('articleModal');
+    const modalOverlay = modal?.querySelector('.modal-overlay');
+    const modalClose = modal?.querySelector('.modal-close');
+    const modalCategory = modal?.querySelector('.modal-category');
+    const modalTitle = modal?.querySelector('.modal-title');
+    const modalMeta = modal?.querySelector('.modal-meta');
+    const modalContent = modal?.querySelector('.modal-article-content');
+    
+    // Handle expandable article clicks
+    const expandableArticles = document.querySelectorAll('.blog-post.expandable');
+    
+    expandableArticles.forEach(article => {
+        article.addEventListener('click', function(e) {
+            // Don't open modal if clicking on like button
+            if (e.target.closest('.like-btn')) {
+                return;
+            }
+            
+            e.preventDefault();
+            openArticleModal(article);
+        });
+        
+        // Add cursor pointer to indicate clickability
+        article.style.cursor = 'pointer';
+    });
+    
+    function openArticleModal(article) {
+        if (!modal) return;
+        
+        // Extract article data
+        const category = article.querySelector('.post-category')?.textContent || '';
+        const title = article.querySelector('.post-title')?.textContent || '';
+        const meta = article.querySelector('.post-meta')?.innerHTML || '';
+        const fullContent = article.querySelector('.post-content-full')?.innerHTML || '';
+        const isPinned = article.hasAttribute('data-pinned');
+        
+        // Populate modal
+        if (modalCategory) modalCategory.textContent = category;
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalMeta) modalMeta.innerHTML = meta;
+        if (modalContent) modalContent.innerHTML = fullContent;
+        
+        // Set category class for styling
+        if (modalCategory) {
+            modalCategory.className = `modal-category ${category.toLowerCase()}`;
+        }
+        
+        // Add pinned indicator if needed
+        if (isPinned && modalCategory) {
+            const pinIcon = document.createElement('div');
+            pinIcon.className = 'modal-pin';
+            pinIcon.innerHTML = `
+                <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                </svg>
+            `;
+            modalCategory.parentNode.insertBefore(pinIcon, modalCategory);
+        }
+        
+        // Show modal
+        modal.classList.add('active');
+        
+        // Store current scroll position and prevent body scroll
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollTop}px`;
+        document.body.style.width = '100%';
+    }
+    
+    function closeArticleModal() {
+        if (!modal) return;
+        
+        modal.classList.remove('active');
+        
+        // Restore body styles to allow scrolling again
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+
+        // Clean up pinned indicator
+        const existingPin = modal.querySelector('.modal-pin');
+        if (existingPin) {
+            existingPin.remove();
+        }
+    }
+    
+    // Close modal events
+    if (modalClose) {
+        modalClose.addEventListener('click', closeArticleModal);
+    }
+    
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeArticleModal);
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal?.classList.contains('active')) {
+            closeArticleModal();
+        }
+    });
+});
+
 // Reviews Carousel Functionality
 document.addEventListener('DOMContentLoaded', function() {
     let currentSlide = 0;
