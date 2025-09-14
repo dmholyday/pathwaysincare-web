@@ -1702,7 +1702,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
+    gap: 6px;
+    min-width: 50px;
     height: 32px;
 }
 
@@ -1711,9 +1712,16 @@ button {
     transform: translateY(-1px);
 }
 
+.share-icon {
+    width: 14px;
+    height: 14px;
+    color: white;
+    stroke: currentColor;
+}
+
 .facebook-icon {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     color: white;
     fill: currentColor;
 }
