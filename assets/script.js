@@ -353,6 +353,9 @@ function showModal(title, message, type) {
 document.addEventListener('DOMContentLoaded', function() {
     initializeResourcesPage();
     initializeAboutUsPage();
+    
+    // Initialize email forms (global - needed on all pages)
+    initializeEmailForms();
 });
 
 function initializeResourcesPage() {
@@ -523,6 +526,79 @@ async function getExternalIP() {
     
     // Fallback IP if all services fail
     return '127.0.0.1';
+}
+
+// Email sanitization and validation
+function sanitizeEmail(email) {
+    if (!email || typeof email !== 'string') {
+        return null;
+    }
+    
+    // Remove leading/trailing whitespace
+    email = email.trim();
+    
+    // Convert to lowercase
+    email = email.toLowerCase();
+    
+    // Remove any HTML tags (basic protection)
+    email = email.replace(/<[^>]*>/g, '');
+    
+    // Remove any script content
+    email = email.replace(/javascript:/gi, '');
+    email = email.replace(/on\w+\s*=/gi, '');
+    
+    // Basic email validation regex
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!emailRegex.test(email)) {
+        return null; // Invalid email format
+    }
+    
+    // Additional length check
+    if (email.length > 254) {
+        return null; // Email too long
+    }
+    
+    return email;
+}
+
+// Send email to API
+async function sendEmailToAPI(email) {
+    try {
+        const sanitizedEmail = sanitizeEmail(email);
+        
+        if (!sanitizedEmail) {
+            console.warn('Invalid email format provided');
+            return { success: false, error: 'Invalid email format' };
+        }
+        
+        const clientIP = await getExternalIP();
+        
+        const response = await fetch(returnEmailApiURL(), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                ClientIP: clientIP,
+                Email: sanitizedEmail,
+                HoneypotField: ""
+            })
+        });
+        
+        if (!response.ok) {
+            console.warn('Failed to send email to API');
+            return { success: false, error: 'API request failed' };
+        }
+        
+        const result = await response.json();
+        return { success: true, data: result };
+        
+    } catch (error) {
+        console.error('Error sending email to API:', error);
+        return { success: false, error: error.message };
+    }
 }
 
 // Send like to API
@@ -1097,6 +1173,118 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Initialize email forms
+function initializeEmailForms() {
+    console.log('Initializing email forms...');
+    
+    // Homepage email form
+    const homepageEmailForm = document.getElementById('emailSignupForm');
+    console.log('Homepage email form found:', !!homepageEmailForm);
+    if (homepageEmailForm && !homepageEmailForm.dataset.initialized) {
+        homepageEmailForm.dataset.initialized = 'true';
+        homepageEmailForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Homepage email form submitted!');
+            
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const email = emailInput.value;
+            
+            // Disable form during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                const result = await sendEmailToAPI(email);
+                
+                if (result.success) {
+                    // Success feedback
+                    emailInput.value = '';
+                    submitBtn.textContent = 'Sent!';
+                    submitBtn.style.background = '#28a745';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send';
+                        submitBtn.style.background = '';
+                    }, 2000);
+                } else {
+                    // Error feedback
+                    submitBtn.textContent = 'Error';
+                    submitBtn.style.background = '#dc3545';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send';
+                        submitBtn.style.background = '';
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Email submission error:', error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send';
+            }
+        });
+    }
+    
+    // Footer email form
+    const footerEmailForm = document.getElementById('footerEmailSignup');
+    console.log('Footer email form found:', !!footerEmailForm);
+    if (footerEmailForm && !footerEmailForm.dataset.initialized) {
+        footerEmailForm.dataset.initialized = 'true';
+        footerEmailForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Footer email form submitted!');
+            
+            const emailInput = document.getElementById('footerEmailInput');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const email = emailInput.value;
+            
+            // Disable form during submission
+            submitBtn.disabled = true;
+            const originalSvg = submitBtn.innerHTML;
+            submitBtn.innerHTML = '...';
+            
+            try {
+                const result = await sendEmailToAPI(email);
+                
+                if (result.success) {
+                    // Success feedback
+                    emailInput.value = '';
+                    submitBtn.innerHTML = '✓';
+                    submitBtn.style.background = '#28a745';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalSvg;
+                        submitBtn.style.background = '';
+                    }, 2000);
+                } else {
+                    // Error feedback
+                    submitBtn.innerHTML = '✗';
+                    submitBtn.style.background = '#dc3545';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalSvg;
+                        submitBtn.style.background = '';
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Footer email submission error:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalSvg;
+            }
+        });
+    }
+}
+
+// Email forms are initialized in the main DOMContentLoaded listener above
 
 // Reviews Carousel Functionality
 document.addEventListener('DOMContentLoaded', function() {
