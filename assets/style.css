@@ -1216,6 +1216,7 @@ button {
 
 .profile-text {
     flex: 1;
+    text-align: left; /* Override center alignment from .section .text */
 }
 
 .profile-text h3 {
@@ -1320,8 +1321,13 @@ button {
     margin-top: 3rem;
 }
 
-/* Homepage section text centering */
+/* Homepage section text alignment */
 .section .text {
+    text-align: left;
+}
+
+/* Keep section headers centered */
+.section .text h2 {
     text-align: center;
 }
 
@@ -1341,7 +1347,11 @@ button {
     }
 }
 
-.services-section .text {
+.services-section .services-grid {
+    text-align: center;
+}
+
+.services-section .text h2 {
     text-align: center;
 }
 
