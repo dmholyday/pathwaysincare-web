@@ -367,8 +367,8 @@ function initializeResourcesPage() {
     // Initialize like functionality
     initializeLikes();
     
-    // Load like counts from localStorage
-    loadLikeCounts();
+    // Load like counts from API (with localStorage fallback)
+    loadLikeCountsFromAPI();
     
     // Initialize scroll animations for blog posts
     initializeBlogAnimations();
@@ -483,8 +483,98 @@ function initializeLikes() {
             
             // Save to localStorage
             saveLikeCount(articleId, currentCount, true);
+            
+            // Send like to API
+            sendLikeToAPI(articleId);
         });
     });
+}
+
+// Get external IP address with fallback services
+async function getExternalIP() {
+    const services = [
+        'https://api.ipify.org?format=json',
+        'https://ipapi.co/json/',
+        'https://ip-api.com/json'
+    ];
+    
+    for (const service of services) {
+        try {
+            const response = await fetch(service, { 
+                timeout: 5000,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (!response.ok) continue;
+            
+            const data = await response.json();
+            
+            // Different services return IP in different fields
+            const ip = data.ip || data.query || null;
+            
+            if (ip && ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
+                return ip;
+            }
+        } catch (error) {
+            console.warn(`Failed to get IP from ${service}:`, error);
+            continue;
+        }
+    }
+    
+    // Fallback IP if all services fail
+    return '127.0.0.1';
+}
+
+// Send like to API
+async function sendLikeToAPI(articleId) {
+    try {
+        const clientIP = await getExternalIP();
+        
+        const response = await fetch(`${returnLikesApiURL()}/${articleId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                ClientIP: clientIP,
+                honeypotField: ""
+            })
+        });
+        
+        if (!response.ok) {
+            console.warn(`Failed to send like to API for article ${articleId}`);
+            return;
+        }
+        
+        const result = await response.json();
+        
+        // Update the like count with the API response
+        if (result && result.LikeCount) {
+            const article = document.getElementById(articleId);
+            if (article) {
+                const button = article.querySelector('.like-btn');
+                if (button) {
+                    const likeCountSpan = button.querySelector('.like-count');
+                    if (likeCountSpan) {
+                        likeCountSpan.textContent = result.LikeCount;
+                    }
+                }
+            }
+            
+            // Also update modal like button if visible
+            const modalLikeBtn = document.querySelector('.modal-like-btn');
+            if (modalLikeBtn && modalLikeBtn.style.display === 'flex') {
+                const modalLikeCount = modalLikeBtn.querySelector('.like-count');
+                if (modalLikeCount) {
+                    modalLikeCount.textContent = result.LikeCount;
+                }
+            }
+        }
+        
+    } catch (error) {
+        console.error(`Error sending like to API for article ${articleId}:`, error);
+    }
 }
 
 function updateLikeButtonsSync(articleId, count, isLiked) {
@@ -535,6 +625,50 @@ function saveLikeCount(postId, count, isLiked) {
     localStorage.setItem('blogLikes', JSON.stringify(likes));
 }
 
+// Load like counts from API
+async function loadLikeCountsFromAPI() {
+    try {
+        const response = await fetch(`${returnLikesApiURL()}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            console.warn('Failed to load like counts from API, falling back to localStorage');
+            loadLikeCounts();
+            return;
+        }
+        
+        const apiLikes = await response.json();
+        
+        // Update like counts from API
+        if (Array.isArray(apiLikes)) {
+            apiLikes.forEach(likeData => {
+                const article = document.getElementById(likeData.PostId);
+                if (article) {
+                    const button = article.querySelector('.like-btn');
+                    if (button) {
+                        const likeCountSpan = button.querySelector('.like-count');
+                        if (likeCountSpan) {
+                            likeCountSpan.textContent = likeData.LikeCount;
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Also load localStorage state for liked status
+        loadLikeCounts();
+        
+    } catch (error) {
+        console.error('Error loading like counts from API:', error);
+        // Fallback to localStorage only
+        loadLikeCounts();
+    }
+}
+
 function loadLikeCounts() {
     const likes = JSON.parse(localStorage.getItem('blogLikes') || '{}');
     
@@ -548,7 +682,10 @@ function loadLikeCounts() {
                 const heartIcon = button.querySelector('.heart-icon');
                 const likeData = likes[articleId];
                 
-                if (likeCountSpan) likeCountSpan.textContent = likeData.count;
+                // Only update count if not already set by API
+                if (likeCountSpan && likeCountSpan.textContent === '0') {
+                    likeCountSpan.textContent = likeData.count;
+                }
                 
                 if (likeData.liked) {
                     button.classList.add('liked');
