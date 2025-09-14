@@ -39,6 +39,13 @@
                 return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/Likes";
             }
         }
+        function returnEmailApiURL() {
+            if (isLocal()) {
+                return "http://192.168.68.62:7071/api/Email";
+            } else {
+                return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/Email";
+            }
+        }
         const recaptchaKey = returnRecaptchaKey();
 
         const script = document.createElement("script");
