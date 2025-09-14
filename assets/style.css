@@ -1635,13 +1635,13 @@ button {
 }
 
 .post-category.news {
-    background: #f3e5f5;
-    color: #7b1fa2;
+    background: #e8f5e8;
+    color: #388e3c;
 }
 
 .post-category.insights {
-    background: #e8f5e8;
-    color: #388e3c;
+    background: #f3e5f5;
+    color: #7b1fa2;
 }
 
 .post-title {

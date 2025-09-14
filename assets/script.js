@@ -704,6 +704,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show modal
         modal.classList.add('active');
         
+        // Reset modal body scroll to top
+        const modalBody = modal.querySelector('.modal-body');
+        if (modalBody) {
+            modalBody.scrollTop = 0;
+        }
+        
         // Store current scroll position and prevent body scroll
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         document.body.style.position = 'fixed';
