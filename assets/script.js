@@ -632,10 +632,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('articleModal');
     const modalOverlay = modal?.querySelector('.modal-overlay');
     const modalClose = modal?.querySelector('.modal-close');
+    const modalCloseBottom = modal?.querySelector('.modal-close-bottom');
     const modalCategory = modal?.querySelector('.modal-category');
     const modalTitle = modal?.querySelector('.modal-title');
     const modalMeta = modal?.querySelector('.modal-meta');
     const modalContent = modal?.querySelector('.modal-article-content');
+    const modalAuthor = modal?.querySelector('.modal-author');
     
     // Handle expandable article clicks
     const expandableArticles = document.querySelectorAll('.blog-post.expandable');
@@ -665,11 +667,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const fullContent = article.querySelector('.post-content-full')?.innerHTML || '';
         const isPinned = article.hasAttribute('data-pinned');
         
+        // Randomize author assignment
+        const authors = [
+            { display: 'by Kirsty@', email: 'kirsty.holyday@pathwaysincare.com.au' },
+            { display: 'by info@', email: 'info@pathwaysincare.com.au' }
+        ];
+        const randomAuthor = authors[Math.floor(Math.random() * authors.length)];
+        
         // Populate modal
         if (modalCategory) modalCategory.textContent = category;
         if (modalTitle) modalTitle.textContent = title;
         if (modalMeta) modalMeta.innerHTML = meta;
         if (modalContent) modalContent.innerHTML = fullContent;
+        if (modalAuthor) {
+            modalAuthor.textContent = randomAuthor.display;
+            modalAuthor.onclick = () => window.location.href = `mailto:${randomAuthor.email}`;
+        }
         
         // Set category class for styling
         if (modalCategory) {
@@ -701,12 +714,28 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeArticleModal() {
         if (!modal) return;
         
-        modal.classList.remove('active');
+        // Get the scroll position that was stored when modal opened
+        const scrollTop = Math.abs(parseInt(document.body.style.top || '0'));
         
-        // Restore body styles to allow scrolling again
+        // Restore body styles and scroll position instantly
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
+        
+        // Temporarily disable smooth scrolling
+        document.documentElement.style.scrollBehavior = 'auto';
+
+        // Set scroll position instantly before closing modal
+        if (scrollTop > 0) {
+            document.documentElement.scrollTop = scrollTop;
+            document.body.scrollTop = scrollTop;
+        }
+    
+        // restore smooth
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Close modal after scroll is set
+        modal.classList.remove('active');            
 
         // Clean up pinned indicator
         const existingPin = modal.querySelector('.modal-pin');
@@ -718,6 +747,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modal events
     if (modalClose) {
         modalClose.addEventListener('click', closeArticleModal);
+    }
+    
+    if (modalCloseBottom) {
+        modalCloseBottom.addEventListener('click', closeArticleModal);
     }
     
     if (modalOverlay) {

@@ -2818,7 +2818,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5rem 2rem;
+    padding: 0.4rem 2rem;
     background: linear-gradient(135deg, #4496a0 0%, #357a8a 100%);
     color: white;
     position: relative;
@@ -2945,6 +2945,43 @@ button {
     font-weight: 600;
 }
 
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.modal-author {
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.modal-author:hover {
+    color: #4496a0;
+}
+
+.modal-close-bottom {
+    background: #4496a0;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.modal-close-bottom:hover {
+    background: #357a8a;
+}
+
 /* Read More Indicator Styles */
 .read-more-indicator {
     color: #4496a0;
@@ -2955,6 +2992,11 @@ button {
 
 .blog-post.expandable:hover .read-more-indicator {
     color: #357a8a;
+}
+
+/* Hide love buttons on all articles except insights */
+.blog-post:not([data-category="insights"]) .post-actions {
+    display: none;
 }
 
 /* Mobile Modal Styles */
@@ -2991,7 +3033,7 @@ button {
     }
     
     .modal-header {
-        padding: 1rem 1.5rem;
+        padding: 0.8rem 1.3rem;
     }
     
     .modal-body {
@@ -3006,6 +3048,18 @@ button {
     
     .modal-article-content h4 {
         font-size: 1.2rem;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .modal-close-bottom {
+        align-self: flex-end;
+        padding: 0.4rem 1.2rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -3042,7 +3096,7 @@ button {
     }
     
     .modal-header {
-        padding: 1rem;
+        padding: 0.4rem;
     }
     
     .modal-body {
