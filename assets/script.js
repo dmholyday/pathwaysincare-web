@@ -644,8 +644,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     expandableArticles.forEach(article => {
         article.addEventListener('click', function(e) {
-            // Don't open modal if clicking on like button
-            if (e.target.closest('.like-btn')) {
+            // Don't open modal if clicking on like button or author field
+            if (e.target.closest('.like-btn') || e.target.closest('.post-author')) {
                 return;
             }
             
@@ -655,6 +655,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add cursor pointer to indicate clickability
         article.style.cursor = 'pointer';
+    });
+    
+    // Add email functionality to existing author fields
+    expandableArticles.forEach(article => {
+        const authorField = article.querySelector('.post-author');
+        if (authorField) {
+            const authorText = authorField.textContent.trim();
+            let email = '';
+            
+            // Determine email based on author text
+            if (authorText === 'by Kirsty@') {
+                email = 'kirsty.holyday@pathwaysincare.com.au';
+            } else if (authorText === 'by info@') {
+                email = 'info@pathwaysincare.com.au';
+            }
+            
+            if (email) {
+                authorField.onclick = () => window.location.href = `mailto:${email}`;
+            }
+        }
     });
     
     function openArticleModal(article) {
@@ -667,12 +687,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const fullContent = article.querySelector('.post-content-full')?.innerHTML || '';
         const isPinned = article.hasAttribute('data-pinned');
         
-        // Randomize author assignment
-        const authors = [
-            { display: 'by Kirsty@', email: 'kirsty.holyday@pathwaysincare.com.au' },
-            { display: 'by info@', email: 'info@pathwaysincare.com.au' }
-        ];
-        const randomAuthor = authors[Math.floor(Math.random() * authors.length)];
+        // Get author from the article
+        const articleAuthorField = article.querySelector('.post-author');
+        const authorText = articleAuthorField ? articleAuthorField.textContent.trim() : '';
+        let authorEmail = '';
+        
+        // Determine email based on author text
+        if (authorText === 'by Kirsty@') {
+            authorEmail = 'kirsty.holyday@pathwaysincare.com.au';
+        } else if (authorText === 'by info@') {
+            authorEmail = 'info@pathwaysincare.com.au';
+        }
         
         // Populate modal
         if (modalCategory) modalCategory.textContent = category;
@@ -680,8 +705,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modalMeta) modalMeta.innerHTML = meta;
         if (modalContent) modalContent.innerHTML = fullContent;
         if (modalAuthor) {
-            modalAuthor.textContent = randomAuthor.display;
-            modalAuthor.onclick = () => window.location.href = `mailto:${randomAuthor.email}`;
+            modalAuthor.textContent = authorText;
+            modalAuthor.onclick = authorEmail ? () => window.location.href = `mailto:${authorEmail}` : null;
         }
         
         // Set category class for styling
