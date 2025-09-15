@@ -1020,7 +1020,32 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modalCategory) modalCategory.textContent = category;
         if (modalTitle) modalTitle.textContent = title;
         if (modalMeta) modalMeta.innerHTML = meta;
-        if (modalContent) modalContent.innerHTML = fullContent;
+        if (modalContent) {
+            modalContent.innerHTML = fullContent;
+            
+            // Fix duplicate IDs in modal content by adding 'modal-' prefix
+            const modalElements = modalContent.querySelectorAll('[id]');
+            modalElements.forEach(element => {
+                const oldId = element.id;
+                element.id = 'modal-' + oldId;
+                
+                // Update associated labels
+                const labels = modalContent.querySelectorAll(`label[for="${oldId}"]`);
+                labels.forEach(label => {
+                    label.setAttribute('for', 'modal-' + oldId);
+                });
+            });
+            
+            // Update onclick handlers to use modal IDs
+            const calculateButtons = modalContent.querySelectorAll('.calculator-btn');
+            calculateButtons.forEach(button => {
+                if (button.onclick && button.onclick.toString().includes('calculateDAP()')) {
+                    button.setAttribute('onclick', 'calculateModalDAP()');
+                } else if (button.onclick && button.onclick.toString().includes('calculateReducedDAP()')) {
+                    button.setAttribute('onclick', 'calculateModalReducedDAP()');
+                }
+            });
+        }
         if (modalAuthor) {
             modalAuthor.textContent = authorText;
             modalAuthor.onclick = authorEmail ? () => window.location.href = `mailto:${authorEmail}` : null;
@@ -1319,6 +1344,130 @@ function initializeEmailForms() {
 }
 
 // Email forms are initialized in the main DOMContentLoaded listener above
+
+// RAD to DAP Calculator Functions
+function calculateDAP() {
+    const radAmount = parseFloat(document.getElementById('rad-amount').value) || 0;
+    const mpirRate = parseFloat(document.getElementById('mpir-rate').value) || 7.78;
+    
+    if (radAmount <= 0) {
+        document.getElementById('dap-result').value = 'Please enter a valid RAD amount';
+        return;
+    }
+    
+    // Formula: DAP = (RAD x MPIR) / 365
+    const dap = (radAmount * (mpirRate / 100)) / 365;
+    
+    document.getElementById('dap-result').value = `$${dap.toFixed(2)} per day`;
+}
+
+function calculateReducedDAP() {
+    const fullRadAmount = parseFloat(document.getElementById('full-rad-amount').value) || 0;
+    const paidRadAmount = parseFloat(document.getElementById('paid-rad-amount').value) || 0;
+    const mpirRate = parseFloat(document.getElementById('mpir-rate').value) || 7.78;
+    
+    if (fullRadAmount <= 0) {
+        document.getElementById('reduced-dap-result').value = 'Please enter a valid full RAD amount';
+        return;
+    }
+    
+    if (paidRadAmount < 0) {
+        document.getElementById('reduced-dap-result').value = 'RAD paid cannot be negative';
+        return;
+    }
+    
+    if (paidRadAmount > fullRadAmount) {
+        document.getElementById('reduced-dap-result').value = 'RAD paid cannot exceed full RAD amount';
+        return;
+    }
+    
+    // Formula: Reduced DAP = (agreed full RAD − RAD paid) × MPIR / 365
+    const remainingRad = fullRadAmount - paidRadAmount;
+    const reducedDap = (remainingRad * (mpirRate / 100)) / 365;
+    
+    document.getElementById('reduced-dap-result').value = `$${reducedDap.toFixed(2)} per day`;
+}
+
+// Modal-specific calculator functions
+function calculateModalDAP() {
+    const radAmount = parseFloat(document.getElementById('modal-rad-amount').value) || 0;
+    const mpirRate = parseFloat(document.getElementById('modal-mpir-rate').value) || 7.78;
+    
+    if (radAmount <= 0) {
+        document.getElementById('modal-dap-result').value = 'Please enter a valid RAD amount';
+        return;
+    }
+    
+    // Formula: DAP = (RAD x MPIR) / 365
+    const dap = (radAmount * (mpirRate / 100)) / 365;
+    
+    document.getElementById('modal-dap-result').value = `$${dap.toFixed(2)} per day`;
+}
+
+function calculateModalReducedDAP() {
+    const fullRadAmount = parseFloat(document.getElementById('modal-full-rad-amount').value) || 0;
+    const paidRadAmount = parseFloat(document.getElementById('modal-paid-rad-amount').value) || 0;
+    const mpirRate = parseFloat(document.getElementById('modal-mpir-rate').value) || 7.78;
+    
+    if (fullRadAmount <= 0) {
+        document.getElementById('modal-reduced-dap-result').value = 'Please enter a valid full RAD amount';
+        return;
+    }
+    
+    if (paidRadAmount < 0) {
+        document.getElementById('modal-reduced-dap-result').value = 'RAD paid cannot be negative';
+        return;
+    }
+    
+    if (paidRadAmount > fullRadAmount) {
+        document.getElementById('modal-reduced-dap-result').value = 'RAD paid cannot exceed full RAD amount';
+        return;
+    }
+    
+    // Formula: Reduced DAP = (agreed full RAD − RAD paid) × MPIR / 365
+    const remainingRad = fullRadAmount - paidRadAmount;
+    const reducedDap = (remainingRad * (mpirRate / 100)) / 365;
+    
+    document.getElementById('modal-reduced-dap-result').value = `$${reducedDap.toFixed(2)} per day`;
+}
+
+// Auto-update calculations when MPIR changes
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle regular page MPIR input
+    const mpirInput = document.getElementById('mpir-rate');
+    if (mpirInput) {
+        mpirInput.addEventListener('input', function() {
+            // Auto-recalculate if results are already shown
+            const dapResult = document.getElementById('dap-result');
+            const reducedDapResult = document.getElementById('reduced-dap-result');
+            
+            if (dapResult && dapResult.value && !dapResult.value.includes('Please enter')) {
+                calculateDAP();
+            }
+            
+            if (reducedDapResult && reducedDapResult.value && !reducedDapResult.value.includes('Please enter')) {
+                calculateReducedDAP();
+            }
+        });
+    }
+    
+    // Handle modal MPIR input (added dynamically when modal opens)
+    document.addEventListener('input', function(e) {
+        if (e.target && e.target.id === 'modal-mpir-rate') {
+            // Auto-recalculate modal results if already shown
+            const modalDapResult = document.getElementById('modal-dap-result');
+            const modalReducedDapResult = document.getElementById('modal-reduced-dap-result');
+            
+            if (modalDapResult && modalDapResult.value && !modalDapResult.value.includes('Please enter')) {
+                calculateModalDAP();
+            }
+            
+            if (modalReducedDapResult && modalReducedDapResult.value && !modalReducedDapResult.value.includes('Please enter')) {
+                calculateModalReducedDAP();
+            }
+        }
+    });
+});
 
 // Reviews Carousel Functionality
 document.addEventListener('DOMContentLoaded', function() {

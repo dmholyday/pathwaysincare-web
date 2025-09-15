@@ -3238,3 +3238,103 @@ button {
         margin-top: 2rem;
     }
 }
+
+/* RAD to DAP Calculator Styles */
+.calculator-section {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-group {
+    margin-bottom: 1rem;
+}
+
+.calculator-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.calculator-input, .calculator-result {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator-input:focus {
+    outline: none;
+    border-color: #4496a0;
+    box-shadow: 0 0 0 3px rgba(68, 150, 160, 0.1);
+}
+
+.calculator-input.mpir-input {
+    display: inline-block;
+    width: 80px;
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+.calculator-result {
+    background: #e8f4f5;
+    border-color: #4496a0;
+    color: #2c3e50;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+.calculator-btn {
+    background: linear-gradient(135deg, #4496a0, #3498db);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 4px rgba(68, 150, 160, 0.2);
+}
+
+.calculator-btn:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(68, 150, 160, 0.3);
+}
+
+.calculator-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(68, 150, 160, 0.2);
+}
+
+@media (max-width: 768px) {
+    .calculator-section {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .calculator-input, .calculator-result {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+    
+    .calculator-btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+}

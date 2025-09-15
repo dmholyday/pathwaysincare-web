@@ -89,15 +89,39 @@ description: Resources, news and insights for aged care navigation and support
                 </div>
                 <div class="post-content-full" style="display: none;">
                     <p>Residents can choose to pay the full RAD amount or a combination of a part RAD and a Daily Accommodation Payment (DAP), which is an ongoing, non-refundable rental-style payment.</p>
-                    <p>Current MPIR 01/07/2025 to 30/09/2025 = mpir_here  * for latest MPIR, refer to: <a href="https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care</a> &#x2197;</p>
+                    <p>Current MPIR 01/07/2025 to 30/09/2025 = <input type="text" id="mpir-rate" value="7.78" class="calculator-input mpir-input">%  * for latest MPIR, refer to: <a href="https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care</a> &#x2197;</p>
                     <h4>Daily Accomodation Payment (DAP)</h4>
                     <p>DAP = (RAD x MPIR) / 365</p>
-                    DAP_calculator_here
+                    <div class="calculator-section">
+                        <div class="calculator-group">
+                            <label for="rad-amount">RAD Amount ($):</label>
+                            <input type="number" id="rad-amount" class="calculator-input" placeholder="Enter RAD amount" min="0" step="1000">
+                        </div>
+                        <button class="calculator-btn" onclick="calculateDAP()">Calculate DAP</button>
+                        <div class="calculator-group">
+                            <label for="dap-result">Daily Accommodation Payment (DAP):</label>
+                            <input type="text" id="dap-result" class="calculator-result" readonly placeholder="$0.00 per day">
+                        </div>
+                    </div>
                     <br>
                     <h4>Combination Option</h4>
                     <p>If a resident chooses to pay a part RAD, you must calculate their reduced DAP as follows:</p>
                     <p>Reduced DAP = (agreed full RAD − RAD paid) × MPIR / 365</p>
-                    Combination_calculator_here
+                    <div class="calculator-section">
+                        <div class="calculator-group">
+                            <label for="full-rad-amount">Agreed Full RAD Amount ($):</label>
+                            <input type="number" id="full-rad-amount" class="calculator-input" placeholder="Enter full RAD amount" min="0" step="1000">
+                        </div>
+                        <div class="calculator-group">
+                            <label for="paid-rad-amount">RAD Amount Paid ($):</label>
+                            <input type="number" id="paid-rad-amount" class="calculator-input" placeholder="Enter amount paid" min="0" step="1000">
+                        </div>
+                        <button class="calculator-btn" onclick="calculateReducedDAP()">Calculate Reduced DAP</button>
+                        <div class="calculator-group">
+                            <label for="reduced-dap-result">Reduced Daily Accommodation Payment:</label>
+                            <input type="text" id="reduced-dap-result" class="calculator-result" readonly placeholder="$0.00 per day">
+                        </div>
+                    </div>
                     <br>
                     <p>For more information, refer to: <a href="https://www.health.gov.au/our-work/residential-aged-care/charging/accommodation-payments-contributions" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/our-work/residential-aged-care/charging/accommodation-payments-contributions</a> &#x2197;</p>                              
                 </div>
