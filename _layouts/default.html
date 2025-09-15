@@ -25,23 +25,30 @@
                 return "6LeZTXkrAAAAAEOJEMBpi3rHEiCCxSCzSrT3Z98W";
             }
         }
+        // Local API configuration with fallback
+        {% if site.data.local_config.local_api.ip_address %}
+            const LOCAL_API_BASE = "http://{{ site.data.local_config.local_api.ip_address }}:{{ site.data.local_config.local_api.port | default: '7071' }}";
+        {% else %}
+            const LOCAL_API_BASE = "http://192.168.1.100:7071"; // Fallback IP for GitHub Pages
+        {% endif %}
+        
         function returnContactUsApiURL() {
             if (isLocal()) {
-                return "http://192.168.43.62:7071/api/ContactUs";
+                return LOCAL_API_BASE + "/api/ContactUs";
             } else {
                 return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/ContactUs";
             }
         }
         function returnLikesApiURL() {
             if (isLocal()) {
-                return "http://192.168.43.62:7071/api/Likes";
+                return LOCAL_API_BASE + "/api/Likes";
             } else {
                 return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/Likes";
             }
         }
         function returnEmailApiURL() {
             if (isLocal()) {
-                return "http://192.168.43.62:7071/api/Email";
+                return LOCAL_API_BASE + "/api/Email";
             } else {
                 return "https://pic-function-1-cmd4b2fgbzdrh6cv.australiaeast-01.azurewebsites.net/api/Email";
             }
