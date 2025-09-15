@@ -356,6 +356,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize email forms (global - needed on all pages)
     initializeEmailForms();
+    
+    // Initialize currency formatting
+    initializeCurrencyFormatting();
 });
 
 function initializeResourcesPage() {
@@ -1045,6 +1048,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     button.setAttribute('onclick', 'calculateModalReducedDAP()');
                 }
             });
+            
+            // Initialize currency formatting for modal inputs
+            const modalCurrencyInputs = modalContent.querySelectorAll('.currency-input');
+            modalCurrencyInputs.forEach(input => {
+                // Add event listeners for currency formatting
+                input.addEventListener('input', function(e) {
+                    formatCurrencyInput(e.target);
+                });
+                
+                input.addEventListener('blur', function(e) {
+                    formatCurrencyInput(e.target);
+                });
+                
+                input.addEventListener('paste', function(e) {
+                    setTimeout(() => {
+                        formatCurrencyInput(e.target);
+                    }, 0);
+                });
+                
+                // Initialize with default formatting if empty
+                if (!input.value || input.value === '') {
+                    input.value = '$0';
+                }
+            });
         }
         if (modalAuthor) {
             modalAuthor.textContent = authorText;
@@ -1347,7 +1374,8 @@ function initializeEmailForms() {
 
 // RAD to DAP Calculator Functions
 function calculateDAP() {
-    const radAmount = parseFloat(document.getElementById('rad-amount').value) || 0;
+    const radAmountInput = document.getElementById('rad-amount');
+    const radAmount = getCurrencyValue(radAmountInput);
     const mpirRate = parseFloat(document.getElementById('mpir-rate').value) || 7.78;
     
     if (radAmount <= 0) {
@@ -1362,8 +1390,10 @@ function calculateDAP() {
 }
 
 function calculateReducedDAP() {
-    const fullRadAmount = parseFloat(document.getElementById('full-rad-amount').value) || 0;
-    const paidRadAmount = parseFloat(document.getElementById('paid-rad-amount').value) || 0;
+    const fullRadAmountInput = document.getElementById('full-rad-amount');
+    const paidRadAmountInput = document.getElementById('paid-rad-amount');
+    const fullRadAmount = getCurrencyValue(fullRadAmountInput);
+    const paidRadAmount = getCurrencyValue(paidRadAmountInput);
     const mpirRate = parseFloat(document.getElementById('mpir-rate').value) || 7.78;
     
     if (fullRadAmount <= 0) {
@@ -1390,7 +1420,8 @@ function calculateReducedDAP() {
 
 // Modal-specific calculator functions
 function calculateModalDAP() {
-    const radAmount = parseFloat(document.getElementById('modal-rad-amount').value) || 0;
+    const radAmountInput = document.getElementById('modal-rad-amount');
+    const radAmount = getCurrencyValue(radAmountInput);
     const mpirRate = parseFloat(document.getElementById('modal-mpir-rate').value) || 7.78;
     
     if (radAmount <= 0) {
@@ -1405,8 +1436,10 @@ function calculateModalDAP() {
 }
 
 function calculateModalReducedDAP() {
-    const fullRadAmount = parseFloat(document.getElementById('modal-full-rad-amount').value) || 0;
-    const paidRadAmount = parseFloat(document.getElementById('modal-paid-rad-amount').value) || 0;
+    const fullRadAmountInput = document.getElementById('modal-full-rad-amount');
+    const paidRadAmountInput = document.getElementById('modal-paid-rad-amount');
+    const fullRadAmount = getCurrencyValue(fullRadAmountInput);
+    const paidRadAmount = getCurrencyValue(paidRadAmountInput);
     const mpirRate = parseFloat(document.getElementById('modal-mpir-rate').value) || 7.78;
     
     if (fullRadAmount <= 0) {
@@ -1583,3 +1616,80 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDots();
     startAutoScroll();
 });
+
+// Currency formatting functions
+function initializeCurrencyFormatting() {
+    // Initialize currency inputs
+    const currencyInputs = document.querySelectorAll('.currency-input');
+    
+    currencyInputs.forEach(input => {
+        // Format on input event (real-time formatting)
+        input.addEventListener('input', function(e) {
+            formatCurrencyInput(e.target);
+        });
+        
+        // Format on blur event (when user leaves field)
+        input.addEventListener('blur', function(e) {
+            formatCurrencyInput(e.target);
+        });
+        
+        // Handle paste event
+        input.addEventListener('paste', function(e) {
+            setTimeout(() => {
+                formatCurrencyInput(e.target);
+            }, 0);
+        });
+        
+        // Initialize with default formatting if empty
+        if (!input.value || input.value === '') {
+            input.value = '$0';
+        }
+    });
+}
+
+function formatCurrencyInput(input) {
+    let value = input.value;
+    
+    // Remove all non-digit characters
+    let numericValue = value.replace(/[^\d]/g, '');
+    
+    // If empty, set to 0
+    if (numericValue === '') {
+        numericValue = '0';
+    }
+    
+    // Convert to integer (no cents)
+    let intValue = parseInt(numericValue, 10);
+    
+    // Handle invalid numbers
+    if (isNaN(intValue)) {
+        intValue = 0;
+    }
+    
+    // Format with commas and dollar sign
+    let formattedValue = '$' + intValue.toLocaleString('en-US');
+    
+    // Store cursor position before formatting
+    let cursorPosition = input.selectionStart;
+    let oldLength = input.value.length;
+    
+    // Set the formatted value
+    input.value = formattedValue;
+    
+    // Adjust cursor position after formatting
+    let newLength = formattedValue.length;
+    let lengthDiff = newLength - oldLength;
+    
+    // Set cursor position - keep it at the end for simplicity
+    setTimeout(() => {
+        input.setSelectionRange(newLength, newLength);
+    }, 0);
+}
+
+function getCurrencyValue(input) {
+    // Extract numeric value from formatted currency input
+    if (!input || !input.value) return 0;
+    
+    let numericValue = input.value.replace(/[^\d]/g, '');
+    return parseInt(numericValue, 10) || 0;
+}

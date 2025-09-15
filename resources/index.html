@@ -95,7 +95,7 @@ description: Resources, news and insights for aged care navigation and support
                     <div class="calculator-section">
                         <div class="calculator-group">
                             <label for="rad-amount">RAD Amount ($):</label>
-                            <input type="number" id="rad-amount" class="calculator-input" placeholder="Enter RAD amount" min="0" step="1000">
+                            <input type="text" id="rad-amount" class="calculator-input currency-input" placeholder="$0" inputmode="numeric">
                         </div>
                         <button class="calculator-btn" onclick="calculateDAP()">Calculate DAP</button>
                         <div class="calculator-group">
@@ -110,11 +110,11 @@ description: Resources, news and insights for aged care navigation and support
                     <div class="calculator-section">
                         <div class="calculator-group">
                             <label for="full-rad-amount">Agreed Full RAD Amount ($):</label>
-                            <input type="number" id="full-rad-amount" class="calculator-input" placeholder="Enter full RAD amount" min="0" step="1000">
+                            <input type="text" id="full-rad-amount" class="calculator-input currency-input" placeholder="$0" inputmode="numeric">
                         </div>
                         <div class="calculator-group">
                             <label for="paid-rad-amount">RAD Amount Paid ($):</label>
-                            <input type="number" id="paid-rad-amount" class="calculator-input" placeholder="Enter amount paid" min="0" step="1000">
+                            <input type="text" id="paid-rad-amount" class="calculator-input currency-input" placeholder="$0" inputmode="numeric">
                         </div>
                         <button class="calculator-btn" onclick="calculateReducedDAP()">Calculate Reduced DAP</button>
                         <div class="calculator-group">
