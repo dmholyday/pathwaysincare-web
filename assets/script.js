@@ -915,8 +915,27 @@ function showEmail() {
     const emailParts = ['info', '@', 'pathwaysincare', '.', 'com', '.', 'au'];
     const email = emailParts.join('');
     emailLink.innerHTML = email;
-    emailLink.href = 'mailto:' + email;
-    emailLink.onclick = null; // Remove the onclick after revealing
+    emailLink.removeAttribute('onclick'); // Remove the original onclick
+    emailLink.href = 'javascript:void(0)'; // Prevent any navigation
+    emailLink.onclick = function() {
+        window.open('mailto:' + email, '_blank');
+        return false; // Prevent default link behavior
+    };
+    return false; // Prevent the initial click from scrolling to top
+}
+
+function showPhone() {
+    const phoneLink = document.getElementById('phoneLink');
+    const phoneParts = ['04', '92', ' ', '91', '3', ' ', '39', '0'];
+    const phone = phoneParts.join('');
+    phoneLink.innerHTML = phone;
+    phoneLink.removeAttribute('onclick'); // Remove the original onclick
+    phoneLink.href = 'javascript:void(0)'; // Prevent any navigation
+    phoneLink.onclick = function() {
+        window.location.href = 'tel:+61492913390';
+        return false;
+    };
+    return false; // Prevent the initial click from triggering the dialer
 }
 
 // Article Modal Functionality
