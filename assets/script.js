@@ -515,8 +515,14 @@ async function getExternalIP() {
             // Different services return IP in different fields
             const ip = data.ip || data.query || null;
             
-            if (ip && ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
-                return ip;
+            if (ip) {
+                // Accept both IPv4 and IPv6 addresses
+                const ipv4Pattern = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+                const ipv6Pattern = /^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$|^::1$|^::$|^[0-9a-fA-F:]+$/;
+                
+                if (ipv4Pattern.test(ip) || ipv6Pattern.test(ip)) {
+                    return ip;
+                }
             }
         } catch (error) {
             console.warn(`Failed to get IP from ${service}:`, error);
@@ -592,7 +598,16 @@ async function sendEmailToAPI(email) {
             return { success: false, error: 'API request failed' };
         }
         
-        const result = await response.json();
+        // Check content type to determine how to parse the response
+        const contentType = response.headers.get('content-type');
+        let result;
+        
+        if (contentType && contentType.includes('application/json')) {
+            result = await response.json();
+        } else {
+            result = await response.text();
+        }
+        
         return { success: true, data: result };
         
     } catch (error) {
