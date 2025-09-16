@@ -1472,7 +1472,7 @@ button {
 
 .faq-answer.open {
     padding: 1.5rem;
-    max-height: 500px;
+    max-height: 1000px;
 }
 
 .faq-answer p {
