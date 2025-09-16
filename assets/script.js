@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Animate hamburger lines
             const spans = mobileToggle.querySelectorAll('span');
             if (mobileToggle.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[0].style.transform = 'rotate(45deg) translate(4px, 5px)';
                 spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                spans[2].style.transform = 'rotate(-45deg) translate(4px, -5px)';
             } else {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
