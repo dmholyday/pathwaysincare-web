@@ -628,12 +628,13 @@ button {
       position: fixed;
       top: 0; 
       left: 0; 
-      right: 0; 
+      right: 0;
+      bottom: 0;
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 999;
-      /* Removed background overlay */
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .modal {
@@ -656,6 +657,22 @@ button {
 
     .modal button {
       background: #4496a0;
+    }
+
+    .modal-close-btn {
+      background: #4496a0;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #3a7f87;
     }
 
     .modal.success {
@@ -751,9 +768,6 @@ button {
         justify-self: center;
     }
 
-    .modal-overlay {
-        bottom: 0;
-    }
 
     #aasw-badge {
         height: 180px;
@@ -968,9 +982,6 @@ button {
         font-size: 1.1rem;
     }
 
-    .modal-overlay {
-        bottom: 0;
-    }
 
     #aasw-badge {
         height: 140px;
@@ -2871,7 +2882,7 @@ button {
     visibility: visible;
 }
 
-.modal-overlay {
+.article-modal .modal-overlay {
     position: absolute;
     top: 0;
     left: 0;
