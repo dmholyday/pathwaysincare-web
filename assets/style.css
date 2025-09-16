@@ -683,6 +683,16 @@ button {
   border-color: red;
 }
 
+/* RAD to DAP calculator reference text styling */
+.modal-article-content .rad-dap-bottom-info {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.modal-article-content .rad-dap-bottom-info a {
+    color: #666;
+}
+
 @media (max-width: 1096px) and (min-width: 769px) {
     
             .logo img {
