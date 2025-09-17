@@ -1650,42 +1650,49 @@ function initializeCurrencyFormatting() {
 function formatCurrencyInput(input) {
     let value = input.value;
     
+    // If the value is just "$" or empty, keep it as "$"
+    if (value === '$' || value === '') {
+        input.value = '$';
+        // Position cursor after the dollar sign
+        setTimeout(() => {
+            input.setSelectionRange(1, 1);
+        }, 0);
+        return;
+    }
+    
     // Remove all non-digit characters
     let numericValue = value.replace(/[^\d]/g, '');
     
-    // If empty or just "$", don't format - leave as is
-    if (numericValue === '' || value === '$') {
-        if (value === '$') {
-            return; // Don't format if it's just "$"
-        }
-        numericValue = '0';
+    // If no digits found after cleaning, reset to "$"
+    if (numericValue === '') {
+        input.value = '$';
+        setTimeout(() => {
+            input.setSelectionRange(1, 1);
+        }, 0);
+        return;
     }
     
     // Convert to integer (no cents)
     let intValue = parseInt(numericValue, 10);
     
     // Handle invalid numbers
-    if (isNaN(intValue)) {
-        intValue = 0;
+    if (isNaN(intValue) || intValue === 0) {
+        input.value = '$';
+        setTimeout(() => {
+            input.setSelectionRange(1, 1);
+        }, 0);
+        return;
     }
     
     // Format with commas and dollar sign
     let formattedValue = '$' + intValue.toLocaleString('en-US');
     
-    // Store cursor position before formatting
-    let cursorPosition = input.selectionStart;
-    let oldLength = input.value.length;
-    
     // Set the formatted value
     input.value = formattedValue;
     
-    // Adjust cursor position after formatting
-    let newLength = formattedValue.length;
-    let lengthDiff = newLength - oldLength;
-    
-    // Set cursor position - keep it at the end for simplicity
+    // Set cursor position at the end
     setTimeout(() => {
-        input.setSelectionRange(newLength, newLength);
+        input.setSelectionRange(formattedValue.length, formattedValue.length);
     }, 0);
 }
 
