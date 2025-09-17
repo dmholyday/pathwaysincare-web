@@ -1069,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Initialize with default formatting if empty
                 if (!input.value || input.value === '') {
-                    input.value = '$0';
+                    input.value = '$';
                 }
             });
         }
@@ -1642,7 +1642,7 @@ function initializeCurrencyFormatting() {
         
         // Initialize with default formatting if empty
         if (!input.value || input.value === '') {
-            input.value = '$0';
+            input.value = '$';
         }
     });
 }
@@ -1653,8 +1653,11 @@ function formatCurrencyInput(input) {
     // Remove all non-digit characters
     let numericValue = value.replace(/[^\d]/g, '');
     
-    // If empty, set to 0
-    if (numericValue === '') {
+    // If empty or just "$", don't format - leave as is
+    if (numericValue === '' || value === '$') {
+        if (value === '$') {
+            return; // Don't format if it's just "$"
+        }
         numericValue = '0';
     }
     
