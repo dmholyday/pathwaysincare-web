@@ -3089,6 +3089,13 @@ button {
     background: #357a8a;
 }
 
+/* magic fix for iPhone scrolling of blogs posts, moving sideways etc */
+.modal-body {
+  overscroll-behavior-x: none !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
 /* Read More Indicator Styles */
 .read-more-indicator {
     color: #4496a0;
@@ -3361,3 +3368,5 @@ button {
         padding: 0.8rem;
     }
 }
+
+
