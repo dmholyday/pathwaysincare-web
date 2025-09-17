@@ -295,7 +295,7 @@ body.interior-page .hero-spacer {
     font-size: 1.8em;
     text-align: center;
     font-weight: bold;
-    margin-top: -7rem;
+    margin-top: 18rem;
     margin-bottom: 40px;
     color: #4496a0;
     opacity: 0;
@@ -305,9 +305,15 @@ body.interior-page .hero-spacer {
     margin-right: auto;
 }
 
+#main-title h1.inner-page {
+    margin-top: 8rem;
+}
+
+/*
 #main-title h1.home {
     margin-top: -11rem;
 }
+    */
 
 #about-us {
   scroll-margin-top: 80px; /* Match your navbar height */
@@ -752,7 +758,7 @@ button {
         font-size: 1.6em;
         text-align: center;
         font-weight: bold;
-        margin-top: -11rem;
+        /*margin-top: -11rem;*/
         margin-bottom: 30px;
         max-width: 500px;
         /* adjusted smaller for smaller screens */
@@ -953,15 +959,19 @@ button {
         font-size: 1.4em;
         text-align: center;
         font-weight: bold;
-        margin-top: -11rem;
+        margin-top: 9rem;
         margin-bottom: 20px;
         max-width: 90%;
     }
 
+    #main-title h1.inner-page {
+        margin-top: 5rem;
+    }
+/*
     #main-title h1.home {
         margin-top: -22rem;
     }
-/*
+
     #about-us {
     scroll-margin-top: 80px;
 }
@@ -1329,8 +1339,8 @@ button {
 /* Tagline Hero Styling */
 .tagline-hero {
     position: absolute;
-    top: 30%;
-    left: 20%;
+    top: 100%;
+    left: 10%;
     transform: translate(-50%, -50%);
     text-align: center;
     font-style: normal;
