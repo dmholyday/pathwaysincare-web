@@ -693,6 +693,41 @@ button {
     color: #666;
 }
 
+/* Currency input container with clear button (modal only) */
+.currency-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-input-container .currency-input {
+    padding-right: 35px; /* Make room for the clear button */
+}
+
+.currency-clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s ease;
+    z-index: 1;
+}
+
+.currency-clear-btn:hover {
+    color: #666;
+}
+
+.currency-clear-btn:active {
+    color: #333;
+}
+
 @media (max-width: 1096px) and (min-width: 769px) {
     
             .logo img {
@@ -3311,6 +3346,41 @@ button {
 .calculator-input.currency-input {
     text-align: left;
     font-weight: 500;
+}
+
+/* Currency input container with clear button (modal only) */
+.currency-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-input-container .currency-input {
+    padding-right: 35px; /* Make room for the clear button */
+}
+
+.currency-clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s ease;
+    z-index: 1;
+}
+
+.currency-clear-btn:hover {
+    color: #666;
+}
+
+.currency-clear-btn:active {
+    color: #333;
 }
     border: 1px solid #ccc;
     border-radius: 4px;

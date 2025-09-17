@@ -1052,6 +1052,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // Initialize currency formatting for modal inputs
             const modalCurrencyInputs = modalContent.querySelectorAll('.currency-input');
             modalCurrencyInputs.forEach(input => {
+                // Wrap input in container with clear button
+                const container = document.createElement('div');
+                container.className = 'currency-input-container';
+                input.parentNode.insertBefore(container, input);
+                container.appendChild(input);
+                
+                // Add clear button
+                const clearBtn = document.createElement('button');
+                clearBtn.type = 'button';
+                clearBtn.className = 'currency-clear-btn';
+                clearBtn.innerHTML = '&times;';
+                clearBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    input.value = '$';
+                    input.focus();
+                    setTimeout(() => {
+                        input.setSelectionRange(1, 1);
+                    }, 0);
+                });
+                container.appendChild(clearBtn);
+                
                 // Add event listeners for currency formatting
                 input.addEventListener('input', function(e) {
                     formatCurrencyInput(e.target);
