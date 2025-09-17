@@ -3270,10 +3270,6 @@ button {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.calculator-group {
-    margin-bottom: 1rem;
-}
-
 .calculator-group label {
     display: block;
     font-weight: 600;
@@ -3334,7 +3330,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 0.5rem;
+    margin: 0.7rem 0rem;
     box-shadow: 0 2px 4px rgba(68, 150, 160, 0.2);
 }
 
