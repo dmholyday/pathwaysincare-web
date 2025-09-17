@@ -4,38 +4,43 @@ title: Home
 ---
 
 <div id="main-title">
-  <h1>Guiding Families Through Aged Care with Clarity and Compassion</h1>
+  <h1 class="home"></h1>
 </div>
 
-<section id="about-us" class="section">
-  <div class="text">
-    <h2>About Us</h2>
-    <p>At <em>Pathways in Care</em>, our goal is to help families navigate the aged care system with trusted advice,
-      practical support, and ethical advocacy. Whether you're arranging home services, seeking residential care,
-      advocating for a loved one, or simply need someone who understands the system — We are here to guide you.</p>
-    <p>We're here to reduce the confusion of navigating this complex system, ease your stress through expert guidance,
-      and free up your time for the people and priorities that matter most.</p>
-    <p>Based in Greenwood, with over 15 years' experience as a Hospital Social Worker in the Perth Northern suburbs, we
-      bring deep expertise at the intersection of healthcare and aged care. We also draw from many years of personal
-      experience, with our own elderly parents, supporting in-home care, carers, and aged care transitions.</p>
-    <p>Grounded in relationships — not commissions — our approach is personal, respectful, and always in your best
-      interest.</p>
+<section class="section">
+  <div class="text intro-with-image">    
+    <div class="intro-content">
+      <p>When your loved one needs aged care, it can be a very stressful and overwhelming time.</p>
+      <p>Wait lists, forms, costs, confusion, pressure from hospitals, all while trying to support a vulnerable older person going through a tough, life changing transition.</p>
+      <p>We understand the system and can take the confusion and time wasting away.</p>
+      <p>With strong advocacy and expert support, we can help your loved one find the care that suits their unique needs, whether at home or in residential aged care.</p>
+    </div>
+    <div class="intro-image">
+      <img src="/assets/images/Kirsty03web.jpg" alt="Kirsty - Pathways in Care" class="kirsty-intro-image" />
+    </div>
   </div>
 </section>
 
 <section id="services" class="services-section">
 
   <div class="text">
+    <h2>How Can We Help?</h2>
+    <div class="text">    
+      <p>At <em>Pathways in Care</em>, we navigate the complexities of Aged Care for you. With over 15 years of Hospital Social Work experience, we know the aged care system inside and out — cutting through red tape, explaining complex processes and costs so it makes sense, and advocating fiercely for your family&#39;s needs.</p>
+      <p>We handle the large amount of paperwork, apply to as many appropriate Aged Care Homes as necessary, and guide you through every decision with clarity and compassion.</p>
+      <p>We work for you and your loved one, to get you the outcome you need as soon as possible. No commissions, no conflicts of interest — just trusted expertise when you need it most.</p>
+      <p>Our goal is to make the process as stress free as possible and give you back the time to focus on what truly matters: being present for your loved one during this challenging transition.</p>
+    </div>
     <h2>Our Services</h2>
     <div class="services-grid">
-      <a href="/residential-aged-care-placement/" class="service-card service-card-inner">
+      <a href="/aged-care-placements/" class="service-card service-card-inner">
         <div class="icon-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
             stroke="currentColor">
             <path d="M9 18l6-6-6-6" />
           </svg>
         </div>
-        <h3>Residential Aged-Care Placement</h3>
+        <h3>Aged Care Placements</h3>
         <p>Support to find the most suitable Aged Care Facility tailored to you or your loved one's individual needs.</p>
       </a>
       <a href="/in-home-services-and-home-care-packages/" class=" service-card service-card-inner">
@@ -61,4 +66,124 @@ title: Home
     </div>
   </div>
 
+</section>
+
+<section class="customer-reviews-section section">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h2>What Our Clients Say</h2>
+            <p class="reviews-subtitle">Hear from families we've helped navigate their aged care journey</p>
+        </div>
+        
+        <!-- Desktop: 2 reviews side by side with carousel -->
+        <div class="reviews-carousel-desktop" id="desktopReviewsCarousel">
+            <div class="reviews-track" id="desktopReviewsTrack">
+                {% assign reviews = site.data.reviews.reviews %}
+                {% assign total_reviews = reviews.size %}
+                {% assign desktop_slides = total_reviews | divided_by: 2.0 | ceil %}
+                
+                {% for slide_index in (0..desktop_slides) limit: desktop_slides %}
+                    {% assign slide_start = slide_index | times: 2 %}
+                    {% assign slide_end = slide_start | plus: 1 %}
+                    
+                    <div class="reviews-slide{% if slide_index == 0 %} active{% endif %}">
+                        {% for review_index in (slide_start..slide_end) %}
+                            {% assign review = reviews[review_index] %}
+                            {% if review %}
+                                <div class="review-item">
+                                    <div class="review-content">
+                                        <div class="review-stars">
+                                            {% for star in (1..review.rating) %}<span class="star">★</span>{% endfor %}
+                                        </div>
+                                        <p>"{{ review.text }}"</p>
+                                        <div class="review-author">
+                                            <strong>{{ review.author }}</strong>
+                                            <span class="review-date">{{ review.date }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Mobile: Single review carousel -->
+        <div class="reviews-carousel-mobile" id="mobileReviewsCarousel">
+            <div class="mobile-reviews-track" id="mobileReviewsTrack">
+                {% for review in site.data.reviews.reviews %}
+                    <div class="mobile-review-slide{% if forloop.first %} active{% endif %}">
+                        <div class="review-item">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    {% for star in (1..review.rating) %}<span class="star">★</span>{% endfor %}
+                                </div>
+                                <p>"{{ review.text }}"</p>
+                                <div class="review-author">
+                                    <strong>{{ review.author }}</strong>
+                                    <span class="review-date">{{ review.date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Dots indicator -->
+        <div class="reviews-dots" id="reviewsDots">
+            {% assign reviews = site.data.reviews.reviews %}
+            {% assign total_reviews = reviews.size %}
+            {% for review in reviews %}
+                <span class="dot{% if forloop.first %} active{% endif %}" data-slide="{{ forloop.index0 }}"></span>
+            {% endfor %}
+        </div>
+        
+        <div class="reviews-footer">
+            <a href="https://maps.google.com/?cid=339154551568042865&g_mp=CiVnb09nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAAYBCAA" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="read-more-reviews">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                </svg>
+                Read more reviews on Google
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="section be-informed">
+  <div class="text">
+    <h2>Be Informed</h2>
+    <p>Be sure to research, and check out our <a href="{{ '/resources/' | relative_url }}" class="inline-link">Resources page</a>. It is packed full with useful information to help you navigate the aged care system, and stay informed.</p>
+  </div>
+</section>
+
+<section class="section get-in-touch">
+  <div class="text">
+    <h2>Get in Touch</h2>
+    <p>Stay connected with updates and aged care insights.</p>
+    <div class="email-signup-form">
+      <form id="emailSignupForm" class="inline-form">
+        <input 
+          type="email" 
+          id="emailInput" 
+          name="email" 
+          placeholder="Enter your email address" 
+          required 
+          class="email-input"
+        />
+        <button type="submit" class="email-submit-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="m22 2-7 20-4-9-9-4z"/>
+            <path d="m22 2-10 10"/>
+          </svg>
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,11 @@
+# Local configuration template
+# Copy this file to local_config.yml and update with your local network settings
+# local_config.yml will be ignored by git
+
+local_api:
+  # Update this IP address to match your local development environment
+  # Common formats: 192.168.1.x, 192.168.0.x, 10.0.0.x
+  ip_address: "192.168.1.100"  # Replace with your actual local IP
+  port: "7071"
+  
+# Note: The production URLs are hardcoded in the layout and don't need to be changed

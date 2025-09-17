@@ -1,63 +1,83 @@
-<footer>
-    <section id="contact" class="section">
-        <div class="text">
-            <h2>Contact Us</h2>
-            <p>If you have an enquiry or would like to learn how we can support you, please complete the contact form below. A member of our team will respond promptly.</p>
-        </div>
-        <div class="contactus form">
-            <form id="contactform" method="post" onsubmit="submitContactForm(event)">
-                <div class="hidden-field">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" value="jasonsmitH12" autocomplete="off">
-                </div>
-                <input id="name" type="text" name="Name" placeholder="Your Name *" maxlength="50" required />
-                <span class="char-counter" data-for="name" style="display: none;"></span>
-                <input id="email" type="email" name="Email" placeholder="Your Email *" maxlength="40" required />
-                <span class="char-counter" data-for="email" style="display: none;"></span>
-                <input id="mobile" type="tel" name="Mobile" placeholder="Mobile number (optional)" maxlength="10"
-                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}" optional />
-                <span class="char-counter" data-for="mobile" style="display: none;"></span>
-                <input id="subject" type="hidden" name="Subject" placeholder="Subject" maxlength="50" optional />
-                <span class="char-counter" data-for="subject" style="display: none;"></span>
-                <textarea id="message" name="Message" rows="4" placeholder="Your Message * (5,000 characters max)"
-                    maxlength="5000" required></textarea>
-                <span class="char-counter" data-for="message" style="display: none;"></span>
-                <button id="submitBtn" type="submit">Send Message</button>
-                <div class="recaptcha-disclaimer">
-                    This site is protected by reCAPTCHA and the Google
-                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy
-                        Policy</a> and
-                    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of
-                        Service</a> apply.
-                </div>
-                <div id="successMessage" style="display: none; color: green; margin-top: 10px;">
-                    Thank You.  We will be in touch with you soon.
-                </div>
-                <div id="failureMessage" style="display: none; color: red; margin-top: 10px;"></div>
-            </form>
-
-            <div class="modal-overlay" id="modalOverlay">
-                <div class="modal text" id="modalBox">
-                <h2 id="modalTitle">Thank You</h2>
-                <p id="modalMessage">We will be in touch with you soon.</p>
-                <button class="modal" onclick="closeModal()">Close</button>
-                </div>
-                
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-sitemap">
+            <div class="sitemap-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="{{ '/aged-care-placements/' | relative_url }}">Aged Care Placements</a></li>
+                    <li><a href="{{ '/in-home-services-and-home-care-packages/' | relative_url }}">In-home Services & Home Care Packages</a></li>
+                    <li><a href="{{ '/social-work-services/' | relative_url }}">Social Work Services</a></li>
+                </ul>
             </div>
+            <div class="sitemap-column">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                    <li><a href="{{ '/resources/' | relative_url }}">Resources</a></li>
+                    <li><a href="{{ '/faq/' | relative_url }}">FAQ</a></li>
+                    <li><a href="{{ '/about-us/' | relative_url }}">About Us</a></li>
+                    <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-column">
+                <h3>Connect</h3>
+                
+                <!-- Compact Email Signup Form -->
+                <div class="footer-email-signup">
+                    <form id="footerEmailSignup" class="footer-inline-form">
+                        <input 
+                            type="email" 
+                            id="footerEmailInput" 
+                            name="email" 
+                            placeholder="Your email" 
+                            required 
+                            class="footer-email-input"
+                        />
+                        <button type="submit" class="footer-email-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="m22 2-7 20-4-9-9-4z"/>
+                                <path d="m22 2-10 10"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
 
-        </div>
+                <!-- Contact Information -->
+                <div class="footer-contact-info">
+                    <!-- Phone Number -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <a href="#" onclick="showPhone()" class="contact-link" id="phoneLink">Click to reveal phone</a>
+                    </div>
 
-        <div id="copyright" class="text">
-            <a href="https://www.credly.com/go/G9SfZCZin1FxXBGAWaN0zA" target="_blank" rel="noopener">
-                <img id="aasw-badge"
-                    src="/assets/images/aasw_badge_p.webp" 
-                    alt="Social Worker Member badge image. Validation. Foundational level. Issued by Australian Association of Social Workers (AASW)"
-                    loading="lazy"
-                    width="200" height="200">
-            </a>
-            <p>
-                © 2025 Pathways in Care. All Rights Reserved.
-            </p>
+                    <!-- Email Address -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <a href="#" onclick="showEmail()" class="contact-link" id="emailLink">Click to reveal email</a>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/Pathwaysincare" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="facebook-icon">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
-    </section>
+        <div class="footer-bottom">
+            <p>© 2025 Pathways in Care. All Rights Reserved.</p>
+        </div>
+    </div>
 </footer>

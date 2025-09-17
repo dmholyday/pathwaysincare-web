@@ -1,0 +1,134 @@
+---
+layout: default
+title: Contact Us
+description: Get in touch with Pathways in Care for aged care support and guidance
+---
+
+<div id="main-title">
+  <h1 class="inner-page">Contact Us</h1>
+</div>
+
+<section class="first still-section">
+    <div class="text">
+        <p>If you have an enquiry or would like to learn how we can support you, please complete the contact form below. A member of our team will respond promptly.</p>
+    </div>
+    
+    <div class="contactus form">
+        <form id="contactform" method="post" onsubmit="submitContactForm(event)">
+            <div class="hidden-field">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" value="jasonsmitH12" autocomplete="off">
+            </div>
+            <input id="name" type="text" name="Name" placeholder="Your Name *" maxlength="50" required />
+            <span class="char-counter" data-for="name" style="display: none;"></span>
+            <input id="email" type="email" name="Email" placeholder="Your Email *" maxlength="40" required />
+            <span class="char-counter" data-for="email" style="display: none;"></span>
+            <input id="mobile" type="tel" name="Mobile" placeholder="Mobile number (optional)" maxlength="10"
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}" optional />
+            <span class="char-counter" data-for="mobile" style="display: none;"></span>
+            <input id="subject" type="hidden" name="Subject" placeholder="Subject" maxlength="50" optional />
+            <span class="char-counter" data-for="subject" style="display: none;"></span>
+            <textarea id="message" name="Message" rows="4" placeholder="Your Message * (5,000 characters max)"
+                maxlength="5000" required></textarea>
+            <span class="char-counter" data-for="message" style="display: none;"></span>
+            <button id="submitBtn" type="submit">Send Message</button>
+            <div class="recaptcha-disclaimer">
+                This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy
+                    Policy</a> and
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of
+                    Service</a> apply.
+            </div>
+            <div id="successMessage" style="display: none; color: green; margin-top: 10px;">
+                Thank You.  We will be in touch with you soon.
+            </div>
+            <div id="failureMessage" style="display: none; color: red; margin-top: 10px;"></div>
+        </form>
+
+    </div>
+</section>
+
+<section class="business-info-section section">
+    <div class="business-info-container">
+        <div class="business-info-grid">
+            <div class="business-hours">
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h3>Business Hours</h3>
+                    </div>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span class="day">Monday</span>
+                            <span class="time">9:00 AM – 5:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="day">Tuesday</span>
+                            <span class="time">9:00 AM – 5:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="day">Wednesday</span>
+                            <span class="time">9:00 AM – 5:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="day">Thursday</span>
+                            <span class="time">9:00 AM – 5:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="day">Friday</span>
+                            <span class="time">9:00 AM – 5:00 PM</span>
+                        </div>
+                        <div class="hours-item weekend">
+                            <span class="day">Saturday</span>
+                            <span class="time">Closed</span>
+                        </div>
+                        <div class="hours-item weekend">
+                            <span class="day">Sunday</span>
+                            <span class="time">Closed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-map">
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Find Us</h3>
+                    </div>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d415232.123456789!2d151.123456789!3d-33.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4c948642c10e8c1d%3A0x4b4eb448a2b8b71!2sPathways%20in%20Care!5e0!3m2!1sen!2sau!4v1234567890123!5m2!1sen!2sau" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Modal -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal text" id="modalBox">
+        <h2 id="modalTitle">Thank You</h2>
+        <p id="modalMessage">We will be in touch with you soon.</p>
+        <button class="modal-close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+

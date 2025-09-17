@@ -1,0 +1,335 @@
+---
+layout: default
+title: Resources
+description: Resources, news and insights for aged care navigation and support
+---
+
+<div id="main-title">
+  <h1 class="inner-page">Resources</h1>
+</div>
+
+<section class="first still-section">
+    <div class="text">
+        <p>Stay informed with our latest resources, news, and insights on aged care services, support options, and industry developments.</p>
+    </div>
+    
+    <div class="blog-container">
+        <!-- Filter Buttons -->
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="resources">Resources</button>
+            <button class="filter-btn" data-filter="news">News</button>
+            <button class="filter-btn" data-filter="insights">Insights</button>
+        </div>
+
+        <!-- Blog Posts -->
+        <div class="blog-posts">
+            <!-- Pinned Resource Post -->
+            <article class="blog-post expandable" data-category="resources" data-pinned="true" id="useful-links-resources">
+                <div class="post-header">
+                    <div class="post-pin">
+                        <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                        </svg>
+                    </div>
+                    <span class="post-category resources">Resources</span>
+                </div>
+                <h3 class="post-title">Useful links and Resources</h3>
+                <div class="post-meta">
+                    <span class="post-date">September 14, 2025</span>
+                </div>
+                <div class="post-content-preview">
+                    <p>Here you will find useful links and information. <span class="read-more-indicator">[more...]</span></p>
+                </div>
+                <div class="post-content-full" style="display: none;">
+                    <h4>Costs & Fees</h4>
+                    <p><a href="https://www.myagedcare.gov.au/understanding-costs" target="_blank" rel="noopener noreferrer">https://www.myagedcare.gov.au/understanding-costs</a> &#x2197;</p>
+                    <br>
+                    <h4>Income & Asset Assessment</h4>
+                    <p><a href="https://www.myagedcare.gov.au/income-and-means-assessments" target="_blank" rel="noopener noreferrer">https://www.myagedcare.gov.au/income-and-means-assessments</a> &#x2197;</p>
+                    <br>
+                    <h4>Costs Estimator</h4>
+                    <p><a href="https://www.myagedcare.gov.au/how-much-will-i-pay" target="_blank" rel="noopener noreferrer">https://www.myagedcare.gov.au/how-much-will-i-pay</a> &#x2197;</p>
+                    <br>
+                    <h4>New Aged Care Act</h4>
+                    <p><a href="https://www.health.gov.au/our-work/aged-care-act/resources/older-people" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/our-work/aged-care-act/resources/older-people</a> &#x2197;</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-author">by info@</div>
+                    <button class="facebook-share-btn" data-article-id="useful-links-resources">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Pinned Resource Post -->
+            <article class="blog-post expandable" data-category="resources" data-pinned="true" id="rad-to-dap-calculator">
+                <div class="post-header">
+                    <div class="post-pin">
+                        <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                        </svg>
+                    </div>
+                    <span class="post-category resources">Resources</span>
+                </div>
+                <h3 class="post-title">RAD to DAP Calculator</h3>
+                <div class="post-meta">
+                    <span class="post-date">September 14, 2025</span>
+                </div>
+                <div class="post-content-preview">
+                    <p>Residents can choose to pay the full RAD, a full Daily Accommodation Payment (DAP), or a combination of a part RAD and part DAP, which is an ongoing, non-refundable rental-style payment. <span class="read-more-indicator">[more...]</span></p>
+                </div>
+                <div class="post-content-full" style="display: none;">
+                    <p>Residents can choose to pay the full RAD, full Daily Accommodation Payment (DAP), or a combination of a part RAD and part DAP, which is an ongoing, non-refundable rental-style payment.</p>
+                    <p><strong>MPIR</strong> Maximum Permissable Interest Rate</p>
+                    <p>Current <strong>MPIR</strong> 01/07/2025 to 30/09/2025 = <input type="text" id="mpir-rate" value="7.78" class="calculator-input mpir-input">%  *</p>
+                    <h4>Daily Accomodation Payment (DAP)</h4>
+                    <p>DAP = (RAD x MPIR) / 365</p>
+                    <div class="calculator-section">
+                        <div class="calculator-group">
+                            <label for="rad-amount">RAD Amount ($):</label>
+                            <input type="text" id="rad-amount" class="calculator-input currency-input" placeholder="$" inputmode="numeric">
+                        </div>
+                        <button class="calculator-btn" onclick="calculateDAP()">Calculate DAP</button>
+                        <div class="calculator-group">
+                            <label for="dap-result">Daily Accommodation Payment (DAP):</label>
+                            <input type="text" id="dap-result" class="calculator-result" readonly placeholder="$0.00 per day">
+                        </div>
+                    </div>
+                    <br>
+                    <h4>Combination Option</h4>
+                    <p>If a resident chooses to pay a part RAD, you must calculate their reduced DAP as follows:</p>
+                    <p>Reduced DAP = (agreed full RAD − RAD paid) × MPIR / 365</p>
+                    <div class="calculator-section">
+                        <div class="calculator-group">
+                            <label for="full-rad-amount">Agreed Full RAD Amount ($):</label>
+                            <input type="text" id="full-rad-amount" class="calculator-input currency-input" placeholder="$" inputmode="numeric">
+                        </div>
+                        <div class="calculator-group">
+                            <label for="paid-rad-amount">RAD Amount Paid ($):</label>
+                            <input type="text" id="paid-rad-amount" class="calculator-input currency-input" placeholder="$" inputmode="numeric">
+                        </div>
+                        <button class="calculator-btn" onclick="calculateReducedDAP()">Calculate Reduced DAP</button>
+                        <div class="calculator-group">
+                            <label for="reduced-dap-result">Reduced Daily Accommodation Payment:</label>
+                            <input type="text" id="reduced-dap-result" class="calculator-result" readonly placeholder="$0.00 per day">
+                        </div>
+                    </div>
+                    <br>
+                    <p class="rad-dap-bottom-info">* For latest <strong>MPIR</strong>, refer to: <a href="https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/resources/publications/base-interest-rate-bir-and-maximum-permissible-interest-rate-mpir-for-residential-aged-care</a> &#x2197;</p>
+                    <p class="rad-dap-bottom-info">For more information, refer to: <a href="https://www.health.gov.au/our-work/residential-aged-care/charging/accommodation-payments-contributions" target="_blank" rel="noopener noreferrer">https://www.health.gov.au/our-work/residential-aged-care/charging/accommodation-payments-contributions</a> &#x2197;</p>                              
+                </div>
+                <div class="post-footer">
+                    <div class="post-author">by info@</div>
+                    <button class="facebook-share-btn" data-article-id="rad-to-dap-calculator">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                </div>
+            </article>
+
+            <!-- News Post -->
+            <article class="blog-post expandable" data-category="news" id="new-aged-care-quality-standards">
+                <div class="post-header">
+                    <span class="post-category news">News</span>
+                </div>
+                <h3 class="post-title">Government urged to do more to address 2,500 hospital patients waiting for aged care beds</h3>
+                <div class="post-meta">
+                    <span class="post-date">September 12, 2025</span>
+                </div>
+                <div class="post-content-preview">
+                    <p>Almost 2,500 elderly patients across the country are currently stuck in public hospitals, waiting for a federal government aged care bed, according to new figures compiled by the states and territories, which suggest the practice is costing taxpayers $1 billion a year. <span class="read-more-indicator">[more...]</span></p>
+                </div>
+                <div class="post-content-full" style="display: none;">                    
+                    <p>Almost 2,500 elderly patients across the country are currently stuck in public hospitals, waiting for a federal government aged care bed, according to new figures compiled by the states and territories, which suggest the practice is costing taxpayers $1 billion a year.</p>
+                    
+                    <p>From the ABC: <a href="https://www.msn.com/en-au/health/other/government-urged-to-do-more-to-address-2500-hospital-patients-waiting-for-aged-care-beds/ar-AA1MniGn?ocid=BingNewsVerp" target="_blank" rel="noopener noreferrer">https://www.msn.com/en-au/health/other/government-urged-to-do-more-to-address-2500-hospital-patients-waiting-for-aged-care-beds/ar-AA1MniGn?ocid=BingNewsVerp</a> &#x2197;</p>
+                    
+                </div>
+                <div class="post-footer">
+                    <div class="post-author">by info@</div>
+                    <button class="facebook-share-btn" data-article-id="new-aged-care-quality-standards">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="post-actions">
+                    <button class="like-btn">
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="like-count">0</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Additional News Post -->
+            <article class="blog-post expandable" data-category="news" id="government-aged-care-funding-2025">
+                <div class="post-header">
+                    <span class="post-category news">News</span>
+                </div>
+                <h3 class="post-title">Ageing Australia welcomes passage of amendment bills, calls for final rules</h3>
+                <div class="post-meta">
+                    <span class="post-date">September 4, 2025</span>
+                </div>
+                <div class="post-content-preview">
+                    <p>Ageing Australia welcomes the final passage of the amendment bills through both Houses of Parliament, which removes one of the final hurdles to successful implementation of the new Aged Care Act. <span class="read-more-indicator">[more...]</span></p>
+                </div>
+                <div class="post-content-full" style="display: none;">                    
+                    <p>From Ageing Australia: <a href="https://ageingaustralia.asn.au/media-releases/ageing-australia-welcomes-passage-of-amendment-bills-calls-for-final-rules/" target="_blank" rel="noopener noreferrer">https://ageingaustralia.asn.au/media-releases/ageing-australia-welcomes-passage-of-amendment-bills-calls-for-final-rules/</a> &#x2197;</p>                                        
+                </div>
+                <div class="post-footer">
+                    <div class="post-author">by Kirsty@</div>
+                    <button class="facebook-share-btn" data-article-id="government-aged-care-funding-2025">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="post-actions">
+                    <button class="like-btn">
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="like-count">0</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Insights Post -->
+            <article class="blog-post expandable" data-category="insights" id="aged-care-assessment-waitlists-perth">
+                <div class="post-header">
+                    <span class="post-category insights">Insights</span>
+                </div>
+                <h3 class="post-title">Navigating Aged Care Assessment Waitlists in Perth's North</h3>
+                <div class="post-meta">
+                    <span class="post-date">September 1, 2025</span>
+                </div>
+                <div class="post-content-preview">
+                    <p>Recently, I spoke with an Aged Care Assessor in Perth’s northern suburbs about an issue that is leaving many families stuck in limbo. <span class="read-more-indicator">[more...]</span></p>
+                </div>
+                <div class="post-content-full" style="display: none;">                    
+                    <p>Recently, I spoke with an Aged Care Assessor in Perth’s northern suburbs about an issue that is leaving many families stuck in limbo.</p>
+                    
+                    <p>One of my clients had been waiting months for an Aged Care Assessment (ACA – previously known as ACAT) so he could move into Residential Care. Despite his Home Care Package (HCP) Coordinator’s persistence—chasing My Aged Care, following up with the provider, and even lodging a complaint—nothing moved forward. The provider simply said they were short-staffed and couldn’t give a timeframe. Meanwhile, my client and his wife were left waiting and struggling.</p>
+                    
+                    <p>When their GP referred them to me, I looked into the situation and contacted the Social Worker who had done the client’s previous ACA. She shed light on the problem:</p>
+                    <ul>
+                        <li>Until recently, Perth’s North Metro ACAT (based at Osborne Park) managed all referrals, triaging and prioritising urgent needs.</li>
+                        <li>Now, the system is split: three external providers each handle about 20%, while WA Health ACA North Metro Health Service (NMHS) (the old Osborne Park team) manages around 40%.</li>
+                        <li>The challenge? Some of the new providers simply don’t have enough staff. Instead of releasing referrals, they hold onto them—leaving families waiting far longer than necessary.</li>
+                    </ul>
+
+                    <p>Here’s the important part: families can request a transfer. A Next of Kin or HCP Coordinator can call the provider holding the referral and ask for it to be released to WA Health ACA NMHS. This team currently has shorter wait lists, actively triage's cases, and can respond much faster.</p>
+
+                    <p>In my client’s case, once his referral was transferred on a Friday, the assessment was completed the following Tuesday.</p>
+
+                    <p>Takeaway: If you or your loved one are waiting on an ACA for extra home support or Residential Care approval, don't just wait. Check who is holding the referral—and request a transfer to WA Health ACA NMHS if possible. It could save you weeks, or even months, of unnecessary delay.</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-author">by Kirsty@</div>
+                    <button class="facebook-share-btn" data-article-id="aged-care-assessment-waitlists-perth">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="post-actions">
+                    <button class="like-btn">
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="like-count">0</span>
+                    </button>
+                </div>
+            </article>            
+            
+        </div>
+    </div>
+</section>
+
+<!-- Article Modal -->
+<div id="articleModal" class="article-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-category"></div>
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h2 class="modal-title"></h2>
+            <div class="modal-meta"></div>
+            <div class="modal-article-content"></div>
+            <div class="modal-footer">
+                <div class="modal-footer-left">
+                    <div class="modal-author"></div>
+                </div>
+                <div class="modal-footer-right">
+                    <button class="facebook-share-btn modal-facebook-share" data-article-id="">
+                        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <svg class="facebook-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
+                        </svg>
+                    </button>
+                    <button class="like-btn modal-like-btn" style="display: none;">
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="like-count">0</span>
+                    </button>
+                    <button class="modal-close-bottom">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
