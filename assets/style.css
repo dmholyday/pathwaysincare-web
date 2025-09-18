@@ -309,6 +309,30 @@ body.interior-page .hero-spacer {
     margin-top: 8rem;
 }
 
+/* large screen CSS */
+@media (min-width: 1281px) {
+    
+    #main-title h1 {
+        margin-top: 32rem;
+    }
+
+    #main-title h1.inner-page {
+        margin-top: 16rem;
+    }
+}
+
+/* large screen CSS */
+@media (min-width: 2200px) {
+    
+    #main-title h1 {
+        margin-top: 40rem;
+    }
+
+    #main-title h1.inner-page {
+        margin-top: 22rem;
+    }
+}
+
 /*
 #main-title h1.home {
     margin-top: -11rem;
@@ -1353,6 +1377,15 @@ button {
     opacity: 0;
     animation: fadeInDown 0.8s ease-out 0.8s forwards;
     pointer-events: none;
+}
+
+/* big monitor CSS */
+@media (min-width: 1920px) {
+    
+    .tagline-hero {
+        top: 155%;
+        left: 25%;
+    }
 }
 
 /* Mobile Portrait Tagline Override - Dynamic Scaling */
