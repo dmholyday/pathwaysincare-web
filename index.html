@@ -3,6 +3,10 @@ layout: default
 title: Home
 ---
 
+<!-- Preload hero images only on homepage -->
+<link rel="preload" as="image" href="{{ '/assets/images/hands_enhanced6.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(min-width: 770px)">
+<link rel="preload" as="image" href="{{ '/assets/images/hands_mobile1.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(max-width: 769px)">
+
 <div id="main-title">
   <h1 class="home"></h1>
 </div>
