@@ -1,3 +1,8 @@
+---
+sitemap: false
+---
+
+
 # Local API Configuration
 
 This project uses a local configuration system to handle changing IP addresses during local development.
