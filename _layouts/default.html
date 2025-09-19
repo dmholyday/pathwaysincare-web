@@ -3,9 +3,12 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="preload" as="image" href="{{ '/assets/images/hands_enhanced6.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(min-width: 769px)">
-    <link rel="preload" as="image" href="{{ '/assets/images/hands_mobile1.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(max-width: 769px)">
     <meta name="description" content="{{ site.description }}">
+    {% unless page.url == '/' %}
+    <!-- Preload hero images only on inner pages -->
+    <link rel="preload" as="image" href="{{ '/assets/images/hands_enhanced7_crop.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(min-width: 770px)">
+    <link rel="preload" as="image" href="{{ '/assets/images/hands_mobile2_crop.jpg' | relative_url }}" fetchpriority="high" type="image/jpeg" media="(max-width: 769px)">
+    {% endunless %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon"> 
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon-96x96.png' | relative_url }}" sizes="96x96" />
