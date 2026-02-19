@@ -1528,7 +1528,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     let currentSlide = 0;
     let autoScrollInterval;
-    const autoScrollDelay = 5000; // 5 seconds
     
     const desktopTrack = document.getElementById('desktopReviewsTrack');
     const mobileTrack = document.getElementById('mobileReviewsTrack');
@@ -1594,32 +1593,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function startAutoScroll() {
-        autoScrollInterval = setInterval(nextSlide, autoScrollDelay);
+        clearInterval(autoScrollInterval); // prevent stacking duplicate intervals
+        const delay = window.innerWidth <= 1080 ? 5000 : 8000; // 5s mobile, 8s desktop
+        autoScrollInterval = setInterval(nextSlide, delay);
     }
-    
+
     function stopAutoScroll() {
         clearInterval(autoScrollInterval);
     }
-    
+
     function restartAutoScroll() {
         stopAutoScroll();
         startAutoScroll();
     }
-    
+
     // Dot click handlers
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             goToSlide(index);
         });
     });
-    
-    // Pause auto-scroll on hover
+
+    // Start/stop auto-scroll based on whether the section is visible in the viewport
     const reviewsSection = document.querySelector('.customer-reviews-section');
     if (reviewsSection) {
-        reviewsSection.addEventListener('mouseenter', stopAutoScroll);
-        reviewsSection.addEventListener('mouseleave', startAutoScroll);
+        const reviewsVisibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startAutoScroll();
+                } else {
+                    stopAutoScroll();
+                }
+            });
+        }, { threshold: 0.3 });
+        reviewsVisibilityObserver.observe(reviewsSection);
     }
-    
+
     // Handle window resize
     window.addEventListener('resize', () => {
         const maxSlides = window.innerWidth <= 1080 ? 3 : 2;
@@ -1631,12 +1640,11 @@ document.addEventListener('DOMContentLoaded', function() {
         updateDots();
         restartAutoScroll();
     });
-    
+
     // Initialize
     updateDesktopCarousel();
     updateMobileCarousel();
     updateDots();
-    startAutoScroll();
 });
 
 // Currency formatting functions
